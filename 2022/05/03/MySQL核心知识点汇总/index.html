@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL核心知识点汇总 | 爱笑的Gao的个人博客</title><meta name="keywords" content="MySQL"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="给初学者的建议 数据库的CRUD操作个人觉得，对于初学者来说学习MySQL这块新知识，除了需要反复记忆各类SQL语法、语句，还需要对MySQL安装后在my.ini文件中对于编码的设置有一定了解。在本章中逻辑查询处理部分我标的三颗星的原因是因为这块对于初学者来说来理解可能有些难,一下子不能那么的容易理解,但是真的把这个部分给理清楚了那么在写查询语句的时候对于每个关键字的作用及其位置心里都会比较有数了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL核心知识点汇总">
+<meta property="og:url" content="https://manamn.space/2022/05/03/MySQL%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="给初学者的建议 数据库的CRUD操作个人觉得，对于初学者来说学习MySQL这块新知识，除了需要反复记忆各类SQL语法、语句，还需要对MySQL安装后在my.ini文件中对于编码的设置有一定了解。在本章中逻辑查询处理部分我标的三颗星的原因是因为这块对于初学者来说来理解可能有些难,一下子不能那么的容易理解,但是真的把这个部分给理清楚了那么在写查询语句的时候对于每个关键字的作用及其位置心里都会比较有数了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/9bd9b167gy1g4lj2o72khj21hc0xchdu.jpg">
+<meta property="article:published_time" content="2022-05-03T03:50:05.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:36.246Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva3.sinaimg.cn/large/9bd9b167gy1g4lj2o72khj21hc0xchdu.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/MySQL%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL核心知识点汇总',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva3.sinaimg.cn/large/9bd9b167gy1g4lj2o72khj21hc0xchdu.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL核心知识点汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T03:50:05.000Z" title="发表于 2022-05-03 11:50:05">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:36.246Z" title="更新于 2022-05-06 11:52:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL核心知识点汇总"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="给初学者的建议"><a href="#给初学者的建议" class="headerlink" title="给初学者的建议"></a>给初学者的建议</h3><ul>
+<li>数据库的CRUD操作个人觉得，对于初学者来说学习MySQL这块新知识，除了需要反复记忆各类SQL语法、语句，还需要对MySQL安装后在my.ini文件中对于编码的设置有一定了解。在本章中逻辑查询处理部分我标的三颗星的原因是因为这块对于初学者来说来理解可能有些难,一下子不能那么的容易理解,但是真的把这个部分给理清楚了那么在写查询语句的时候对于每个关键字的作用及其位置心里都会比较有数了.</li>
+<li>MySQL本身语法基本就是英语语法,这块内容对于英语好的同学入门较快,英语差的需要多背相关单词,句子,而且MySQL若是一段时间不用,忘得极快,因此应时常复习,若是经常在网上找些相关的MySQL题目练习下的话巩固效果更佳,MySQL这块知识点面试的时候基本都是会问到的.</li>
+<li>我将MySQL中的基本常用语句在本篇最下方整理成了一个表格,强烈建议初学者多背多记忆,之所以将这块整理成表格,就是为了便于初学者背诵相关MySQL语句来的,背的时候可以拿个遮挡物遮住表格的后两列,自己尝试着能不能根据中文提示独立写出相关语句.</li>
+</ul>
+<h2 id="MySQL的SQL语句"><a href="#MySQL的SQL语句" class="headerlink" title="MySQL的SQL语句"></a>MySQL的SQL语句</h2><h3 id="登录数据库★★★★★"><a href="#登录数据库★★★★★" class="headerlink" title="登录数据库★★★★★"></a>登录数据库★★★★★</h3><p>方式一: mysql  -u root  -p  按回车后提示后输入密码</p>
+<p>方式二:mysql -uroot -p自己的密码</p>
+<p>完整格式:</p>
+<p> mysql -h主机地址 -u用户名 -p密码</p>
+<p>连接本机: mysql -hlocalhost -uroot -p123456</p>
+<p>注意:不写-hlocalhost代表默认访问本机数据库服务器</p>
+<p>-u   username 用户名</p>
+<p>-p  password密码</p>
+<p><strong>注意，登录数据库时语句结尾不要加分号！！！</strong></p>
+<h3 id="逻辑查询处理★★★"><a href="#逻辑查询处理★★★" class="headerlink" title="逻辑查询处理★★★"></a>逻辑查询处理★★★</h3><blockquote>
+<p>SQL语言不同于其他编程语言,最明显的不同体现在处理代码的顺序上,在大多数编程语言中,代码按顺序被处理.但在SQL语言中,第一个被处理的子句总是FROM子句.</p>
+</blockquote>
+<p><img src="/../images/SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F.jpg" alt="SQL查询语句执行顺序"></p>
+<p>如图一共有11个步骤,最先执行的是FROM操作,最后执行的是LIMIT操作.</p>
+<ol>
+<li>FROM: 对FROM子句中的左表&lt;left_table&gt;和右表&lt;right_table&gt;执行笛卡尔积,产生虚拟表VT1.</li>
+<li>ON: 对虚拟表VT1应用ON筛选,只有那些符合 &lt;join_condition&gt;的行才被插入虚拟表VT2中.</li>
+<li>JOIN: 如果指定了OUTER JOIN(如LEFT OUTER JOIN,RIGHT OUTER JOIN),那么保留表中未匹配的行作为添加到虚拟表VT2中,产生虚拟表VT3.如果FROM子句包含两个以上表,则对上一个连接生成的结果表VT3和下一个表重复执行步骤1~步骤3,知道处理完所有的表为止.</li>
+<li>WHERE: 对虚拟表VT3应用WHERE过滤条件,只有符合&lt;where_condition&gt;的记录才被插入虚拟表VT4中.</li>
+<li>GROUP BY: 根据GROUP BY 子句中的列,对VT4中记录进行分组操作,产生VT5.</li>
+<li>CUBEE|ROLLUP:对表VT5进行CUBE或ROLLUP操作,产生表VT6. <strong>注意:这里了解即可.</strong></li>
+<li>HAVING:对虚拟表VT6应用HAVING过滤器,只有符合&lt;having_condition&gt;的记录才被插入虚拟表VT7中.</li>
+<li>SELECT:第二次执行SELECT操作,选择指定的列,插入到虚拟表VT8中.</li>
+<li>DISTINCT: 去除重复数据,产生虚拟表VT9.</li>
+<li>ORDER BY: 将虚拟表VT9中的记录按照&lt;order_by_list&gt;进行排序操作,产生虚拟表VT10.</li>
+<li>LIMIT:取出指定行的记录,产生虚拟表VT11,并返回给查询用户.</li>
+</ol>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="事务的概述"><a href="#事务的概述" class="headerlink" title="事务的概述"></a>事务的概述</h4><ul>
+<li>事务指的是逻辑上的一组操作,组成这组操作的各个单元要么全都成功,要么全都失败.</li>
+<li>事务作用:保证在一个事务中多次操作要么全都成功,要么全都失败.</li>
+</ul>
+<h4 id="事务的特性-ACID"><a href="#事务的特性-ACID" class="headerlink" title="事务的特性:ACID"></a>事务的特性:ACID</h4><ul>
+<li>原子性(Atomicity)  原子性是指事务是一个不可分割的工作单位,事务中的操作要么都发生,要么都不发生.</li>
+<li>一致性(Consistency)  事务前后数据的完整性必须保持一致.</li>
+<li>隔离性(Isolation)  事务的隔离性是指多个用户并发访问数据库时,一个用户的事务不能被其它用户的事务所干扰,多个并发事务之间数据要相互隔离.</li>
+<li>持久性(Durability)  持久性是指一个事务一旦被提交,它多数据库中数据的改变就是永久性的,接下来即使数据库发生故障也不应该对其有任何影响.</li>
+</ul>
+<h4 id="并发访问问题"><a href="#并发访问问题" class="headerlink" title="并发访问问题"></a>并发访问问题</h4><ul>
+<li>脏读:一个事务读到了另一个事务未提交的数据.</li>
+<li>不可重复读:一个事务读到了另一个事务已经提交(update)的数据.引发另一个事务,在事务中的多次查询的结果不一致.</li>
+<li>虚读&#x2F;幻读:一个事务读到了另一个事务已经提交(insert)的数据.导致另一个事务在事务中多次查询的结果不一致.</li>
+</ul>
+<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><ul>
+<li>read uncommitted 读未提交,一个事务读到另一个事务没有提交的数据.<ul>
+<li>存在:3个问题(脏读,不可重复读,虚读)</li>
+<li>解决:0个问题</li>
+</ul>
+</li>
+<li>read committed 读已提交,一个事务读到另一个事务已经提交的数据<ul>
+<li>存在:2个问题(不可重复读,虚读)</li>
+<li>解决:1个问题(脏读)</li>
+</ul>
+</li>
+<li>repeatable read  可重复读,在一个事务总读到的数据始终保持一致,无论另一个事务是否提交.<ul>
+<li>存在: 1个问题(虚读)</li>
+<li>解决:2个问题(脏读,不可重复读)</li>
+</ul>
+</li>
+<li>serializable  串行化,同时只能执行一个事务,相当于事务中的单线程.<ul>
+<li>存在:0个问题</li>
+<li>解决:3个问题(脏读,不可重复读,虚读)</li>
+</ul>
+</li>
+<li>常见数据库的默认隔离级别<ul>
+<li>MySQL:repeatable read</li>
+<li>Oracle: read commited</li>
+</ul>
+</li>
+</ul>
+<h3 id="MySQL中事务相关操作"><a href="#MySQL中事务相关操作" class="headerlink" title="MySQL中事务相关操作"></a>MySQL中事务相关操作</h3><ul>
+<li>查看当前的事务隔离级别:SELECT @@TX_ISOLATION;</li>
+<li>更改当前的事务隔离级别:SET TRANSACTION ISOLATION LEVEL 四个级别之一(eg:<code> SET TRANSACTION ISOLATION LEVEL read uncommitted</code>)</li>
+<li>设置隔离级别必须在事务开启之前</li>
+<li>开启事务: start transaction;</li>
+<li>提交事务: commit;</li>
+<li>回滚事务: rollback;</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><p>编码与my.ini之间的关系</p>
+<p><img src="/../images/MySQL%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%9B%BE.png" alt="MySQL配置文件图"></p>
+<p>my.ini中分别对MySQL服务器端及MySQL客户端编码进行了指定,如图一,对MySQL客户端编码指定为utf8编码,如图二,对MySQL服务器端的编码指定为utf8,若是从客户端传来的数据是按照指定编码发送的,就不会出现乱码,但是,由于Windows系统默认编码为GBK,因此通过黑窗口打开的MySQL的客户端编码也为GBK,但是MySQL配置文件指明客户端编码为utf8,这时就会因为MySQL客户端实际编码与指定编码不一致造成解析数据乱码问题,另外,若是给服务器或者客户端指定编码方式为latian1编码方式的话,会造成输入的中文全部以”?”表示,这种状况是因为latian1编码本身就不包含中文字符造成的.</p>
+</li>
+<li><p>MySQL卸载时</p>
+<ul>
+<li>在客户端中卸载MySQL</li>
+<li>将C:\ProgramData\MySQL文件夹删除,注意,ProgramData默认隐藏文件夹,若是在C盘下没发现,需要勾选上隐藏的项目后即可看到该文件夹.</li>
+</ul>
+</li>
+</ul>
+<h3 id="SQL语句一览表★★★★★"><a href="#SQL语句一览表★★★★★" class="headerlink" title="SQL语句一览表★★★★★"></a>SQL语句一览表★★★★★</h3><blockquote>
+<p>:star2:个数，一个代表了解，三个代表熟悉，五个代表必须掌握，建议根据星级选择背诵相关SQL语句，背诵的时候建议根据中文作用先尝试自己写SQL语句，然后再看SQL语句的写法</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>所属</th>
+<th>作用</th>
+<th>星级</th>
+<th>SQL</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据库的CRUD操作</td>
+<td>创建数据库</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code>create database 数据库的名字;</code></td>
+<td><code>create database day8;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>创建数据库</td>
+<td>:star2:</td>
+<td><code>create database 数据库的名字 character set 字符集;</code></td>
+<td><code>create database day08_2 character set gbk;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>创建数据库</td>
+<td>:star2:</td>
+<td><code>create database 数据库的名字 character set 字符集 collate 校对规则;</code></td>
+<td><code>create database day08_3 character set utf8 collate utf8_bin;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>查看某个数据库的定义语句</td>
+<td>:star2::star2::star2:</td>
+<td><code>show create database 数据库的名字;</code></td>
+<td><code>show create database day8;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>查看所有数据库</td>
+<td>:star2::star2::star2:</td>
+<td><code>show databases;</code></td>
+<td><code>show databases;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>修改数据的字符集</td>
+<td>:star2:</td>
+<td><code>alter database 数据库的名字  character set 字符集;</code></td>
+<td><code>alter database day8 character set utf8;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>删除数据库</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code>drop database 数据库名字;</code></td>
+<td><code>drop database day8;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>查看当前正在使用的数据库名称</td>
+<td>:star2::star2::star2:</td>
+<td><code>select database();</code></td>
+<td><code>select database();</code></td>
+</tr>
+<tr>
+<td></td>
+<td>切换数据库(选中数据库)</td>
+<td>:star2::star2::star2:</td>
+<td><code>use 数据库名字;</code></td>
+<td><code>use day8;</code></td>
+</tr>
+<tr>
+<td>表的CRUD操作</td>
+<td>创建表</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code>create table 表名(列名1 列的类型 [列的约束],列名2 列的类型 [列的约束])</code></td>
+<td><code>create table employee(eid int primary key auto_increment,ename varchar(20) unique,sal double,deptno int not null);</code></td>
+</tr>
+<tr>
+<td></td>
+<td>查看所有表</td>
+<td>:star2::star2::star2:</td>
+<td><code>show tables;</code></td>
+<td><code>show tables;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>查看表的创建过程,建表语句</td>
+<td>:star2::star2::star2:</td>
+<td><code> show create table 表名</code></td>
+<td><code> show create table employee</code></td>
+</tr>
+<tr>
+<td></td>
+<td>查看表结构</td>
+<td>:star2::star2::star2:</td>
+<td><code>desc 表名;</code></td>
+<td><code>desc employee;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>添加列(add)</td>
+<td>:star2::star2::star2:</td>
+<td><code> alter table 表名 add 列名 列名类型</code></td>
+<td><code> alter table employee add gender varchar(2);</code></td>
+</tr>
+<tr>
+<td></td>
+<td>修改列(modify)</td>
+<td>:star2::star2::star2:</td>
+<td><code> alter table 表名 modify 列名 列的类型</code></td>
+<td><code> alter table employee modify gender varchar(4);</code></td>
+</tr>
+<tr>
+<td></td>
+<td>修改列名(change)</td>
+<td>:star2::star2::star2:</td>
+<td><code> alter table 表名 change 旧的列名 新列名 列的类型</code></td>
+<td><code> alter table employee change gender sex varchar(4);</code></td>
+</tr>
+<tr>
+<td></td>
+<td>删除列(drop)</td>
+<td>:star2::star2::star2:</td>
+<td><code> alter table 表名 drop 列名;</code></td>
+<td><code> alter table employee drop sex;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>修改表名(rename)</td>
+<td>:star2::star2::star2:</td>
+<td><code> rename table 旧表名 to 新表名</code></td>
+<td><code> rename table employee to emp;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>修改表的字符集</td>
+<td>:star2::star2::star2:</td>
+<td><code> alter table 表名 character set 字符集</code></td>
+<td><code> alter table emp character set &#39;utf8&#39;;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>删除表</td>
+<td>:star2::star2::star2:</td>
+<td><code> drop table 表名</code></td>
+<td><code> drop table emp;</code></td>
+</tr>
+<tr>
+<td>表数据的CRUD操作</td>
+<td>插入数据(方式一)</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> insert into 表名(字段名1,字段名2) values(值1,值2);</code><strong>(列名和值必须一一对应)</strong></td>
+<td><code> insert into stu(sname,gender) values(&#39;zs&#39;,&#39;ma&#39;);</code></td>
+</tr>
+<tr>
+<td></td>
+<td>插入数据(方式二)</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> insert into 表名 values(值1,值2,值3)</code> <strong>(注意:如果不写列名,那么在插入数据的时候,要根据表的所有字段一一对应插入)</strong></td>
+<td><code> insert into stu values(3,&#39;ww&#39;,&#39;nv&#39;);</code></td>
+</tr>
+<tr>
+<td></td>
+<td>删除(方式一)</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> delete from 表名 [ where 条件 ]</code></td>
+<td><code> delete from stu where stuno=1;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>删除(方式二)</td>
+<td>:star2::star2::star2:</td>
+<td>truncate 表</td>
+<td><code> truncate stu;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>更新表记录</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> update 表名 set 列名=列的值,列名2=列的值2  [where 条件]</code></td>
+<td><code> update stu set isDelete=1 where stuno=6;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>简单查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> select 列名,列名... from 表名</code></td>
+<td><code> select * from product;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>别名查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code>表名 as 别名 或者 列名 as 别名 其中as均可以用空格来代替</code></td>
+<td><code> select p.pname 商品名称,p.price 价格 from product as p;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>去重复值</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> distinct 列名,列名...</code></td>
+<td><code>select distinct pname,price,pdesc,cno from product;</code> <strong>注意:多列去除重复的, 必须是每一列都一样才算重复</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>条件查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code>select [distinct][列名,列名] [*] from 表名  [where 条件]</code></td>
+<td>&gt; &gt;&#x3D; &lt; &lt;&#x3D; !&#x3D; &lt;&gt;   and or not   is null   is not null   in  between..and..   like %(匹配多个字符)    _(匹配单个字符)</td>
+</tr>
+<tr>
+<td></td>
+<td>排序查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> select [distinct][列名,列名] [*] from 表名  where 列名 条件 order by 列名 asc(升序)/desc(降序);</code></td>
+<td><code>select * from product order by price desc;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>聚合函数查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code>sum() 求和;avg() 求平均值; count()统计个数;max() 最大值;min() 最小值 </code></td>
+<td><code> select sum(price) from product;</code><strong>注意:where条件后面不能接聚合函数 having后面可以加</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>分组查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> select 分组的条件,分组之后的操作 from 表名  group by 分组条件 having 条件过滤;</code></td>
+<td><code> select cno 类别,avg(price) 平均价格 from product group by cno having avg(price) &gt; 60;</code></td>
+</tr>
+<tr>
+<td>多表查询</td>
+<td>显式内连接查询</td>
+<td>:star2::star2::star2:</td>
+<td><code>select 查询字段 from 表 1 inner join 表2 on 表1.关系字段 = 表2.关系字段;</code> <strong>inner 可以省略不写</strong></td>
+<td><code> SELECT * FROM USER INNER JOIN orders ON user.userid = orders.uno WHERE user.userid = 1;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>隐式内连接查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code>select 查询字段 from 表 1,表2 where 表1.关系字段 = 表2.关系字段;</code></td>
+<td><code> SELECT * FROM USER,orders WHERE user.userid = orders.uno;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>外连接查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td>&#96; select 所查字段 from 表 1 left</td>
+<td>right [outer] join 表2 on 表1.关系字段 &#x3D; 表2.关系字段 where 条件;&#96;</td>
+</tr>
+<tr>
+<td></td>
+<td>分页查询</td>
+<td>:star2::star2::star2::star2::star2:</td>
+<td><code> select 所查字段 from 表 limit 起始索引,查询几条;</code></td>
+<td><code> select * from product limit 0,3;</code></td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/MySQL%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">https://manamn.space/2022/05/03/MySQL%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="https://tva3.sinaimg.cn/large/9bd9b167gy1g4lj2o72khj21hc0xchdu.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/Request%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"><img class="prev-cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g2qjzxdemzj21hc0u0gw6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Request核心知识点汇总</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/Linux%E5%8F%8A%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88/"><img class="next-cover" src="https://tva1.sinaimg.cn/large/87c01ec7gy1fsnqqiy0kfj21kw0w0qh1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux及虚拟机异常处理方案</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/27/MySQL%20(%E4%B8%80)%20%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/" title="第01章数据库概述-shk"><img class="cover" src="https://static.likepoems.com/2020/09/19/a7a2cf48f2f45bd0fa07c6dc8073df346.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="title">第01章数据库概述-shk</div></div></a></div><div><a href="/2022/05/03/MySQL%E4%BA%8B%E5%8A%A1-ydlclass/" title="MySQL事务-ydlclass"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167ly1fwshe0rnjqj21hc0u0npd.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL事务-ydlclass</div></div></a></div><div><a href="/2022/05/03/MySQL%E4%BC%98%E5%8C%96/" title="MySQL优化"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1g2qk3vv0gvj21hc0u0nab.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL优化</div></div></a></div><div><a href="/2022/05/03/MySQL-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/" title="MySQL 高级主题"><img class="cover" src="https://tva3.sinaimg.cn/large/9bd9b167gy1g4lhoqy40xj21hc0xc7ts.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL 高级主题</div></div></a></div><div><a href="/2022/05/03/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0-ydlclass/" title="MySQL存储过程与函数-ydlclass"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1fwsgdypprdj21hc0u0b29.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL存储过程与函数-ydlclass</div></div></a></div><div><a href="/2022/05/03/MySQL-%E5%85%A5%E9%97%A8%E5%A4%A7%E5%85%A8/" title="MySQL 入门大全"><img class="cover" src="https://tva1.sinaimg.cn/large/0072Vf1pgy1foxk3hgxp3j31hc0u04di.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL 入门大全</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E5%88%9D%E5%AD%A6%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">给初学者的建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E7%9A%84SQL%E8%AF%AD%E5%8F%A5"><span class="toc-number"></span> <span class="toc-text">MySQL的SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%85"><span class="toc-number">1.</span> <span class="toc-text">登录数据库★★★★★</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86%E2%98%85%E2%98%85%E2%98%85"><span class="toc-number">2.</span> <span class="toc-text">逻辑查询处理★★★</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">事务的概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E7%89%B9%E6%80%A7-ACID"><span class="toc-number">3.2.</span> <span class="toc-text">事务的特性:ACID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98"><span class="toc-number">3.3.</span> <span class="toc-text">并发访问问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">3.4.</span> <span class="toc-text">事务的隔离级别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E4%B8%AD%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">MySQL中事务相关操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">5.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5%E4%B8%80%E8%A7%88%E8%A1%A8%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%85"><span class="toc-number">6.</span> <span class="toc-text">SQL语句一览表★★★★★</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

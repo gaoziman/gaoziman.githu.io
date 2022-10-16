@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MyBatis 核心配置综述之StatementHandler | 爱笑的Gao的个人博客</title><meta name="keywords" content="MyBatis"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MyBatis 核心配置综述之StatementHandler MyBatis 核心配置综述之StatementHandler MyBatis 四大组件之StatementHandler StatementHandler 的基本构成 StatementHandler 对象创建以及源码分析 prepare方法调用流程分析 parametersize 方法调用流程分析 update 方法调用流程分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis 核心配置综述之StatementHandler">
+<meta property="og:url" content="https://manamn.space/2022/05/03/MyBatis-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E7%BB%BC%E8%BF%B0%E4%B9%8BStatementHandler/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="MyBatis 核心配置综述之StatementHandler MyBatis 核心配置综述之StatementHandler MyBatis 四大组件之StatementHandler StatementHandler 的基本构成 StatementHandler 对象创建以及源码分析 prepare方法调用流程分析 parametersize 方法调用流程分析 update 方法调用流程分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/9bd9b167gy1fwrdujj66aj21hc0u0ngb.jpg">
+<meta property="article:published_time" content="2022-05-03T07:24:16.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:36.214Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="MyBatis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva4.sinaimg.cn/large/9bd9b167gy1fwrdujj66aj21hc0u0ngb.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/MyBatis-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E7%BB%BC%E8%BF%B0%E4%B9%8BStatementHandler/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MyBatis 核心配置综述之StatementHandler',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva4.sinaimg.cn/large/9bd9b167gy1fwrdujj66aj21hc0u0ngb.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MyBatis 核心配置综述之StatementHandler</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T07:24:16.000Z" title="发表于 2022-05-03 15:24:16">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:36.214Z" title="更新于 2022-05-06 11:52:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MyBatis/">MyBatis</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MyBatis 核心配置综述之StatementHandler"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="MyBatis-核心配置综述之StatementHandler"><a href="#MyBatis-核心配置综述之StatementHandler" class="headerlink" title="MyBatis 核心配置综述之StatementHandler"></a>MyBatis 核心配置综述之StatementHandler</h1><ul>
+<li><a href="#mybatis-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E7%BB%BC%E8%BF%B0%E4%B9%8Bstatementhandler">MyBatis 核心配置综述之StatementHandler</a><ul>
+<li><a href="#mybatis-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8Bstatementhandler">MyBatis 四大组件之StatementHandler</a><ul>
+<li><a href="#statementhandler-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90">StatementHandler 的基本构成</a></li>
+<li><a href="#statementhandler-%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90">StatementHandler 对象创建以及源码分析</a><ul>
+<li><a href="#prepare%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90">prepare方法调用流程分析</a></li>
+<li><a href="#parametersize-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90">parametersize 方法调用流程分析</a></li>
+<li><a href="#update-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90">update 方法调用流程分析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="MyBatis-四大组件之StatementHandler"><a href="#MyBatis-四大组件之StatementHandler" class="headerlink" title="MyBatis 四大组件之StatementHandler"></a>MyBatis 四大组件之StatementHandler</h2><p><code>StatementHandler</code> 是四大组件中最重要的一个对象，负责操作 Statement 对象与数据库进行交流，在工作时还会使用 ParameterHandler 和 ResultSetHandler 对参数进行映射，对结果进行实体类的绑定</p>
+<p>我们在搭建原生JDBC的时候，会有这样一行代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement(); <span class="comment">//也可以使用PreparedStatement来做</span></span><br></pre></td></tr></table></figure>
+
+<p>这行代码创建的 Statement 对象或者是 PreparedStatement 对象就是由StatementHandler进行管理的。</p>
+<h3 id="StatementHandler-的基本构成"><a href="#StatementHandler-的基本构成" class="headerlink" title="StatementHandler 的基本构成"></a>StatementHandler 的基本构成</h3><p>来看一下StatementHandler中的主要方法：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1515111/201908/1515111-20190803171249525-1383615224.png"></p>
+<ul>
+<li><strong>prepare</strong>: 用于创建一个具体的 Statement 对象的实现类或者是 Statement 对象</li>
+<li><strong>parametersize</strong>: 用于初始化 Statement 对象以及对sql的占位符进行赋值</li>
+<li><strong>update</strong>: 用于通知 Statement 对象将 insert、update、delete 操作推送到数据库</li>
+<li><strong>query</strong>: 用于通知 Statement 对象将 select 操作推送数据库并返回对应的查询结果</li>
+</ul>
+<p><strong>StatementHandler</strong>的继承结构</p>
+<p><img src="https://img2018.cnblogs.com/blog/1515111/201908/1515111-20190803171258049-449567015.png"></p>
+<p>有没有感觉和  <code>Executor</code> 的继承体系很相似呢？最顶级接口是四大组件对象，分别有两个实现类 <code>BaseStatementHandler</code>  和  <code>RoutingStatementHandler </code>，BaseStatementHandler 有三个实现类, 他们分别是 SimpleStatementHandler、PreparedStatementHandler 和 CallableStatementHandler。</p>
+<p><strong>RoutingStatementHandler</strong>: RoutingStatementHandler 并没有对 Statement 对象进行使用，只是根据StatementType 来创建一个代理，代理的就是对应Handler的三种实现类。**在MyBatis工作时,使用的StatementHandler 接口对象实际上就是 RoutingStatementHandler 对象.**我们可以理解为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StatementHandler</span> <span class="variable">statmentHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RountingStatementHandler</span>();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">RoutingStatementHandler</span><span class="params">(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 根据 statementType 创建对应的 Statement 对象</span></span><br><span class="line">  <span class="keyword">switch</span> (ms.getStatementType()) &#123;</span><br><span class="line">    <span class="keyword">case</span> STATEMENT:</span><br><span class="line">      delegate = <span class="keyword">new</span> <span class="title class_">SimpleStatementHandler</span>(executor, ms, parameter, rowBounds, resultHandler, boundSql);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> PREPARED:</span><br><span class="line">      delegate = <span class="keyword">new</span> <span class="title class_">PreparedStatementHandler</span>(executor, ms, parameter, rowBounds, resultHandler, boundSql);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> CALLABLE:</span><br><span class="line">      delegate = <span class="keyword">new</span> <span class="title class_">CallableStatementHandler</span>(executor, ms, parameter, rowBounds, resultHandler, boundSql);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ExecutorException</span>(<span class="string">&quot;Unknown statement type: &quot;</span> + ms.getStatementType());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>BaseStatementHandler</strong>: 是 StatementHandler 接口的另一个实现类.本身是一个抽象类.用于简化StatementHandler 接口实现的难度,属于<strong>适配器设计模式</strong>体现，它主要有三个实现类</p>
+<ul>
+<li><strong>SimpleStatementHandler</strong>: 管理 Statement 对象并向数据库中推送不需要预编译的SQL语句</li>
+<li><strong>PreparedStatementHandler</strong>: 管理 Statement 对象并向数据中推送需要预编译的SQL语句，</li>
+<li><strong>CallableStatementHandler</strong>：管理 Statement 对象并调用数据库中的存储过程</li>
+</ul>
+<h3 id="StatementHandler-对象创建以及源码分析"><a href="#StatementHandler-对象创建以及源码分析" class="headerlink" title="StatementHandler 对象创建以及源码分析"></a>StatementHandler 对象创建以及源码分析</h3><p>StatementHandler 对象是在 SqlSession 对象接收到命令操作时，由 Configuration 对象中的newStatementHandler 负责调用的，也就是说 Configuration 中的 newStatementHandler 是由执行器中的查询、更新(插入、更新、删除)方法来提供的，StatementHandler 其实就是由 Executor 负责管理和创建的。</p>
+<p>SimpleExecutor.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;E&gt; List&lt;E&gt; <span class="title function_">doQuery</span><span class="params">(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    <span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// 获取环境配置</span></span><br><span class="line">      <span class="type">Configuration</span> <span class="variable">configuration</span> <span class="operator">=</span> ms.getConfiguration();</span><br><span class="line">      <span class="comment">// 创建StatementHandler，解析SQL语句</span></span><br><span class="line">      <span class="type">StatementHandler</span> <span class="variable">handler</span> <span class="operator">=</span> configuration.newStatementHandler(wrapper, ms, parameter, rowBounds, resultHandler, boundSql);</span><br><span class="line">      stmt = prepareStatement(handler, ms.getStatementLog());</span><br><span class="line">      <span class="comment">// 由handler来对SQL语句执行解析工作</span></span><br><span class="line">      <span class="keyword">return</span> handler.&lt;E&gt;query(stmt, resultHandler);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      closeStatement(stmt);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2018.cnblogs.com/blog/1515111/201908/1515111-20190803171315178-1209653485.png"></p>
+<blockquote>
+<p>由图中可以看出，StatementHandler 默认创建一个 RoutingStatementHandler ，这也就是 StatementHandler 的默认实现，由 RoutingStatementHandler 负责根据 StatementType 创建对应的StatementHandler 来处理调用。</p>
+</blockquote>
+<h4 id="prepare方法调用流程分析"><a href="#prepare方法调用流程分析" class="headerlink" title="prepare方法调用流程分析"></a>prepare方法调用流程分析</h4><p>prepare 方法的调用过程是这样的，在上面的源码分析过程中，我们分析到了执行器 Executor 在执行SQL语句的时候会创建 StatementHandler 对象，进而经过一系列的 StatementHandler 类型的判断并初始化。再拿到StatementHandler 返回的 statementhandler 对象的时候，会调用其<code>prepareStatement()</code>方法，下面就来一起看一下 <code>preparedStatement()</code> 方法(我们以简单执行器为例，因为创建其 StatementHandler 对象的流程和执行 preparedStatement() 方法的流程是差不多的)：</p>
+<p>SimpleExecutor.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;E&gt; List&lt;E&gt; <span class="title function_">doQuery</span><span class="params">(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">  <span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 获取环境配置</span></span><br><span class="line">    <span class="type">Configuration</span> <span class="variable">configuration</span> <span class="operator">=</span> ms.getConfiguration();</span><br><span class="line">    <span class="comment">// 创建StatementHandler，解析SQL语句</span></span><br><span class="line">    <span class="type">StatementHandler</span> <span class="variable">handler</span> <span class="operator">=</span> configuration.newStatementHandler(wrapper, ms, parameter, rowBounds, resultHandler, boundSql);</span><br><span class="line">    </span><br><span class="line">    stmt = prepareStatement(handler, ms.getStatementLog());</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 由handler来对SQL语句执行解析工作</span></span><br><span class="line">    <span class="keyword">return</span> handler.&lt;E&gt;query(stmt, resultHandler);</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    closeStatement(stmt);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Statement <span class="title function_">prepareStatement</span><span class="params">(StatementHandler handler, Log statementLog)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">  Statement stmt;</span><br><span class="line">  <span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> getConnection(statementLog);</span><br><span class="line">  </span><br><span class="line">  stmt = handler.prepare(connection, transaction.getTimeout());</span><br><span class="line">  </span><br><span class="line">  handler.parameterize(stmt);</span><br><span class="line">  <span class="keyword">return</span> stmt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// prepare方法调用到 StatementHandler 的实现类RoutingStatementHandler，再由RoutingStatementHandler调用BaseStatementHandler中的prepare 方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// RoutingStatementHandler.java</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Statement <span class="title function_">prepare</span><span class="params">(Connection connection, Integer transactionTimeout)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    <span class="keyword">return</span> delegate.prepare(connection, transactionTimeout);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  BaseStatementHandler.java</span></span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Statement <span class="title function_">prepare</span><span class="params">(Connection connection, Integer transactionTimeout)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    ErrorContext.instance().sql(boundSql.getSql());</span><br><span class="line">    <span class="type">Statement</span> <span class="variable">statement</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      statement = instantiateStatement(connection);</span><br><span class="line">      setStatementTimeout(statement, transactionTimeout);</span><br><span class="line">      setFetchSize(statement);</span><br><span class="line">      <span class="keyword">return</span> statement;</span><br><span class="line">    &#125; ...</span><br></pre></td></tr></table></figure>
+
+<p>其中最重要的方法就是  <code>instantiateStatement()</code> 方法了，在得到数据库连接 connection 的对象的时候，会去调用 <code>instantiateStatement()</code> 方法，instantiateStatement 方法位于 StatementHandler 中，是一个抽象方法由子类去实现，实际执行的是三种 StatementHandler 中的一种，我们还以 <code>SimpleStatementHandler</code> 为例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Statement <span class="title function_">instantiateStatement</span><span class="params">(Connection connection)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    <span class="keyword">if</span> (mappedStatement.getResultSetType() != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> connection.createStatement(mappedStatement.getResultSetType().getValue(), ResultSet.CONCUR_READ_ONLY);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> connection.createStatement();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面代码我们可以看到，instantiateStatement() 最终返回的也是Statement对象，<strong>经过一系列的调用会把statement 对象返回到 SimpleExecutor 简单执行器中，为 parametersize 方法所用</strong>。也就是说，prepare 方法负责生成 Statement 实例对象，而 parameterize 方法用于处理 Statement 实例多对应的参数。</p>
+<h4 id="parametersize-方法调用流程分析"><a href="#parametersize-方法调用流程分析" class="headerlink" title="parametersize 方法调用流程分析"></a>parametersize 方法调用流程分析</h4><p>parametersize 方法看的就比较畅快了，也是经由执行器来管理 parametersize 的方法调用，这次我们还想以SimpleStatementHandler 为例但是却不行了？为什么呢？因为 SimpleStatementHandler 是个空实现了，为什么是null呢？因为 SimpleStatementHandler 只负责处理简单SQL，能够直接查询得到结果的SQL，例如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> studenname <span class="keyword">from</span> Student</span><br></pre></td></tr></table></figure>
+
+<p>而 SimpleStatementHandler 又不涉及到参数的赋值问题，那么参数赋值该在哪里进行呢？实际上为参数赋值这步操作是在 <code>PreparedStatementHandler</code> 中进行的，因此我们的主要关注点在 PreparedStatementHandler 中的parameterize 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">parameterize</span><span class="params">(Statement statement)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">  parameterHandler.setParameters((PreparedStatement) statement);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到，为参数赋值的工作是由一个叫做 parameterHandler 对象完成的，都是这样的吗？来看一下CallableStatementHandler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">parameterize</span><span class="params">(Statement statement)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">  registerOutputParameters((CallableStatement) statement);</span><br><span class="line">  parameterHandler.setParameters((CallableStatement) statement);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码可以看到，CallableStatementHandler 也是由 parameterHandler 进行参数赋值的。</p>
+<p>那么这个 parameterHandler 到底是什么呢？这个问题能想到说明老兄你已经上道了，这也就是我们执行器的第三个组件。这个组件我们在下一节进行分析</p>
+<h4 id="update-方法调用流程分析"><a href="#update-方法调用流程分析" class="headerlink" title="update 方法调用流程分析"></a>update 方法调用流程分析</h4><p>用一幅流程图来表示一下这个调用过程：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1515111/201908/1515111-20190803171333257-1822082319.png"></p>
+<p>简单描述一下update 方法的执行过程：</p>
+<ol>
+<li>MyBatis 接收到 update 请求后会先找到 CachingExecutor 缓存执行器查询是否需要刷新缓存，然后找到BaseExecutor 执行 update 方法；</li>
+<li>BaseExecutor 基础执行器会清空一级缓存，然后交给再根据执行器的类型找到对应的执行器，继续执行 update 方法；</li>
+<li>具体的执行器会先创建 Configuration 对象，根据 Configuration 对象调用 newStatementHandler 方法，返回 statementHandler 的句柄；</li>
+<li>具体的执行器会调用 prepareStatement 方法，找到本类的 prepareStatement 方法后，再有prepareStatement 方法调用 StatementHandler 的子类 BaseStatementHandler 中的 prepare 方法</li>
+<li>BaseStatementHandler 中的 prepare 方法会调用 instantiateStatement 实例化具体的 Statement 对象并返回给具体的执行器对象</li>
+<li>由具体的执行器对象调用 parameterize 方法给参数进行赋值。</li>
+</ol>
+<p>续上上面的 <code>parameter</code>方法，具体交给 <code>ParameterHandler</code> 进行进一步的赋值处理</p>
+<blockquote>
+<p>Query 查询方法几乎和 update 方法相同，这里就不再详细的举例说明了</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/MyBatis-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E7%BB%BC%E8%BF%B0%E4%B9%8BStatementHandler/">https://manamn.space/2022/05/03/MyBatis-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E7%BB%BC%E8%BF%B0%E4%B9%8BStatementHandler/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MyBatis/">MyBatis</a></div><div class="post_share"><div class="social-share" data-image="https://tva4.sinaimg.cn/large/9bd9b167gy1fwrdujj66aj21hc0u0ngb.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/Java-SuppressWarnings-%E7%94%A8%E6%B3%95/"><img class="prev-cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1fwrtagmzyyj21hc0u0tox.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java-@SuppressWarnings 用法</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/MyBatis-%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E5%85%A8%E8%AF%A6%E8%A7%A3/"><img class="next-cover" src="https://tva4.sinaimg.cn/large/005BYqpggy1fwrerxsu1hj31hc0xcq8r.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MyBatis 二级缓存全详解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/27/Maven&MyBatis/" title="hm-Maven&amp;MyBatis"><img class="cover" src="https://static.likepoems.com/2020/09/19/f7b3847dc728ddb5216bc4ee8f5305236.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="title">hm-Maven&amp;MyBatis</div></div></a></div><div><a href="/2022/05/03/MyBatis-%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98/" title="MyBatis 一级缓存"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(501).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MyBatis 一级缓存</div></div></a></div><div><a href="/2022/05/03/MyBatis-%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E5%85%A8%E8%AF%A6%E8%A7%A3/" title="MyBatis 二级缓存全详解"><img class="cover" src="https://tva4.sinaimg.cn/large/005BYqpggy1fwrerxsu1hj31hc0xcq8r.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MyBatis 二级缓存全详解</div></div></a></div><div><a href="/2022/05/03/MyBatis-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" title="MyBatis 启动流程"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(526).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MyBatis 启动流程</div></div></a></div><div><a href="/2022/05/03/MyBatis-%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/" title="MyBatis 基础搭建及架构概述"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(929).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MyBatis 基础搭建及架构概述</div></div></a></div><div><a href="/2022/05/03/MyBatis-%E6%83%B3%E5%90%AF%E5%8A%A8%EF%BC%9F%E5%BE%97%E5%85%88%E9%97%AE%E9%97%AE%E5%AE%83%E5%90%8C%E4%B8%8D%E5%90%8C%E6%84%8F/" title="MyBatis 想启动？得先问问它同不同意"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(459).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MyBatis 想启动？得先问问它同不同意</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MyBatis-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E7%BB%BC%E8%BF%B0%E4%B9%8BStatementHandler"><span class="toc-number">1.</span> <span class="toc-text">MyBatis 核心配置综述之StatementHandler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MyBatis-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BStatementHandler"><span class="toc-number">1.1.</span> <span class="toc-text">MyBatis 四大组件之StatementHandler</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StatementHandler-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90"><span class="toc-number">1.1.1.</span> <span class="toc-text">StatementHandler 的基本构成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StatementHandler-%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">StatementHandler 对象创建以及源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#prepare%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">prepare方法调用流程分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#parametersize-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">parametersize 方法调用流程分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#update-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">update 方法调用流程分析</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

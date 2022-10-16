@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Java 开发最容易犯的 10 个错误 | 爱笑的Gao的个人博客</title><meta name="keywords" content="Java,Java-Basic"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java 开发最容易犯的 10 个错误 Java 开发最容易犯的 10 个错误 错误一：Array 转换成 ArrayList 错误二：检查数组是否包含某个值 错误三：在 List 中循环删除元素 错误四：Hashtable 和 HashMap 错误五：使用原始类型的集合 错误六：访问级别问题 错误七：ArrayList 和 LinkedList 错误八：可变和不可变 错误九：构造函数 错误十：到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 开发最容易犯的 10 个错误">
+<meta property="og:url" content="https://manamn.space/2022/05/03/Java-%E5%BC%80%E5%8F%91%E6%9C%80%E5%AE%B9%E6%98%93%E7%8A%AF%E7%9A%84-10-%E4%B8%AA%E9%94%99%E8%AF%AF/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="Java 开发最容易犯的 10 个错误 Java 开发最容易犯的 10 个错误 错误一：Array 转换成 ArrayList 错误二：检查数组是否包含某个值 错误三：在 List 中循环删除元素 错误四：Hashtable 和 HashMap 错误五：使用原始类型的集合 错误六：访问级别问题 错误七：ArrayList 和 LinkedList 错误八：可变和不可变 错误九：构造函数 错误十：到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva2.sinaimg.cn/large/9bd9b167gy1g4lj0abg7yj21hc0xcu0x.jpg">
+<meta property="article:published_time" content="2022-05-03T08:01:09.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:36.104Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Java-Basic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva2.sinaimg.cn/large/9bd9b167gy1g4lj0abg7yj21hc0xcu0x.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/Java-%E5%BC%80%E5%8F%91%E6%9C%80%E5%AE%B9%E6%98%93%E7%8A%AF%E7%9A%84-10-%E4%B8%AA%E9%94%99%E8%AF%AF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java 开发最容易犯的 10 个错误',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva2.sinaimg.cn/large/9bd9b167gy1g4lj0abg7yj21hc0xcu0x.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Java 开发最容易犯的 10 个错误</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T08:01:09.000Z" title="发表于 2022-05-03 16:01:09">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:36.104Z" title="更新于 2022-05-06 11:52:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java-Basic/">Java-Basic</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java 开发最容易犯的 10 个错误"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Java-开发最容易犯的-10-个错误"><a href="#Java-开发最容易犯的-10-个错误" class="headerlink" title="Java 开发最容易犯的 10 个错误"></a>Java 开发最容易犯的 10 个错误</h1><ul>
+<li><a href="#java-%E5%BC%80%E5%8F%91%E6%9C%80%E5%AE%B9%E6%98%93%E7%8A%AF%E7%9A%84-10-%E4%B8%AA%E9%94%99%E8%AF%AF">Java 开发最容易犯的 10 个错误</a><ul>
+<li><a href="#%E9%94%99%E8%AF%AF%E4%B8%80array-%E8%BD%AC%E6%8D%A2%E6%88%90-arraylist">错误一：Array 转换成 ArrayList</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E4%BA%8C%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E6%9F%90%E4%B8%AA%E5%80%BC">错误二：检查数组是否包含某个值</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E4%B8%89%E5%9C%A8-list-%E4%B8%AD%E5%BE%AA%E7%8E%AF%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0">错误三：在 List 中循环删除元素</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%9B%9Bhashtable-%E5%92%8C-hashmap">错误四：Hashtable 和 HashMap</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E4%BA%94%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%86%E5%90%88">错误五：使用原始类型的集合</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%85%AD%E8%AE%BF%E9%97%AE%E7%BA%A7%E5%88%AB%E9%97%AE%E9%A2%98">错误六：访问级别问题</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E4%B8%83arraylist-%E5%92%8C-linkedlist">错误七：ArrayList 和 LinkedList</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%85%AB%E5%8F%AF%E5%8F%98%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98">错误八：可变和不可变</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E4%B9%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">错误九：构造函数</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%8D%81%E5%88%B0%E5%BA%95%E6%98%AF%E4%BD%BF%E7%94%A8--%E8%BF%98%E6%98%AF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">错误十：到底是使用 “” 还是构造函数</a></li>
+<li><a href="#%E5%90%8E%E8%AE%B0">后记</a></li>
+</ul>
+</li>
+</ul>
+<p>那个谁，今天又写 bug 了，没错，他说的好像就是我。。。。。。</p>
+<p>作为 Java 开发，我们在写代码的过程中难免会产生各种奇思妙想的 bug ，有些 bug 就挺让人无奈的，比如说各种空指针异常，在 ArrayList 的迭代中进行删除操作引发异常，数组下标越界异常等。</p>
+<p>如果你不小心看到同事的代码出现了我所描述的这些 bug 后，那你就把我这篇文章甩给他！！！你甩给他一篇文章，并让他关注了一波 cxuan，你会收获他在后面像是如获至宝并满眼崇拜大神的目光。</p>
+<p>废话不多说，下面进入正题。</p>
+<h2 id="错误一：Array-转换成-ArrayList"><a href="#错误一：Array-转换成-ArrayList" class="headerlink" title="错误一：Array 转换成 ArrayList"></a>错误一：Array 转换成 ArrayList</h2><p>Array 转换成 ArrayList 还能出错？这是哪个笨。。。。。。</p>
+<p>等等，你先别着急说，先来看看是怎么回事。</p>
+<p>如果要将数组转换为 ArrayList，我们一般的做法会是这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = Arrays.asList(arr);</span><br></pre></td></tr></table></figure>
+
+<p>Arrays.asList() 将返回一个 ArrayList，它是 Arrays 中的私有静态类，它不是 java.util.ArrayList 类。如下图所示</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gv4ujo7xmdj30rj072dgc.jpg" alt="image-20211005232205213"></p>
+<p>Arrays 内部的 ArrayList 只有 set、get、contains 等方法，但是没有能够像是 add 这种能够使其内部结构进行改变的方法，所以 Arrays 内部的 ArrayList 的大小是固定的。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gv5ckgz3nkj607z08hwet02.jpg" alt="image-20211006094537453"></p>
+<p>如果要创建一个能够添加元素的 ArrayList ，你可以使用下面这种创建方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; arrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(arr));</span><br></pre></td></tr></table></figure>
+
+<p>因为 ArrayList 的构造方法是可以接收一个 Collection 集合的，所以这种创建方式是可行的。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gv5cnf7xvaj60h70bbq4202.jpg" alt="image-20211006094827686"></p>
+<h2 id="错误二：检查数组是否包含某个值"><a href="#错误二：检查数组是否包含某个值" class="headerlink" title="错误二：检查数组是否包含某个值"></a>错误二：检查数组是否包含某个值</h2><p>检查数组中是否包含某个值，部分程序员经常会这么做：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;String&gt;(Arrays.asList(arr));</span><br><span class="line"><span class="keyword">return</span> set.contains(targetValue);</span><br></pre></td></tr></table></figure>
+
+<p>这段代码虽然没错，但是有额外的性能损耗，正常情况下，不用将其再转换为 <em>set</em>，直接这么做就好了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> Arrays.asList(arr).contains(targetValue);</span><br></pre></td></tr></table></figure>
+
+<p>或者使用下面这种方式（穷举法，循环判断）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(String s: arr)&#123;</span><br><span class="line">	<span class="keyword">if</span>(s.equals(targetValue))</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面第一段代码比第二段更具有可读性。</p>
+<h2 id="错误三：在-List-中循环删除元素"><a href="#错误三：在-List-中循环删除元素" class="headerlink" title="错误三：在 List 中循环删除元素"></a>错误三：在 List 中循环删除元素</h2><p>这个错误我相信很多小伙伴都知道了，在循环中删除元素是个禁忌，有段时间内我在审查代码的时候就喜欢看团队的其他小伙伴有没有犯这个错误。</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNly1gv5dh9519ij60fc0aggly02.jpg" alt="image-20211006101709155" style="zoom:50%;" />
+
+<p>说到底，为什么不能这么做（集合内删除元素）呢？且看下面代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>));</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">	list.remove(i);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(list);</span><br></pre></td></tr></table></figure>
+
+<p>这个输出结果你能想到么？是不是蠢蠢欲动想试一波了？</p>
+<p>答案其实是 [b,d]</p>
+<p>为什么只有两个值？我这不是循环输出的么？</p>
+<p>其实，在列表内部，当你使用<strong>外部</strong> remove 的时候，一旦 remove 一个元素后，其列表的内部结构会发生改变，一开始集合总容量是 4，remove 一个元素之后就会变为 3，然后再和 i 进行比较判断。。。。。。所以只能输出两个元素。</p>
+<p>你可能知道使用迭代器是正确的 remove 元素的方式，你还可能知道 for-each 和 iterator 这种工作方式类似，所以你写下了如下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>));</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">	<span class="keyword">if</span> (s.equals(<span class="string">&quot;a&quot;</span>))</span><br><span class="line">		list.remove(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后你充满自信的 run xxx.main() 方法，结果。。。。。。<em>ConcurrentModificationException</em></p>
+<p>为啥呢？</p>
+<p>那是因为使用 ArrayList 中外部 remove 元素，会造成其内部结构和游标的改变。</p>
+<p>在阿里开发规范上，也有不要在 for-each 循环内对元素进行 remove&#x2F;add 操作的说明。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gv5d5ta0u0j60p10ext9x02.jpg" alt="image-20211006100608623"></p>
+<p>所以大家要使用 List 进行元素的添加或者删除操作，一定要使用迭代器进行删除。也就是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>));</span><br><span class="line">Iterator&lt;String&gt; iter = list.iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> iter.next();</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">if</span> (s.equals(<span class="string">&quot;a&quot;</span>)) &#123;</span><br><span class="line">		iter.remove();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>.next() 必须在 .remove() 之前调用。 在 foreach 循环中，编译器会在删除元素的操作后调用 .next()，导致ConcurrentModificationException。</p>
+<h2 id="错误四：Hashtable-和-HashMap"><a href="#错误四：Hashtable-和-HashMap" class="headerlink" title="错误四：Hashtable 和 HashMap"></a>错误四：Hashtable 和 HashMap</h2><p>这是一条算法方面的规约：按照算法的约定，Hashtable 是数据结构的名称，但是在 Java 中，数据结构的名称是 HashMap，Hashtable 和 HashMap 的主要区别之一就是 Hashtable 是同步的，所以很多时候你不需要 Hashtable ，而是使用 HashMap。</p>
+<h2 id="错误五：使用原始类型的集合"><a href="#错误五：使用原始类型的集合" class="headerlink" title="错误五：使用原始类型的集合"></a>错误五：使用原始类型的集合</h2><p>这是一条泛型方面的约束：</p>
+<p>在 Java 中，原始类型和无界通配符类型很容易混合在一起。以 Set 为例，Set 是原始类型，而 Set&lt;?&gt; 是无界通配符类型。</p>
+<p>比如下面使用原始类型 List 作为参数的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(List list, Object o)</span>&#123;</span><br><span class="line">	list.add(o);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">	List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">	add(list, <span class="number">10</span>);</span><br><span class="line">	<span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> list.get(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这段代码会抛出 <em>java.lang.ClassCastException</em> 异常，为啥呢？</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNly1gv5o8jcvzcj60bx08eq3602.jpg" alt="image-20211006162921268" style="zoom:50%;" />
+
+<p>使用原始类型集合是比较危险的，因为原始类型会跳过泛型检查而且不安全，<code>Set、Set&lt;?&gt; 和 Set&lt;Object&gt;</code> 存在巨大的差异，而且泛型在使用中很容易造成类型擦除。</p>
+<p>大家都知道，Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，正确理解泛型概念的首要前提是理解类型擦除。Java 的泛型基本上都是在编译器这个层次上实现的，在生成的字节码中是不包含泛型中的类型信息的，使用泛型的时候加上类型参数，在编译器编译的时候会去掉，这个过程成为<strong>类型擦除</strong>。</p>
+<p>如在代码中定义<code>List&lt;Object&gt;</code>和<code>List&lt;String&gt;</code>等类型，在编译后都会变成<code>List</code>，JVM 看到的只是<code>List</code>，而由泛型附加的类型信息对 JVM 是看不到的。Java 编译器会在编译时尽可能的发现可能出错的地方，但是仍然无法在运行时刻出现的类型转换异常的情况，类型擦除也是 Java 的泛型与 C++ 模板机制实现方式之间的重要区别。</p>
+<p>比如下面这段示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;String&gt; list1 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        list1.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;Integer&gt; list2 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        list2.add(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(list1.getClass() == list2.getClass());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们定义了两个<code>ArrayList</code>数组，不过一个是<code>ArrayList&lt;String&gt;</code>泛型类型的，只能存储字符串；一个是<code>ArrayList&lt;Integer&gt;</code>泛型类型的，只能存储整数，最后，我们通过<code>list1</code>对象和<code>list2</code>对象的<code>getClass()</code>方法获取他们的类的信息，最后发现结果为<code>true</code>。说明泛型类型<code>String</code>和<code>Integer</code>都被擦除掉了，只剩下原始类型。</p>
+<p>所以，最上面那段代码，把 10 添加到 Object 类型中是完全可以的，然而将 Object 类型的 “10” 转换为 String 类型就会抛出类型转换异常。</p>
+<h2 id="错误六：访问级别问题"><a href="#错误六：访问级别问题" class="headerlink" title="错误六：访问级别问题"></a>错误六：访问级别问题</h2><p>我相信大部分开发在设计 class 或者成员变量的时候，都会简单粗暴的直接声明 <em>public xxx</em>，这是一种糟糕的设计，声明为 public 就很容易赤身裸体，这样对于类或者成员变量来说，都存在一定危险性。</p>
+<h2 id="错误七：ArrayList-和-LinkedList"><a href="#错误七：ArrayList-和-LinkedList" class="headerlink" title="错误七：ArrayList 和 LinkedList"></a>错误七：ArrayList 和 LinkedList</h2><p>哈哈哈，ArrayList 是我见过程序员使用频次最高的工具类，没有之一。</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNly1gv5p07snopj60j70j90ve02.jpg" alt="image-20211006165557687" style="zoom:50%;" />
+
+<p>当开发人员不知道 ArrayList 和 LinkedList 的区别时，他们经常使用 ArrayList（其实实际上，就算知道他们的区别，他们也不用 LinkedList，因为这点性能不值一提），因为看起来 ArrayList 更熟悉。。。。。。</p>
+<p>但是实际上，ArrayList 和 LinkedList 存在巨大的性能差异，简而言之，如果添加&#x2F;删除操作大量且随机访问操作不是很多，则应首选 LinkedList。如果存在大量的访问操作，那么首选 ArrayList，但是 ArrayList 不适合进行大量的添加&#x2F;删除操作。</p>
+<h2 id="错误八：可变和不可变"><a href="#错误八：可变和不可变" class="headerlink" title="错误八：可变和不可变"></a>错误八：可变和不可变</h2><p>不可变对象有很多优点，比如简单、安全等。但是不可变对象需要为每个不同的值分配一个单独的对象，对象不具备<strong>复用性</strong>，如果这类对象过多可能会导致垃圾回收的成本很高。在可变和不可变之间进行选择时需要有一个平衡。</p>
+<p>一般来说，可变对象用于避免产生过多的中间对象。 比如你要连接大量字符串。 如果你使用一个不可变的字符串，你会产生很多可以立即进行垃圾回收的对象。 这会浪费 CPU 的时间和精力，使用可变对象是正确的解决方案（例如 StringBuilder）。如下代码所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String result=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(String s: arr)&#123;</span><br><span class="line">	result = result + s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以，正确选择可变对象还是不可变对象需要慎重抉择。</p>
+<h2 id="错误九：构造函数"><a href="#错误九：构造函数" class="headerlink" title="错误九：构造函数"></a>错误九：构造函数</h2><p>首先看一段代码，分析为什么会编译不通过？</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gv5ps43xgsj60a80apgm402.jpg" alt="image-20211006172246303"></p>
+<p>发生此编译错误是因为未定义默认 Super 的构造函数。 在 Java 中，如果一个类没有定义构造函数，编译器会默认为该类插入一个默认的无参数构造函数。 如果在 Super 类中定义了构造函数，在这种情况下 Super(String s)，编译器将不会插入默认的无参数构造函数。 这就是上面 Super 类的情况。</p>
+<p>要想解决这个问题，只需要在 Super 中添加一个无参数的构造函数即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Super</span><span class="params">()</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Super&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误十：到底是使用-“”-还是构造函数"><a href="#错误十：到底是使用-“”-还是构造函数" class="headerlink" title="错误十：到底是使用 “” 还是构造函数"></a>错误十：到底是使用 “” 还是构造函数</h2><p>考虑下面代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">x</span> <span class="operator">=</span> <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">y</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;abc&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面这两段代码有什么区别吗？</p>
+<p>可能下面这段代码会给出你回答</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">b</span> <span class="operator">=</span> <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line">System.out.println(a == b);  <span class="comment">// True</span></span><br><span class="line">System.out.println(a.equals(b)); <span class="comment">// True</span></span><br><span class="line"> </span><br><span class="line"><span class="type">String</span> <span class="variable">c</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line">System.out.println(c == d);  <span class="comment">// False</span></span><br><span class="line">System.out.println(c.equals(d)); <span class="comment">// True</span></span><br></pre></td></tr></table></figure>
+
+<p>这就是一个典型的内存分配问题。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>今天我给你汇总了一下 Java 开发中常见的 10 个错误，虽然比较简单，但是很容易忽视的问题，细节成就完美，看看你还会不会再犯了，如果再犯，嘿嘿嘿。</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNly1gv4u2gxe51j60kg0gadgh02.jpg" alt="image-20211005230533419" style="zoom:50%;" />
+
+<p>点赞在看分享朋友圈是基操哦！快来一键三连！！！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/Java-%E5%BC%80%E5%8F%91%E6%9C%80%E5%AE%B9%E6%98%93%E7%8A%AF%E7%9A%84-10-%E4%B8%AA%E9%94%99%E8%AF%AF/">https://manamn.space/2022/05/03/Java-%E5%BC%80%E5%8F%91%E6%9C%80%E5%AE%B9%E6%98%93%E7%8A%AF%E7%9A%84-10-%E4%B8%AA%E9%94%99%E8%AF%AF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/Java-Basic/">Java-Basic</a></div><div class="post_share"><div class="social-share" data-image="https://tva2.sinaimg.cn/large/9bd9b167gy1g4lj0abg7yj21hc0xcu0x.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/Java-IO-%E4%BD%93%E7%B3%BB/"><img class="prev-cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhr3bs0jj21hc0xcx69.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java IO 体系</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/%E7%9C%8B%E5%AE%8C%E8%BF%99%E7%AF%87-HashMap%EF%BC%8C%E5%92%8C%E9%9D%A2%E8%AF%95%E5%AE%98%E6%89%AF%E7%9A%AE%E5%B0%B1%E6%B2%A1%E9%97%AE%E9%A2%98%E4%BA%86/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(499).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">看完这篇 HashMap，和面试官扯皮就没问题了</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/03/Exception-%E5%92%8C-Error/" title="Exception 和 Error"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g2qm3o4zw4j21hc0u0e81.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Exception 和 Error</div></div></a></div><div><a href="/2022/05/03/Java-IO-%E4%BD%93%E7%B3%BB/" title="Java IO 体系"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhr3bs0jj21hc0xcx69.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Java IO 体系</div></div></a></div><div><a href="/2022/05/03/Java-SuppressWarnings-%E7%94%A8%E6%B3%95/" title="Java-@SuppressWarnings 用法"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1fwrtagmzyyj21hc0u0tox.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Java-@SuppressWarnings 用法</div></div></a></div><div><a href="/2022/05/03/Java-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BA%94%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="Java 创建对象的五种方式"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167ly1fwsffe0rcpj21hc0u0kgx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Java 创建对象的五种方式</div></div></a></div><div><a href="/2022/05/03/Java-%E4%B8%AD%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%EF%BC%8C%E7%9C%9F%E7%94%9C/" title="Java 中的语法糖，真甜"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkwehxgkj21hc0u04qp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Java 中的语法糖，真甜</div></div></a></div><div><a href="/2022/05/03/Java-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" title="Java 动态代理"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167ly1fwrsoigjsmj21hc0u0dwb.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Java 动态代理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E5%BC%80%E5%8F%91%E6%9C%80%E5%AE%B9%E6%98%93%E7%8A%AF%E7%9A%84-10-%E4%B8%AA%E9%94%99%E8%AF%AF"><span class="toc-number">1.</span> <span class="toc-text">Java 开发最容易犯的 10 个错误</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%B8%80%EF%BC%9AArray-%E8%BD%AC%E6%8D%A2%E6%88%90-ArrayList"><span class="toc-number">1.1.</span> <span class="toc-text">错误一：Array 转换成 ArrayList</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%BA%8C%EF%BC%9A%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E6%9F%90%E4%B8%AA%E5%80%BC"><span class="toc-number">1.2.</span> <span class="toc-text">错误二：检查数组是否包含某个值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%B8%89%EF%BC%9A%E5%9C%A8-List-%E4%B8%AD%E5%BE%AA%E7%8E%AF%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.</span> <span class="toc-text">错误三：在 List 中循环删除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%9B%9B%EF%BC%9AHashtable-%E5%92%8C-HashMap"><span class="toc-number">1.4.</span> <span class="toc-text">错误四：Hashtable 和 HashMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%BA%94%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%86%E5%90%88"><span class="toc-number">1.5.</span> <span class="toc-text">错误五：使用原始类型的集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%85%AD%EF%BC%9A%E8%AE%BF%E9%97%AE%E7%BA%A7%E5%88%AB%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">错误六：访问级别问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%B8%83%EF%BC%9AArrayList-%E5%92%8C-LinkedList"><span class="toc-number">1.7.</span> <span class="toc-text">错误七：ArrayList 和 LinkedList</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%85%AB%EF%BC%9A%E5%8F%AF%E5%8F%98%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98"><span class="toc-number">1.8.</span> <span class="toc-text">错误八：可变和不可变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%B9%9D%EF%BC%9A%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.9.</span> <span class="toc-text">错误九：构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%8D%81%EF%BC%9A%E5%88%B0%E5%BA%95%E6%98%AF%E4%BD%BF%E7%94%A8-%E2%80%9C%E2%80%9D-%E8%BF%98%E6%98%AF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.10.</span> <span class="toc-text">错误十：到底是使用 “” 还是构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">1.11.</span> <span class="toc-text">后记</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

@@ -1,207 +1,433 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>爱笑的Gao的个人博客 - 生活明朗 万物可爱</title><meta name="keywords" content="爱笑的Gao"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="生活明朗 万物可爱">
+<meta property="og:type" content="website">
+<meta property="og:title" content="爱笑的Gao的个人博客">
+<meta property="og:url" content="https://manamn.space/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="生活明朗 万物可爱">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="爱笑的Gao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '爱笑的Gao的个人博客',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-10-16 13:10:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/16/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-10-16T03:22:17.056Z" itemprop="datePublished">2022-10-16</time>
-</a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/16/hello-world/">Hello World</a>
-    </h1>
-  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">爱笑的Gao的个人博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%9B%BEapi/" title="随机图api"><img class="post_bg" src="https://static.likepoems.com/2020/09/19/f1607e210e537e368d5420b2d7ebd52b5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="随机图api"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%9B%BEapi/" title="随机图api">随机图api</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-03T02:21:45.000Z" title="发表于 2022-05-03 10:21:45">2022-05-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9A%8F%E7%AC%94%E2%8C%9A/">随笔⌚</a></span></div><div class="content">樱花api,
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/16/hello-world/" data-id="cl9as8dza0000n4a0ajon2g3l" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
+二次元随机图,
 
 
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
-    </div>
-  </div>
+初音4k,
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/10/16/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+中高质量二次元,
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2022 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+mac酱,
 
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+手机二次元接口,
+
+
+随机动漫头像,
+
+随机动漫壁纸,
+
+
+随机动漫,
+
+
+小姐姐壁纸,
+
+零域壁纸,
+
+小姐姐api,
+
+
+随机小姐姐,
+
+
+随机图片大全,
 
 
 
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+随机小姐姐,
 
 
-
-
-<script src="/js/script.js"></script>
+每日表情包,
 
 
 
 
 
-  </div>
-</body>
-</html>
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/03/B%E7%AB%99%E5%A4%A7%E5%AD%A6%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" title="B站大学学习路线"><img class="post_bg" src="https://tva2.sinaimg.cn/large/9bd9b167gy1fwri82o7rcj21hc0u0thh.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站大学学习路线"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/03/B%E7%AB%99%E5%A4%A7%E5%AD%A6%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" title="B站大学学习路线">B站大学学习路线</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-03T09:34:20.000Z" title="发表于 2022-05-03 17:34:20">2022-05-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">学习路线</a></span></div><div class="content">b站大学学习路线
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/03/%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/" title="视频学习教程"><img class="post_bg" src="https://tva2.sinaimg.cn/large/005BYqpgly1fwrg0aedjgj31hc0u048w.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="视频学习教程"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/03/%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/" title="视频学习教程">视频学习教程</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-03T03:19:36.000Z" title="发表于 2022-05-03 11:19:36">2022-05-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/">视频学习</a></span></div><div class="content">尚硅谷Java入门学习视频尚硅谷康师傅Java基础
+ 
+
+尚硅谷宋红康MySQL数据库尚硅谷康师傅MySQL
+ 
+
+pink老师前端入门教程黑马pink前端基础
+ 
+
+黑马pinkJavaScript入门教程pink老师JavaScript
+ 
+
+尚硅谷 SpringMVC教程尚硅谷SpringMVC
+ 
+
+老杜MySQL入门老杜MySQL
+ 
+
+老杜JavaScript老杜JavaScript
+ 
+
+尚硅谷新版JavaWeb学习尚硅谷JavaWeb
+ 
+
+动力节点荣姐Spring学习教程动力节点spring
+ 
+
+动力节点Thymeleaf视频教程动力节点Thymeleaf视频教程
+ 
+
+孙哥Spring孙哥Spring
+ 
+
+动力节点荣姐SpringMVC入门教程荣姐SpringMVC
+ 
+
+动力节点荣姐MyBatis入门教程荣姐MyBatis教程
+ 
+
+元动力Spring学习教程元动力spring
+ 
+
+黑马Gi入门教程Git入门教程
+ 
+
+C语言入门学习教程C语言教程
+ </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></span></div><div class="content">
+title: Map - HashSet &amp; HashMap 源码解析date: 2022-05-03 10:35:17tags:    - Java    - Java基础categories: Javacover: https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(55).jpg–
+Map - HashSet &amp; HashMap 源码解析
+本文主要对Map - HashSet &amp; HashMap进行源码解析。@pdai
+
+
+Map - HashSet &amp; HashMap 源码解析
+Java7 HashMap
+概述
+get()
+put()
+remove()
+
+
+Java8 HashMap
+put 过程分析
+数组扩容
+get 过程分析
+
+
+HashSet
+
+
+
+Java7 HashMap概述之所以把HashSet和HashMap放在一起讲解，是因为二者在Java里有着相同的实现，前者仅仅是对后者做了一层包装，也就是说HashSet里面有一个HashMap(适 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%87%8D%E5%AD%A6Java%E5%9F%BA%E7%A1%80/">重学Java基础</a></span></div><div class="content">第17章 Java8新特性主要内容
+Lambda表达式
+StreamAPI
+Optional
+
+学习目标
+ 能够理解函数式编程相对于面向对象的优点
+ 能够掌握Lambda表达式的标准格式
+ 能够使用Lambda标准格式
+ 能够掌握Lambda表达式的省略格式与规则
+ 能够通过Lambda使用自定义的接口（有且仅有一个抽象方法）
+ 能够使用@FunctionalInterface注解
+ 能够使用Supplier函数式接口
+ 能够使用Consumer函数式接口
+ 能够使用Function函数式接口
+ 能够使用Predicate函数式接口
+ 能够使用方法引用和构造器引用
+ 能够理解流与集合相比的优点
+ 能够理解流的延迟执行特点
+ 能够通过集合、映射或数组获取流
+ 能够掌握常用的流操作
+ 能够使用Optional类包装对象并获取其中包装的对象
+
+第17章 Java8新特性Java8的新特征有很多，之前我们在学习接口时，学习了接口的静态方法和默认方法，在学习常用类时，学习了新版的日期时间API。今天我们来学习Java8最具革命性的两个新特性：Lambda表达式和StreamAPI。然后带领大家用 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%87%8D%E5%AD%A6Java%E5%9F%BA%E7%A1%80/">重学Java基础</a></span></div><div class="content">第16章 反射（Reflect）教学目标
+ 了解类的加载过程
+ 理解类初始化过程
+ 了解类加载器
+ 掌握获取Class对象的四种方式
+ 能够运用反射获取类型的详细信息
+ 能够运用反射动态创建对象
+ 能够运用反射动态获取成员变量并使用
+ 能够运用反射动态获取成员方法并使用
+ 能够运用反射读取注解
+ 能够运用反射获取泛型父类的类型参数
+
+第16章 反射（Reflect）16.1 类加载类在内存中的生命周期：加载–&gt;使用–&gt;卸载
+16.1.1 类的加载过程当程序主动使用某个类时，如果该类还未被加载到内存中，系统会通过加载、连接、初始化三个步骤来对该类进行初始化，如果没有意外，JVM将会连续完成这三个步骤，所以有时也把这三个步骤统称为类加载。
+类的加载又分为三个阶段：
+（1）加载：load
+就是指将类型的clas字节码数据读入内存
+（2）连接：link
+①验证：校验合法性等
+②准备：准备对应的内存（方法区），创建Class对象，为类变量赋默认值，为静态常量赋初始值。
+③解析：把字节码中的符号引用替换为对应的直接地址引用
+（3）初始化：initialize（类初始化）即执行类初始化方 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%87%8D%E5%AD%A6Java%E5%9F%BA%E7%A1%80/">重学Java基础</a></span></div><div class="content">第15章 网络编程教学目标
+ 了解网络通信协议参考模型
+ 能够理解IP地址和端口号的作用
+ 能够在程序中表示IP地址和端口号
+ 能够说出TCP和UDP网络协议的区别
+ 了解基于Socket的TCP网络编程
+ 了解基于Socket的UDP网络编程
+
+第15章 网络编程15.1 软件结构
+C&#x2F;S结构 ：全称为Client&#x2F;Server结构，是指客户端和服务器结构。常见程序有ＱＱ、红蜘蛛、飞秋等软件。
+
+
+B&#x2F;S结构 ：全称为Browser&#x2F;Server结构，是指浏览器和服务器结构。常见浏览器有IE、谷歌、火狐等。
+
+两种架构各有优势，但是无论哪种架构，都离不开网络的支持。网络编程，就是在一定的协议下，实现两台计算机的通信的程序。
+15.2 网络通信协议15.2.1 TCP&#x2F;IP协议参考模型
+网络通信协议：通过计算机网络可以使多台计算机实现连接，位于同一个网络中的计算机在进行连接和通信时需要遵守一定的规则，这就好比在道路中行驶的汽车一定要遵守交通规则一样。在计算机网络中，这些连接和通信的规则被称为网络通信协议，它对数据的传输格式、传输速率、传 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></span></div><div class="content">第14章 File类与IO流主要内容
+File类
+字节流
+字符流
+文件流
+缓冲流
+转换流
+数据流
+对象流
+打印流
+Scanner与System与IO流
+
+教学目标
+ 
+使用File类对象表示文件或目录
+
+ 
+能够辨别相对路径和绝对路径
+
+ 
+能够说出IO流的分类和功能
+
+ 
+能够使用字节输出流写出数据到文件
+
+ 
+能够使用字节输入流读取数据到程序
+
+ 
+能够理解读取数据read(byte[])方法的原理
+
+ 
+能够使用字节流完成文件的复制
+
+ 
+能够使用FileWirter写数据到文件
+
+ 
+能够说出FileWriter中关闭和刷新方法的区别
+
+ 
+能够使用FileWriter写数据的5个方法
+
+ 
+能够使用FileWriter写数据实现换行和追加写
+
+ 
+能够使用FileReader读数据
+
+ 
+能够使用FileReader读数据一次一个字符数组
+
+ 
+能够使用字节缓冲流读取数据到程序
+
+ 
+能够使用字节缓冲流写出数据到文件
+
+ 
+能够明确字符缓冲流的作用和基本用法
+
+ 
+能够使用缓冲流的特殊功能
+
+ 
+能够阐述编码表的意义
+
+ 
+能够使用转换流读取指定编码的文本文件
+
+ 
+能够使用 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/07/28/%E7%AC%AC13%E7%AB%A0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="第13章 数据结构与算法"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第13章 数据结构与算法"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/28/%E7%AC%AC13%E7%AB%A0-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="第13章 数据结构与算法">第13章 数据结构与算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-28T05:07:52.000Z" title="发表于 2022-07-28 13:07:52">2022-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%87%8D%E5%AD%A6Java%E5%9F%BA%E7%A1%80/">重学Java基础</a></span></div><div class="content">第13章 数据结构与算法主要内容
+数据结构
+
+学习目标
+ 对数据结构有初步了解
+ 掌握动态数组的实现方式
+ 掌握单链表与双链表的实现方式
+ 掌握哈希表的实现方式
+
+第十三章 数据结构与算法13.1 数据结构数据结构就是研究数据的逻辑结构和物理结构以及它们之间相互关系，并对这种结构定义相应的运算，而且确保经过这些运算后所得到的新结构仍然是原来的结构类型。
+
+数据的逻辑结构指反映数据元素之间的逻辑关系，而与他们在计算机中的存储位置无关：
+
+集合（数学中集合的概念）：数据结构中的元素之间除了“同属一个集合” 的相互关系外，别无其他关系；
+线性结构：数据结构中的元素存在一对一的相互关系；
+树形结构：数据结构中的元素存在一对多的相互关系；
+图形结构：数据结构中的元素存在多对多的相互关系。
+
+
+数据的物理结构&#x2F;存储结构：是描述数据具体在内存中的存储（如：顺序结构、链式结构、索引结构、哈希结构）等，一种数据逻辑结构可表示成一种或多种物理存储结构。
+数据结构和算法是一门完整并且复杂的课程，那么我们今天只是简单的讨论常见的几种数据结构，让我们对数据结构与算法有一个初步的了解。
+13.2 动态数 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/07/28/%E7%AC%AC12%E7%AB%A0-%E6%B3%9B%E5%9E%8B/" title="第12章 泛型"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第12章 泛型"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/28/%E7%AC%AC12%E7%AB%A0-%E6%B3%9B%E5%9E%8B/" title="第12章 泛型">第12章 泛型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-28T05:07:38.000Z" title="发表于 2022-07-28 13:07:38">2022-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%87%8D%E5%AD%A6Java%E5%9F%BA%E7%A1%80/">重学Java基础</a></span></div><div class="content">第12章 泛型学习目标
+ 能够使用泛型定义类、接口、方法
+ 能够理解泛型上限
+ 能够阐述泛型通配符的作用
+ 能够识别通配符的上下限
+
+第十二章 泛型12.1 泛型的概念12.1.1 泛型的引入例如：生产瓶子的厂家，一开始并不知道我们将来会用瓶子装什么，我们什么都可以装，但是有的时候，我们在使用时，想要限定某个瓶子只能用来装什么，这样我们不会装错，而用的时候也可以放心的使用，无需再三思量。我们生活中是在使用这个瓶子时在瓶子上“贴标签”，这样就轻松解决了问题。
+
+还有，在Java中我们在声明方法时，当在完成方法功能时如果有未知的数据需要参与，这些未知的数据需要在调用方法时才能确定，那么我们把这样的数据通过形参表示。那么在方法体中，用这个形参名来代表那个未知的数据，而调用者在调用时，对应的传入值就可以了。
+
+受以上两点启发，JDK1.5设计了泛型的概念。泛型即为“类型参数”，这个类型参数在声明它的类、接口或方法中，代表未知的通用的类型。例如：
+java.lang.Comparable接口和java.util.Comparator接口，是用于对象比较大小的规范接口，这两个接口只是限定了当一个对 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/#content-inner">39</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AJAX/"><span class="card-category-list-name">AJAX</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C%E8%AF%AD%E8%A8%80/"><span class="card-category-list-name">C语言</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git/"><span class="card-category-list-name">Git</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/HTTP/"><span class="card-category-list-name">HTTP</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JDBC/"><span class="card-category-list-name">JDBC</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JSP/"><span class="card-category-list-name">JSP</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JUC/"><span class="card-category-list-name">JUC</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JVM/"><span class="card-category-list-name">JVM</span><span class="card-category-list-count">4</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Ajax/" style="font-size: 1.1em; color: #999">Ajax</a> <a href="/tags/CSS/" style="font-size: 1.28em; color: #99a0aa">CSS</a> <a href="/tags/Cooke/" style="font-size: 1.1em; color: #999">Cooke</a> <a href="/tags/Cookie/" style="font-size: 1.1em; color: #999">Cookie</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.15em; color: #999b9e">C语言</a> <a href="/tags/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.15em; color: #999b9e">C语言程序设计</a> <a href="/tags/Git/" style="font-size: 1.18em; color: #999ca0">Git</a> <a href="/tags/HTML/" style="font-size: 1.15em; color: #999b9e">HTML</a> <a href="/tags/HTTP/" style="font-size: 1.28em; color: #99a0aa">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 1.1em; color: #999">HTTPS</a> <a href="/tags/Halo/" style="font-size: 1.13em; color: #999a9b">Halo</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/IDEA/" style="font-size: 1.13em; color: #999a9b">IDEA</a> <a href="/tags/JDBC/" style="font-size: 1.15em; color: #999b9e">JDBC</a> <a href="/tags/JSON/" style="font-size: 1.1em; color: #999">JSON</a> <a href="/tags/JSP/" style="font-size: 1.15em; color: #999b9e">JSP</a> <a href="/tags/JUC/" style="font-size: 1.15em; color: #999b9e">JUC</a> <a href="/tags/JVM/" style="font-size: 1.38em; color: #99a4b3">JVM</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/Java-Basic/" style="font-size: 1.35em; color: #99a3b1">Java-Basic</a> <a href="/tags/JavaSE/" style="font-size: 1.4em; color: #99a5b6">JavaSE</a> <a href="/tags/JavaScript/" style="font-size: 1.18em; color: #999ca0">JavaScript</a> <a href="/tags/JavaWeb/" style="font-size: 1.48em; color: #99a8bd">JavaWeb</a> <a href="/tags/Java%E5%85%A8%E5%A5%97%E7%AC%94%E8%AE%B0/" style="font-size: 1.2em; color: #999da3">Java全套笔记</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 1.45em; color: #99a7ba">Java基础</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80%F0%9F%93%88/" style="font-size: 1.1em; color: #999">Java基础📈</a> <a href="/tags/Java%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" style="font-size: 1.13em; color: #999a9b">Java知识体系</a> <a href="/tags/Java%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 1.23em; color: #999ea5">Java知识点</a> <a href="/tags/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.25em; color: #999fa7">Java自学笔记</a> <a href="/tags/Java%E8%BF%9B%E9%98%B6/" style="font-size: 1.23em; color: #999ea5">Java进阶</a> <a href="/tags/Java%F0%9F%93%88/" style="font-size: 1.1em; color: #999">Java📈</a> <a href="/tags/Jsp/" style="font-size: 1.1em; color: #999">Jsp</a> <a href="/tags/Linux/" style="font-size: 1.3em; color: #99a1ac">Linux</a> <a href="/tags/Linux-Docker/" style="font-size: 1.1em; color: #999">Linux Docker</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 1.1em; color: #999">Linux命令</a> <a href="/tags/Log4j2/" style="font-size: 1.13em; color: #999a9b">Log4j2</a> <a href="/tags/Markdown/" style="font-size: 1.1em; color: #999">Markdown</a> <a href="/tags/Maven/" style="font-size: 1.15em; color: #999b9e">Maven</a> <a href="/tags/MyBatis/" style="font-size: 1.32em; color: #99a2ae">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 1.43em; color: #99a6b8">MySQL</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">31</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">19</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">339</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">390</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-10-16T05:10:56.445Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

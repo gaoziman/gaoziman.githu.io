@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Cooke、Session 和 Token | 爱笑的Gao的个人博客</title><meta name="keywords" content="HTTP,Cooke,Session,Token"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Cooke、Session 和 Token Cooke、Session 和 Token Cookie 和 Session Session 是什么 Session 如何判断是否是同一会话 Session 的缺点 Cookies 是什么 创建 Cookie Set-Cookie 和 Cookie 标头 会话 Cookies 永久性 Cookies Cookie 的 Secure 和 HttpOnly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cooke、Session 和 Token">
+<meta property="og:url" content="https://manamn.space/2022/05/03/Cooke%E3%80%81Session-%E5%92%8C-Token/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="Cooke、Session 和 Token Cooke、Session 和 Token Cookie 和 Session Session 是什么 Session 如何判断是否是同一会话 Session 的缺点 Cookies 是什么 创建 Cookie Set-Cookie 和 Cookie 标头 会话 Cookies 永久性 Cookies Cookie 的 Secure 和 HttpOnly">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(978).jpg">
+<meta property="article:published_time" content="2022-05-03T08:25:55.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:36.029Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="Cooke">
+<meta property="article:tag" content="Session">
+<meta property="article:tag" content="Token">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(978).jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/Cooke%E3%80%81Session-%E5%92%8C-Token/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Cooke、Session 和 Token',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(978).jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Cooke、Session 和 Token</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T08:25:55.000Z" title="发表于 2022-05-03 16:25:55">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:36.029Z" title="更新于 2022-05-06 11:52:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/HTTP/">HTTP</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Cooke、Session 和 Token"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Cooke、Session-和-Token"><a href="#Cooke、Session-和-Token" class="headerlink" title="Cooke、Session 和 Token"></a>Cooke、Session 和 Token</h1><ul>
+<li><a href="#cookesession-%E5%92%8C-token">Cooke、Session 和 Token</a><ul>
+<li><a href="#cookie-%E5%92%8C-session">Cookie 和 Session</a><ul>
+<li><a href="#session-%E6%98%AF%E4%BB%80%E4%B9%88">Session 是什么</a></li>
+<li><a href="#session-%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%90%8C%E4%B8%80%E4%BC%9A%E8%AF%9D">Session 如何判断是否是同一会话</a></li>
+<li><a href="#session-%E7%9A%84%E7%BC%BA%E7%82%B9">Session 的缺点</a></li>
+<li><a href="#cookies-%E6%98%AF%E4%BB%80%E4%B9%88">Cookies 是什么</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA-cookie">创建 Cookie</a><ul>
+<li><a href="#set-cookie-%E5%92%8C-cookie-%E6%A0%87%E5%A4%B4">Set-Cookie 和 Cookie 标头</a></li>
+<li><a href="#%E4%BC%9A%E8%AF%9D-cookies">会话 Cookies</a></li>
+<li><a href="#%E6%B0%B8%E4%B9%85%E6%80%A7-cookies">永久性 Cookies</a></li>
+<li><a href="#cookie-%E7%9A%84-secure-%E5%92%8C-httponly-%E6%A0%87%E8%AE%B0">Cookie 的 Secure 和 HttpOnly 标记</a></li>
+</ul>
+</li>
+<li><a href="#cookie-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">Cookie 的作用域</a></li>
+</ul>
+</li>
+<li><a href="#json-web-token-%E5%92%8C-session-cookies-%E7%9A%84%E5%AF%B9%E6%AF%94">JSON Web Token 和 Session Cookies 的对比</a><ul>
+<li><a href="#jwt-%E5%92%8C-session-cookies-%E7%9A%84%E7%9B%B8%E5%90%8C%E4%B9%8B%E5%A4%84">JWT 和 Session Cookies 的相同之处</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-session-cookies">什么是 Session Cookies</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-json-web-tokens">什么是 Json Web Tokens</a><ul>
+<li><a href="#jwt-%E7%9A%84%E6%A0%BC%E5%BC%8F">JWT 的格式</a></li>
+<li><a href="#%E6%8B%BC%E5%87%91%E5%9C%A8%E4%B8%80%E8%B5%B7">拼凑在一起</a></li>
+</ul>
+</li>
+<li><a href="#jwt-%E5%92%8C-session-cookies-%E7%9A%84%E4%B8%8D%E5%90%8C">JWT 和 Session Cookies 的不同</a><ul>
+<li><a href="#%E5%AF%86%E7%A0%81%E7%AD%BE%E5%90%8D">密码签名</a></li>
+<li><a href="#json-%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84">JSON 是无状态的</a></li>
+<li><a href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7">可扩展性</a></li>
+<li><a href="#jwt-%E6%94%AF%E6%8C%81%E8%B7%A8%E5%9F%9F%E8%AE%A4%E8%AF%81">JWT 支持跨域认证</a></li>
+</ul>
+</li>
+<li><a href="#jwt-%E5%92%8C-session-cookies-%E7%9A%84%E9%80%89%E5%9E%8B">JWT 和 Session Cookies 的选型</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8E%E8%AE%B0">后记</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090920745-1422513552.png"></p>
+<h2 id="Cookie-和-Session"><a href="#Cookie-和-Session" class="headerlink" title="Cookie 和 Session"></a>Cookie 和 Session</h2><p>HTTP 协议是一种<code>无状态协议</code>，即每次服务端接收到客户端的请求时，都是一个全新的请求，服务器并不知道客户端的历史请求记录；Session 和 Cookie 的主要目的就是为了弥补 HTTP 的无状态特性。</p>
+<h3 id="Session-是什么"><a href="#Session-是什么" class="headerlink" title="Session 是什么"></a>Session 是什么</h3><p>客户端请求服务端，服务端会为这次请求开辟一块<code>内存空间</code>，这个对象便是 Session 对象，存储结构为 <code>ConcurrentHashMap</code>。Session 弥补了 HTTP 无状态特性，服务器可以利用 Session 存储客户端在同一个会话期间的一些操作记录。</p>
+<h3 id="Session-如何判断是否是同一会话"><a href="#Session-如何判断是否是同一会话" class="headerlink" title="Session 如何判断是否是同一会话"></a>Session 如何判断是否是同一会话</h3><p>服务器第一次接收到请求时，开辟了一块 Session 空间（创建了Session对象），同时生成一个 sessionId ，并通过响应头的 **Set-Cookie：JSESSIONID&#x3D;XXXXXXX **命令，向客户端发送要求设置 Cookie 的响应； 客户端收到响应后，在本机客户端设置了一个 **JSESSIONID&#x3D;XXXXXXX **的 Cookie 信息，该 Cookie 的过期时间为浏览器会话结束；</p>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090321438-2032814831.png"></p>
+<p>接下来客户端每次向同一个网站发送请求时，请求头都会带上该 Cookie信息（包含 sessionId ）， 然后，服务器通过读取请求头中的 Cookie 信息，获取名称为 JSESSIONID 的值，得到此次请求的 sessionId。</p>
+<h3 id="Session-的缺点"><a href="#Session-的缺点" class="headerlink" title="Session 的缺点"></a>Session 的缺点</h3><p>Session 机制有个缺点，比如 A 服务器存储了 Session，就是做了负载均衡后，假如一段时间内 A 的访问量激增，会转发到 B 进行访问，但是 B 服务器并没有存储 A 的 Session，会导致 Session 的失效。</p>
+<h3 id="Cookies-是什么"><a href="#Cookies-是什么" class="headerlink" title="Cookies 是什么"></a>Cookies 是什么</h3><p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090329852-726935682.png"></p>
+<p>HTTP 协议中的 Cookie 包括 <code>Web Cookie</code> 和<code>浏览器 Cookie</code>，它是服务器发送到 Web 浏览器的一小块数据。服务器发送到浏览器的 Cookie，浏览器会进行存储，并与下一个请求一起发送到服务器。通常，它用于判断两个请求是否来自于同一个浏览器，例如用户保持登录状态。</p>
+<blockquote>
+<p>HTTP Cookie 机制是 HTTP 协议无状态的一种补充和改良</p>
+</blockquote>
+<p>Cookie 主要用于下面三个目的</p>
+<ul>
+<li><code>会话管理</code></li>
+</ul>
+<p>登陆、购物车、游戏得分或者服务器应该记住的其他内容</p>
+<ul>
+<li><code>个性化</code></li>
+</ul>
+<p>用户偏好、主题或者其他设置</p>
+<ul>
+<li><code>追踪</code></li>
+</ul>
+<p>记录和分析用户行为</p>
+<p>Cookie 曾经用于一般的客户端存储。虽然这是合法的，因为它们是在客户端上存储数据的唯一方法，但如今建议使用现代存储 API。Cookie 随每个请求一起发送，因此它们可能会降低性能（尤其是对于移动数据连接而言）。</p>
+<h3 id="创建-Cookie"><a href="#创建-Cookie" class="headerlink" title="创建 Cookie"></a>创建 Cookie</h3><p>当接收到客户端发出的 HTTP 请求时，服务器可以发送带有响应的 <code>Set-Cookie</code> 标头，Cookie 通常由浏览器存储，然后将 Cookie 与 HTTP 标头一同向服务器发出请求。</p>
+<h4 id="Set-Cookie-和-Cookie-标头"><a href="#Set-Cookie-和-Cookie-标头" class="headerlink" title="Set-Cookie 和 Cookie 标头"></a>Set-Cookie 和 Cookie 标头</h4><p><code>Set-Cookie</code> HTTP 响应标头将 cookie 从服务器发送到用户代理。下面是一个发送 Cookie 的例子</p>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090350874-162215808.png"></p>
+<p>此标头告诉客户端存储 Cookie</p>
+<p>现在，随着对服务器的每个新请求，浏览器将使用 Cookie 头将所有以前存储的 Cookie 发送回服务器。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090358057-1079553368.png"></p>
+<p>有两种类型的 Cookies，一种是 Session Cookies，一种是 Persistent Cookies，如果 Cookie 不包含到期日期，则将其视为会话 Cookie。会话 Cookie 存储在内存中，永远不会写入磁盘，当浏览器关闭时，此后 Cookie 将永久丢失。如果 Cookie 包含<code>有效期</code> ，则将其视为持久性 Cookie。在到期指定的日期，Cookie 将从磁盘中删除。</p>
+<p> 还有一种是 <code>Cookie的 Secure 和 HttpOnly 标记</code>，下面依次来介绍一下</p>
+<h4 id="会话-Cookies"><a href="#会话-Cookies" class="headerlink" title="会话 Cookies"></a>会话 Cookies</h4><p>上面的示例创建的是会话 Cookie ，会话 Cookie 有个特征，客户端关闭时 Cookie 会删除，因为它没有指定<code>Expires </code>或 <code>Max-Age</code> 指令。</p>
+<p>但是，Web 浏览器可能会使用会话还原，这会使大多数会话 Cookie 保持永久状态，就像从未关闭过浏览器一样。</p>
+<h4 id="永久性-Cookies"><a href="#永久性-Cookies" class="headerlink" title="永久性 Cookies"></a>永久性 Cookies</h4><p>永久性 Cookie 不会在客户端关闭时过期，而是在<code>特定日期（Expires）</code>或<code>特定时间长度（Max-Age）</code>外过期。例如</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Cookie-的-Secure-和-HttpOnly-标记"><a href="#Cookie-的-Secure-和-HttpOnly-标记" class="headerlink" title="Cookie 的 Secure 和 HttpOnly 标记"></a>Cookie 的 Secure 和 HttpOnly 标记</h4><p>安全的 Cookie 需要经过 HTTPS 协议通过加密的方式发送到服务器。即使是安全的，也不应该将敏感信息存储在cookie 中，因为它们本质上是不安全的，并且此标志不能提供真正的保护。</p>
+<p><strong>HttpOnly 的作用</strong></p>
+<ul>
+<li><p>会话 Cookie 中缺少 HttpOnly 属性会导致攻击者可以通过程序(JS脚本、Applet等)获取到用户的 Cookie  信息，造成用户 Cookie 信息泄露，增加攻击者的跨站脚本攻击威胁。</p>
+</li>
+<li><p>HttpOnly 是微软对 Cookie 做的扩展，该值指定 Cookie 是否可通过客户端脚本访问。 </p>
+</li>
+<li><p>如果在 Cookie 中没有设置 HttpOnly 属性为 true，可能导致 Cookie 被窃取。窃取的 Cookie 可以包含标识站点用户的敏感信息，如 ASP.NET 会话 ID 或 Forms 身份验证票证，攻击者可以重播窃取的 Cookie，以便伪装成用户或获取敏感信息，进行跨站脚本攻击等。</p>
+</li>
+</ul>
+<h3 id="Cookie-的作用域"><a href="#Cookie-的作用域" class="headerlink" title="Cookie 的作用域"></a>Cookie 的作用域</h3><p><code>Domain</code> 和 <code>Path</code> 标识定义了 Cookie 的作用域：即 Cookie 应该发送给哪些 URL。</p>
+<p><code>Domain</code> 标识指定了哪些主机可以接受 Cookie。如果不指定，默认为当前主机(<strong>不包含子域名</strong>）。如果指定了<code>Domain</code>，则一般包含子域名。</p>
+<p>例如，如果设置 <code>Domain=mozilla.org</code>，则 Cookie 也包含在子域名中（如<code>developer.mozilla.org</code>）。</p>
+<p>例如，设置 <code>Path=/docs</code>，则以下地址都会匹配：</p>
+<ul>
+<li><code>/docs</code></li>
+<li><code>/docs/Web/</code></li>
+<li><code>/docs/Web/HTTP</code></li>
+</ul>
+<h2 id="JSON-Web-Token-和-Session-Cookies-的对比"><a href="#JSON-Web-Token-和-Session-Cookies-的对比" class="headerlink" title="JSON Web Token 和 Session Cookies 的对比"></a>JSON Web Token 和 Session Cookies 的对比</h2><p><code>JSON Web Token ，简称 JWT</code>，它和 <code>Session</code>都可以为网站提供用户的身份认证，但是它们不是一回事。</p>
+<p>下面是 JWT 和 Session 不同之处的研究</p>
+<h3 id="JWT-和-Session-Cookies-的相同之处"><a href="#JWT-和-Session-Cookies-的相同之处" class="headerlink" title="JWT 和 Session Cookies 的相同之处"></a>JWT 和 Session Cookies 的相同之处</h3><p>在探讨 JWT 和 Session Cookies 之前，有必要需要先去理解一下它们的相同之处。</p>
+<p>它们既可以对用户进行身份验证，也可以用来在用户单击进入不同页面时以及登陆网站或应用程序后进行身份验证。</p>
+<p>如果没有这两者，那你可能需要在每个页面切换时都需要进行登录了。因为 HTTP 是一个无状态的协议。这也就意味着当你访问某个网页，然后单击同一站点上的另一个页面时，服务器的<code>内存中</code>将不会记住你之前的操作。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090447168-1412892230.png"></p>
+<p>因此，如果你登录并访问了你有权访问的另一个页面，由于 HTTP 不会记录你刚刚登录的信息，因此你将再次登录。</p>
+<p><strong>JWT 和 Session Cookies 就是用来处理在不同页面之间切换，保存用户登录信息的机制</strong>。</p>
+<p>也就是说，这两种技术都是用来保存你的登录状态，能够让你在浏览任意受密码保护的网站。通过在每次产生新的请求时对用户数据进行身份验证来解决此问题。</p>
+<p>所以 JWT 和 Session Cookies 的相同之处是什么？那就是它们能够支持你在发送不同请求之间，记录并验证你的登录状态的一种机制。</p>
+<h3 id="什么是-Session-Cookies"><a href="#什么是-Session-Cookies" class="headerlink" title="什么是 Session Cookies"></a>什么是 Session Cookies</h3><p>Session Cookies 也称为<code>会话 Cookies</code>，在 Session Cookies 中，用户的登录状态会保存在<code>服务器</code>的<code>内存</code>中。当用户登录时，Session 就被服务端安全的创建。</p>
+<p>在每次请求时，服务器都会从会话 Cookie 中读取 SessionId，如果服务端的数据和读取的 SessionId 相同，那么服务器就会发送响应给浏览器，允许用户登录。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090456816-1567261814.png"></p>
+<h3 id="什么是-Json-Web-Tokens"><a href="#什么是-Json-Web-Tokens" class="headerlink" title="什么是 Json Web Tokens"></a>什么是 Json Web Tokens</h3><p>Json Web Token 的简称就是 JWT，通常可以称为 <code>Json 令牌</code>。它是<code>RFC 7519</code> 中定义的用于<code>安全的</code>将信息作为 <code>Json 对象</code>进行传输的一种形式。JWT 中存储的信息是经过<code>数字签名</code>的，因此可以被信任和理解。可以使用 HMAC 算法或使用 RSA&#x2F;ECDSA 的公用&#x2F;专用密钥对 JWT 进行签名。</p>
+<p>使用 JWT 主要用来下面两点</p>
+<ul>
+<li><code>认证(Authorization)</code>：这是使用 JWT 最常见的一种情况，一旦用户登录，后面每个请求都会包含 JWT，从而允许用户访问该令牌所允许的路由、服务和资源。<code>单点登录</code>是当今广泛使用 JWT 的一项功能，因为它的开销很小。</li>
+<li><code>信息交换(Information Exchange)</code>：JWT 是能够安全传输信息的一种方式。通过使用公钥&#x2F;私钥对 JWT 进行签名认证。此外，由于签名是使用 <code>head</code> 和 <code>payload</code> 计算的，因此你还可以验证内容是否遭到篡改。</li>
+</ul>
+<h4 id="JWT-的格式"><a href="#JWT-的格式" class="headerlink" title="JWT 的格式"></a>JWT 的格式</h4><p>下面，我们会探讨一下 JWT 的组成和格式是什么</p>
+<p>JWT 主要由三部分组成，每个部分用 <code>.</code> 进行分割，各个部分分别是</p>
+<ul>
+<li><code>Header</code></li>
+<li><code>Payload</code></li>
+<li><code>Signature</code></li>
+</ul>
+<p>因此，一个非常简单的 JWT 组成会是下面这样</p>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090510532-1017074382.png"></p>
+<p>然后我们分别对不同的部分进行探讨。</p>
+<p><strong>Header</strong></p>
+<p>Header 是 JWT 的标头，它通常由两部分组成：<code>令牌的类型(即 JWT) </code>和使用的 <code>签名算法</code>，例如 HMAC SHA256 或 RSA。</p>
+<p>例如</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;alg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HS256&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;typ&quot;</span><span class="punctuation">:</span> <span class="string">&quot;JWT&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>指定类型和签名算法后，Json 块被 <code>Base64Url</code> 编码形成 JWT 的第一部分。</p>
+<p><strong>Payload</strong></p>
+<p>Token 的第二部分是 <code>Payload</code>，Payload 中包含一个声明。声明是有关实体（通常是用户）和其他数据的声明。共有三种类型的声明：<strong>registered, public 和 private</strong> 声明。</p>
+<ul>
+<li><code>registered 声明</code>： 包含一组建议使用的预定义声明，主要包括</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ISS</th>
+<th>签发人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iss (issuer)</td>
+<td>签发人</td>
+</tr>
+<tr>
+<td>exp (expiration time)</td>
+<td>过期时间</td>
+</tr>
+<tr>
+<td>sub (subject)</td>
+<td>主题</td>
+</tr>
+<tr>
+<td>aud (audience)</td>
+<td>受众</td>
+</tr>
+<tr>
+<td>nbf (Not Before)</td>
+<td>生效时间</td>
+</tr>
+<tr>
+<td>iat (Issued At)</td>
+<td>签发时间</td>
+</tr>
+<tr>
+<td>jti (JWT ID)</td>
+<td>编号</td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>public 声明</code>：公共的声明，可以添加任何的信息，一般添加用户的相关信息或其他业务需要的必要信息，但不建议添加敏感信息，因为该部分在客户端可解密。</li>
+<li><code>private 声明</code>：自定义声明，旨在在同意使用它们的各方之间共享信息，既不是注册声明也不是公共声明。</li>
+</ul>
+<p>例如</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;sub&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1234567890&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;John Doe&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;admin&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后 payload Json 块会被<code>Base64Url</code> 编码形成 JWT 的第二部分。 </p>
+<p><strong>signature</strong></p>
+<p>JWT 的第三部分是一个签证信息，这个签证信息由三部分组成</p>
+<ul>
+<li>header (base64后的)</li>
+<li>payload (base64后的)</li>
+<li>secret</li>
+</ul>
+<p>比如我们需要 HMAC SHA256 算法进行签名</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + <span class="string">&quot;.&quot;</span> +</span><br><span class="line">  base64UrlEncode(payload)<span class="punctuation">,</span></span><br><span class="line">  secret)</span><br></pre></td></tr></table></figure>
+
+<p>签名用于验证消息在此过程中没有更改，并且对于使用私钥进行签名的令牌，它还可以验证 JWT 的发送者的真实身份</p>
+<h4 id="拼凑在一起"><a href="#拼凑在一起" class="headerlink" title="拼凑在一起"></a>拼凑在一起</h4><p>现在我们把上面的三个由点分隔的 Base64-URL 字符串部分组成在一起，这个字符串可以在 HTML 和 HTTP 环境中轻松传递这些字符串。</p>
+<p>下面是一个完整的 JWT 示例，它对 header 和 payload 进行编码，然后使用 signature 进行签名</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090523721-51310429.png"></p>
+<p>如果想自己测试编写的话，可以访问 JWT 官网 <a target="_blank" rel="noopener" href="https://jwt.io/#debugger-io">https://jwt.io/#debugger-io</a></p>
+<h3 id="JWT-和-Session-Cookies-的不同"><a href="#JWT-和-Session-Cookies-的不同" class="headerlink" title="JWT 和 Session Cookies 的不同"></a>JWT 和 Session Cookies 的不同</h3><p>JWT 和 Session Cookies 都提供安全的用户身份验证，但是它们有以下几点不同</p>
+<h4 id="密码签名"><a href="#密码签名" class="headerlink" title="密码签名"></a>密码签名</h4><p>JWT 具有加密签名，而 Session Cookies 则没有。</p>
+<h4 id="JSON-是无状态的"><a href="#JSON-是无状态的" class="headerlink" title="JSON 是无状态的"></a>JSON 是无状态的</h4><p>JWT 是<code>无状态</code>的，因为声明被存储在<code>客户端</code>，而不是服务端内存中。</p>
+<p>身份验证可以在<code>本地</code>进行，而不是在请求必须通过服务器数据库或类似位置中进行。 这意味着可以对用户进行多次身份验证，而无需与站点或应用程序的数据库进行通信，也无需在此过程中消耗大量资源。</p>
+<h4 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h4><p>Session Cookies 是存储在服务器内存中，这就意味着如果网站或者应用很大的情况下会耗费大量的资源。由于 JWT 是无状态的，在许多情况下，它们可以节省服务器资源。因此 JWT 要比 Session Cookies 具有更强的<code>可扩展性</code>。</p>
+<h4 id="JWT-支持跨域认证"><a href="#JWT-支持跨域认证" class="headerlink" title="JWT 支持跨域认证"></a>JWT 支持跨域认证</h4><p>Session Cookies 只能用在<code>单个节点的域</code>或者它的<code>子域</code>中有效。如果它们尝试通过第三个节点访问，就会被禁止。如果你希望自己的网站和其他站点建立安全连接时，这是一个问题。</p>
+<p>使用 JWT 可以解决这个问题，使用 JWT 能够通过<code>多个节点</code>进行用户认证，也就是我们常说的<code>跨域认证</code>。</p>
+<h3 id="JWT-和-Session-Cookies-的选型"><a href="#JWT-和-Session-Cookies-的选型" class="headerlink" title="JWT 和 Session Cookies 的选型"></a>JWT 和 Session Cookies 的选型</h3><p>我们上面探讨了 JWT 和 Cookies 的不同点，相信你也会对选型有了更深的认识，大致来说</p>
+<p>对于只需要登录用户并访问存储在站点数据库中的一些信息的中小型网站来说，Session Cookies 通常就能满足。</p>
+<p>如果你有企业级站点，应用程序或附近的站点，并且需要处理大量的请求，尤其是第三方或很多第三方（包括位于不同域的API），则 JWT 显然更适合。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>前两天面试的时候问到了这个题，所以写篇文章总结一下，还问到了一个面试题，<strong>禁用 Cookies，如何使用 Session</strong> ？网上百度了一下，发现这是 PHP 的面试题……</p>
+<p><img src="https://img2020.cnblogs.com/blog/1515111/202004/1515111-20200405090536271-79379471.png"></p>
+<p>但还是选择了解了一下，如何禁用 Cookies 后，使用 Session</p>
+<ul>
+<li>如果禁用了 Cookies，服务器仍会将 sessionId 以 cookie 的方式发送给浏览器，但是，浏览器不再保存这个cookie (即sessionId) 了。</li>
+<li>如果想要继续使用 session，需要采用 <code>URL 重写</code> 的方式来实现，可以参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/Renyi-Fan/p/11012086.html">https://www.cnblogs.com/Renyi-Fan/p/11012086.html</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/Cooke%E3%80%81Session-%E5%92%8C-Token/">https://manamn.space/2022/05/03/Cooke%E3%80%81Session-%E5%92%8C-Token/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a><a class="post-meta__tags" href="/tags/Cooke/">Cooke</a><a class="post-meta__tags" href="/tags/Session/">Session</a><a class="post-meta__tags" href="/tags/Token/">Token</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(978).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/HTPP%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/"><img class="prev-cover" src="https://tva2.sinaimg.cn/large/9bd9b167gy1g4lhis90eaj21hc0xc7gl.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">HTPP核心概念</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%A7%A3%E6%9E%90-HTTP/"><img class="next-cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkreqd9dj21hc0u01kx.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">带你一步步解析 HTTP</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/03/HTPP%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" title="HTPP核心概念"><img class="cover" src="https://tva2.sinaimg.cn/large/9bd9b167gy1g4lhis90eaj21hc0xc7gl.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">HTPP核心概念</div></div></a></div><div><a href="/2022/05/03/HTPP-2-0/" title="HTPP 2.0"><img class="cover" src="https://tva2.sinaimg.cn/large/9bd9b167gy1g4c8qbmisej21hc0u0nb1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">HTPP 2.0</div></div></a></div><div><a href="/2022/05/03/HTPP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/" title="HTPP连接管理"><img class="cover" src="https://tva2.sinaimg.cn/large/9bd9b167gy1fwsfw5oaaxj21hc0u01kx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">HTPP连接管理</div></div></a></div><div><a href="/2022/05/27/HTTP&Tomcat&Servlet/" title="hm-HTTP&amp;Tomcat&amp;Servlet"><img class="cover" src="https://static.likepoems.com/2020/09/19/d33c3a6fc0b5d2384827e8e32ec71f4b3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="title">hm-HTTP&amp;Tomcat&amp;Servlet</div></div></a></div><div><a href="/2022/05/03/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%A7%A3%E6%9E%90-HTTP/" title="带你一步步解析 HTTP"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkreqd9dj21hc0u01kx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">带你一步步解析 HTTP</div></div></a></div><div><a href="/2022/05/03/%E5%B8%A6%E4%BD%A0%E4%B8%80%E6%AD%A5%E6%AD%A5%E8%A7%A3%E6%9E%90-HTTPS/" title="带你一步步解析 HTTPS"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167ly1fwsfq7kwb8j21hc0u01kx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">带你一步步解析 HTTPS</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Cooke%E3%80%81Session-%E5%92%8C-Token"><span class="toc-number">1.</span> <span class="toc-text">Cooke、Session 和 Token</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie-%E5%92%8C-Session"><span class="toc-number">1.1.</span> <span class="toc-text">Cookie 和 Session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Session-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.1.</span> <span class="toc-text">Session 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session-%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%90%8C%E4%B8%80%E4%BC%9A%E8%AF%9D"><span class="toc-number">1.1.2.</span> <span class="toc-text">Session 如何判断是否是同一会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session-%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">1.1.3.</span> <span class="toc-text">Session 的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookies-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.4.</span> <span class="toc-text">Cookies 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Cookie"><span class="toc-number">1.1.5.</span> <span class="toc-text">创建 Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-Cookie-%E5%92%8C-Cookie-%E6%A0%87%E5%A4%B4"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">Set-Cookie 和 Cookie 标头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D-Cookies"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">会话 Cookies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B0%B8%E4%B9%85%E6%80%A7-Cookies"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">永久性 Cookies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie-%E7%9A%84-Secure-%E5%92%8C-HttpOnly-%E6%A0%87%E8%AE%B0"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">Cookie 的 Secure 和 HttpOnly 标记</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.1.6.</span> <span class="toc-text">Cookie 的作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-Web-Token-%E5%92%8C-Session-Cookies-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">1.2.</span> <span class="toc-text">JSON Web Token 和 Session Cookies 的对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%92%8C-Session-Cookies-%E7%9A%84%E7%9B%B8%E5%90%8C%E4%B9%8B%E5%A4%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">JWT 和 Session Cookies 的相同之处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Session-Cookies"><span class="toc-number">1.2.2.</span> <span class="toc-text">什么是 Session Cookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Json-Web-Tokens"><span class="toc-number">1.2.3.</span> <span class="toc-text">什么是 Json Web Tokens</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">JWT 的格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%BC%E5%87%91%E5%9C%A8%E4%B8%80%E8%B5%B7"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">拼凑在一起</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%92%8C-Session-Cookies-%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="toc-number">1.2.4.</span> <span class="toc-text">JWT 和 Session Cookies 的不同</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%AD%BE%E5%90%8D"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">密码签名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSON-%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">JSON 是无状态的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">可扩展性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E6%94%AF%E6%8C%81%E8%B7%A8%E5%9F%9F%E8%AE%A4%E8%AF%81"><span class="toc-number">1.2.4.4.</span> <span class="toc-text">JWT 支持跨域认证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%92%8C-Session-Cookies-%E7%9A%84%E9%80%89%E5%9E%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text">JWT 和 Session Cookies 的选型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">1.3.</span> <span class="toc-text">后记</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

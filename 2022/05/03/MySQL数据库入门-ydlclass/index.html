@@ -1,0 +1,1074 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL数据库入门-ydlclass | 爱笑的Gao的个人博客</title><meta name="keywords" content="MySQL"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Mysql数据库入门第1章 Mysql数据库#一、入门简介#1、介绍 MySQL是一种开放源代码的关系型数据库管理系统（RDBMS），使用最常用的数据库管理语言–结构化查询语言（SQL）进行数据库管理。 MySQL是开放源代码的，因此任何人都可以在General Public License的许可下下载并根据个性化的需要对其进行修改。 MySQL因为其速度、可靠性和适应性而备受关注。MySQL是管">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL数据库入门-ydlclass">
+<meta property="og:url" content="https://manamn.space/2022/05/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8-ydlclass/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="Mysql数据库入门第1章 Mysql数据库#一、入门简介#1、介绍 MySQL是一种开放源代码的关系型数据库管理系统（RDBMS），使用最常用的数据库管理语言–结构化查询语言（SQL）进行数据库管理。 MySQL是开放源代码的，因此任何人都可以在General Public License的许可下下载并根据个性化的需要对其进行修改。 MySQL因为其速度、可靠性和适应性而备受关注。MySQL是管">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva2.sinaimg.cn/large/9bd9b167ly1g2qjwrhebmj21hc0u07da.jpg">
+<meta property="article:published_time" content="2022-05-03T09:18:24.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:36.240Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva2.sinaimg.cn/large/9bd9b167ly1g2qjwrhebmj21hc0u07da.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8-ydlclass/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL数据库入门-ydlclass',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva2.sinaimg.cn/large/9bd9b167ly1g2qjwrhebmj21hc0u07da.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL数据库入门-ydlclass</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T09:18:24.000Z" title="发表于 2022-05-03 17:18:24">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:36.240Z" title="更新于 2022-05-06 11:52:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL数据库入门-ydlclass"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Mysql数据库入门"><a href="#Mysql数据库入门" class="headerlink" title="Mysql数据库入门"></a>Mysql数据库入门</h1><h2 id="第1章-Mysql数据库"><a href="#第1章-Mysql数据库" class="headerlink" title="第1章 Mysql数据库"></a>第1章 Mysql数据库</h2><h3 id="一、入门简介"><a href="#一、入门简介" class="headerlink" title="#一、入门简介"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%B8%80%E3%80%81%E5%85%A5%E9%97%A8%E7%AE%80%E4%BB%8B">#</a>一、入门简介</h3><h4 id="1、介绍"><a href="#1、介绍" class="headerlink" title="#1、介绍"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1%E3%80%81%E4%BB%8B%E7%BB%8D">#</a>1、介绍</h4><ul>
+<li>MySQL是一种开放源代码的<strong>关系型</strong>数据库管理系统（RDBMS），使用最常用的数据库管理语言–<strong>结构化查询语言</strong>（SQL）进行数据库管理。</li>
+<li>MySQL是开放源代码的，因此任何人都可以在General Public License的许可下下载并根据个性化的需要对其进行修改。</li>
+<li>MySQL因为其速度、可靠性和适应性而备受关注。MySQL是管理内容最好的选择。</li>
+</ul>
+<h4 id="2、socket-介绍"><a href="#2、socket-介绍" class="headerlink" title="#2、socket 介绍"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2%E3%80%81socket-%E4%BB%8B%E7%BB%8D">#</a>2、socket 介绍</h4><ul>
+<li>客户端和服务端是使用socket链接的。</li>
+<li>socket中文翻译是插座，但是学术叫套接字。其实就是计算机和计算机链接的方式。</li>
+<li>一个计算机使用ip+端口使用某种协议就能和另外一台机子的ip+端口链接通信。（TCP &#x2F; UDP）</li>
+<li>mysql使用的默认端口是3306，一个客户端随便使用一个端口，就能连接上服务。</li>
+<li>服务器的ip+端口是固定的,客户端往往是随机的。</li>
+</ul>
+<h3 id="二、SQL"><a href="#二、SQL" class="headerlink" title="#二、SQL"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%BA%8C%E3%80%81sql">#</a>二、SQL</h3><h4 id="1-SQL语句分类"><a href="#1-SQL语句分类" class="headerlink" title="#1.SQL语句分类"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1-sql%E8%AF%AD%E5%8F%A5%E5%88%86%E7%B1%BB">#</a>1.SQL语句分类</h4><ul>
+<li>1.DDL(Data Definition Language):数据定义语言，用来定义数据库对象：库、表、列等。功能：创建、删除、修改库和表结构。</li>
+<li>2.DML(Data Manipulation Language):数据操作语言，用来定义数据库记录：增、删、改表记录。</li>
+<li>3.DCL(Data Control Language)：数据控制语言，用来定义访问权限和安全级别。</li>
+<li>4.DQL(Data Query Language)：数据查询语言，用来查询记录。也是本章学习的重点。</li>
+</ul>
+<h4 id="2、DCL-数据控制语言-语法（不重要）"><a href="#2、DCL-数据控制语言-语法（不重要）" class="headerlink" title="#2、DCL(数据控制语言)语法（不重要）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2%E3%80%81dcl-%E6%95%B0%E6%8D%AE%E6%8E%A7%E5%88%B6%E8%AF%AD%E8%A8%80-%E8%AF%AD%E6%B3%95-%E4%B8%8D%E9%87%8D%E8%A6%81">#</a>2、DCL(数据控制语言)语法（不重要）</h4><p>该语言用来定义访问权限，理解即可，以后不会多用。</p>
+<p>需要记住的是，一个项目创建一个用户，一个项目对应的数据库只有一个。这个用户只能对这个数据库有权限，其它数据库该用户就操作不了。</p>
+<h5 id="2-1-创建用户"><a href="#2-1-创建用户" class="headerlink" title="#2.1 创建用户"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2-1-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7">#</a>2.1 创建用户</h5><p>用户只能在指定ip地址上登录mysql:<code>create user 用户名@IP地址 identified by ‘密码’；</code></p>
+<p>用户可以在任意ip地址上登录:<code>create user 用户名@‘％’ identified by ‘密码’；</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> zn@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;zn123&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<h5 id="2-2-给用户授权"><a href="#2-2-给用户授权" class="headerlink" title="#2.2 给用户授权"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2-2-%E7%BB%99%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83">#</a>2.2 给用户授权</h5><p>语法:<code>grant 权限1，…，权限n on 数据库.* to 用户名@IP地址；</code>其中权限1、2、n可以直接用all关键字代替。权限例如:create,alter,drop,insert,update,delete,select。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> test.<span class="operator">*</span> <span class="keyword">to</span> zn;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<h5 id="2-3-撤销授权"><a href="#2-3-撤销授权" class="headerlink" title="#2.3 撤销授权"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2-3-%E6%92%A4%E9%94%80%E6%8E%88%E6%9D%83">#</a>2.3 撤销授权</h5><p>语法:<code>revoke 权限1，…，权限n on 数据库.* from 用户名@ ip地址；</code>撤销指定用户在指定数据库上的指定权限。撤销例如:<code>revoke create,delete on mydb1.* form user@localhost;</code>表示的意思是撤消user用户在数据库mydb1伤的create、alter权限。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">revoke</span> <span class="keyword">all</span> <span class="keyword">on</span> test.<span class="operator">*</span> <span class="keyword">from</span> zn;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<h5 id="2-4-查看权限"><a href="#2-4-查看权限" class="headerlink" title="#2.4 查看权限"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2-4-%E6%9F%A5%E7%9C%8B%E6%9D%83%E9%99%90">#</a>2.4 查看权限</h5><p>查看指定用户的权限:<code>show grants for 用户名@ip地址；</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> grants <span class="keyword">for</span> zn;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<h5 id="2-5-删除用户"><a href="#2-5-删除用户" class="headerlink" title="#2.5 删除用户"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2-5-%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7">#</a>2.5 删除用户</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user 用户名@ip地址；</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<h4 id="3、DDL-数据定义语言-语法"><a href="#3、DDL-数据定义语言-语法" class="headerlink" title="#3、DDL(数据定义语言)语法"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_3%E3%80%81ddl-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80-%E8%AF%AD%E6%B3%95">#</a>3、DDL(数据定义语言)语法</h4><p><strong>该语言用来对数据库和表结构进行操作。</strong></p>
+<h5 id="3-1常用的数据类型"><a href="#3-1常用的数据类型" class="headerlink" title="#3.1常用的数据类型"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_3-1%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">#</a>3.1常用的数据类型</h5><p><strong>日期和时间数据类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>MySQL数据类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>date</td>
+<td>3字节，日期，格式：2014-09-18</td>
+</tr>
+<tr>
+<td>time</td>
+<td>3字节，时间，格式：08:42:30</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>8字节，日期时间，格式：2014-09-18 08:42:30</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>4字节，自动存储记录修改的时间</td>
+</tr>
+<tr>
+<td>year</td>
+<td>1字节，年份</td>
+</tr>
+</tbody></table>
+<p><strong>整型</strong></p>
+<table>
+<thead>
+<tr>
+<th>MySQL数据类型</th>
+<th>含义（有符号）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tinyint</td>
+<td>1字节，范围（-128~127）</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>2字节，范围（-32768~32767）</td>
+</tr>
+<tr>
+<td>mediumint</td>
+<td>3字节，范围（-8388608~8388607）</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4字节，范围（-2147483648~2147483647）</td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>8字节，范围（+-9.22*10的18次方）</td>
+</tr>
+</tbody></table>
+<p>上面定义的都是有符号的，当然了，也可以加上unsigned关键字，定义成无符号的类型，那么对应的取值范围就要翻翻了，比如：</p>
+<p>tinyint unsigned的取值范围为0~255。</p>
+<p><strong>浮点型</strong></p>
+<table>
+<thead>
+<tr>
+<th>MySQL数据类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float(m, d)</td>
+<td>4字节，单精度浮点型，m总个数，d小数位</td>
+</tr>
+<tr>
+<td>double(m, d)</td>
+<td>8字节，双精度浮点型，m总个数，d小数位</td>
+</tr>
+<tr>
+<td>decimal(m, d)</td>
+<td>decimal是存储为字符串的浮点数</td>
+</tr>
+</tbody></table>
+<p>我在MySQL中建立了一个表，有一列为float(5, 3)；做了以下试验：</p>
+<p>1.插入123.45678，最后查询得到的结果为99.999； 2.插入123.456，最后查询结果为99.999； 3.插入12.34567，最后查询结果为12.346；</p>
+<p>所以，在使用浮点型的时候，还是要注意陷阱的，要以插入数据库中的实际结果为准。</p>
+<p><strong>字符串数据类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>MySQL数据类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char(n)</td>
+<td>固定长度，最多255个字符</td>
+</tr>
+<tr>
+<td>varchar(n)</td>
+<td>可变长度，最多65535个字符</td>
+</tr>
+<tr>
+<td>tinytext</td>
+<td>可变长度，最多255个字符</td>
+</tr>
+<tr>
+<td>text</td>
+<td>可变长度，最多65535个字符</td>
+</tr>
+<tr>
+<td>mediumtext</td>
+<td>可变长度，最多2的24次方-1个字符</td>
+</tr>
+<tr>
+<td>longtext</td>
+<td>可变长度，最多2的32次方-1个字符</td>
+</tr>
+</tbody></table>
+<p>1.char（n）和varchar（n）中括号中n代表字符的个数，并不代表字节个数，所以当使用了中文的时候(UTF8)意味着可以插入m个中文，但是实际会占用m*3个字节。 2.同时char和varchar最大的区别就在于char不管实际value都会占用n个字符的空间，而varchar只会占用实际字符应该占用的空间+1，并且实际空间+1&lt;&#x3D;n。 3.超过char和varchar的n设置后，字符串会被截断。 4.char的上限为255字节，varchar的上限65535字节，text的上限为65535。 5.char在存储的时候会截断尾部的空格，varchar和text不会。 6.varchar会使用1-3个字节来存储长度，text不会。</p>
+<p><strong>其它类型</strong></p>
+<p>1.enum(“member1″, “member2″, … “member65535″) enum数据类型就是定义了一种枚举，最多包含65535个不同的成员。当定义了一个enum的列时，该列的值限制为列定义中声明的值。如果列声明包含NULL属性，则NULL将被认为是一个有效值，并且是默认值。如果声明了NOT NULL，则列表的第一个成员是默认值。</p>
+<p>2.set(“member”, “member2″, … “member64″) set数据类型为指定一组预定义值中的零个或多个值提供了一种方法，这组值最多包括64个成员。值的选择限制为列定义中声明的值。</p>
+<p><strong>对数据库的操作（增删查改）:</strong></p>
+<p>查看所有数据库:<code>SHOW DATABASES;</code></p>
+<p>使用数据库:<code>USE 数据库名;</code></p>
+<p>创建数据库并指定编码，如不指定编码可能会有乱码问题，比如汉字不能存，当然建表指定也行，但是建库时指定一劳永逸:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE test <span class="keyword">DEFAULT</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<p>删除数据库:<code>DROP DATABASE 数据库名;</code></p>
+<p>use test；切换数据库</p>
+<p><strong>对表结构的操作</strong><br>创建表:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名 (</span><br><span class="line"></span><br><span class="line">字段名<span class="number">1</span> 类型 (宽度) 约束条件,</span><br><span class="line"></span><br><span class="line">字段名<span class="number">2</span> 类型(宽度) 约束条件,</span><br><span class="line"></span><br><span class="line">字段名<span class="number">3</span> 类型(宽度) 约束条件,</span><br><span class="line"></span><br><span class="line">.......</span><br><span class="line"></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student (</span><br><span class="line">    id <span class="type">INT</span>(<span class="number">10</span>)  <span class="keyword">primary</span> key,</span><br><span class="line">    name <span class="type">VARCHAR</span> (<span class="number">10</span>),</span><br><span class="line">    age <span class="type">INT</span> (<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    gander <span class="type">varchar</span>(<span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> course (</span><br><span class="line">  id <span class="type">INT</span> (<span class="number">10</span>)  <span class="keyword">primary</span> key,</span><br><span class="line">  name <span class="type">VARCHAR</span> (<span class="number">10</span>) ,</span><br><span class="line">  t_id <span class="type">INT</span> (<span class="number">10</span>) </span><br><span class="line">) ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `teacher` (</span><br><span class="line">  id <span class="type">INT</span> (<span class="number">10</span>)  <span class="keyword">primary</span> key,</span><br><span class="line">  name <span class="type">VARCHAR</span> (<span class="number">10</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `scores` (</span><br><span class="line">  s_id <span class="type">INT</span>  <span class="keyword">primary</span> key,</span><br><span class="line">  score <span class="type">INT</span> (<span class="number">10</span>),</span><br><span class="line">  c_id <span class="type">INT</span> (<span class="number">10</span>) </span><br><span class="line">) ;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37</p>
+<p>查看当前数据库中所有表:<code>SHOW TABLES;</code></p>
+<p>查看表结构:<code>DESC 表名;</code></p>
+<p>删除表:<code>DROP table 表名;</code></p>
+<p>修改表有5个操作，但前缀都是一样的:<code>ALTER TABLE 表名...</code>（不重要）</p>
+<ul>
+<li><p>修改表之添加列:<code>ALTER TABLE 表名 add (列名 列类型，...，列名 列类型);</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">add</span> (address <span class="type">VARCHAR</span>(<span class="number">20</span>),hobby <span class="type">VARCHAR</span>(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+</li>
+<li><p>修改表之修改列类型:<code>ALTER TABLE 表名 MODIFY 列名 列的新类型;</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student MODIFY hobby <span class="type">int</span>;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+</li>
+<li><p>修改表之列名称列类型一起修改:<code>ALTER TABLE 表名 CHANGE 原列名 新列名 列名类型;</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student CHANGE hobby newHobby <span class="type">VARCHAR</span>(<span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+</li>
+<li><p>修改表之删除列:<code>ALTER TABLE 表名 DROP 列名;</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">drop</span> newHobby；</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+</li>
+<li><p>修改表之修改表名:<code>ALTER TABLE 表名 RENAME TO 新表名</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student RENAME <span class="keyword">to</span> stu;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+</li>
+</ul>
+<h4 id="4、DML-数据操作语言-语法（重要）"><a href="#4、DML-数据操作语言-语法（重要）" class="headerlink" title="#4、DML(数据操作语言)语法（重要）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_4%E3%80%81dml-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80-%E8%AF%AD%E6%B3%95-%E9%87%8D%E8%A6%81">#</a>4、DML(数据操作语言)语法（重要）</h4><p>该语言用来对表记录操作(增、删、改)。</p>
+<h5 id="4-1-插入数据-一次插入就是插入一行"><a href="#4-1-插入数据-一次插入就是插入一行" class="headerlink" title="#4.1 插入数据(一次插入就是插入一行)"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_4-1-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE-%E4%B8%80%E6%AC%A1%E6%8F%92%E5%85%A5%E5%B0%B1%E6%98%AF%E6%8F%92%E5%85%A5%E4%B8%80%E8%A1%8C">#</a>4.1 插入数据(一次插入就是插入一行)</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 (列名<span class="number">1</span>，列名<span class="number">2</span>，列名<span class="number">3</span>) <span class="keyword">values</span> (列值<span class="number">1</span>，列值<span class="number">2</span>，列值<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  stu (id,name,age,gander) <span class="keyword">values</span> (<span class="number">2</span>,<span class="string">&#x27;李华&#x27;</span>,<span class="number">19</span>,<span class="string">&#x27;男&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2</p>
+<p><strong>说明:</strong></p>
+<ol>
+<li>在数据库中所有的<strong>字符串类型，必须使用单引号</strong>。</li>
+<li>(列名1，列名2，列名3)可省略，表示按照表中的顺序插入。但不建议采取这种写法，因为降低了程序的可读性。</li>
+</ol>
+<h5 id="4-2-修改记录"><a href="#4-2-修改记录" class="headerlink" title="#4.2 修改记录"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_4-2-%E4%BF%AE%E6%94%B9%E8%AE%B0%E5%BD%95">#</a>4.2 修改记录</h5><p>修改某列的全部值:<code>update 表名 set 列名1=列值1(，列名2=列值2);</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> stu <span class="keyword">set</span> age<span class="operator">=</span><span class="number">22</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> stu <span class="keyword">set</span> age<span class="operator">=</span><span class="number">23</span>,name<span class="operator">=</span><span class="string">&#x27;张楠&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2</p>
+<p>这样就全修改了，所以往往就要加条件。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> stu <span class="keyword">set</span> age<span class="operator">=</span><span class="number">23</span>,name<span class="operator">=</span><span class="string">&#x27;张楠&#x27;</span> <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<p>修改(某行或者多行记录的)列的指定值:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名3=列值3;</code></p>
+<p>运算符:<code>=、!=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between...and、in(…)、is null、not、or、and</code>，其中in(…)的用法表示集合。例如:<code>update 表名 set 列名1=列值1 where 列名2=列值2 or 列名2=列值22</code>用in(…)写成<code>update 表名 set 列名1=列值1 where 列名2 in(列值2，列值3)</code></p>
+<h5 id="4-4-删除数据-删除整行"><a href="#4-4-删除数据-删除整行" class="headerlink" title="#4.4 删除数据(删除整行)"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_4-4-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE-%E5%88%A0%E9%99%A4%E6%95%B4%E8%A1%8C">#</a>4.4 删除数据(删除整行)</h5><p><code>delete from 表名 (where 条件);</code>不加where条件时会删除表中所有的记录，所以为了防止这种失误操作，很多数据库往往都会有备份。</p>
+<h2 id="第2章-MySQL常见的建表约束"><a href="#第2章-MySQL常见的建表约束" class="headerlink" title="第2章 MySQL常见的建表约束"></a>第2章 MySQL常见的建表约束</h2><h3 id="一、MySQL约束类型"><a href="#一、MySQL约束类型" class="headerlink" title="#一、MySQL约束类型"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%B8%80%E3%80%81mysql%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B">#</a>一、MySQL约束类型</h3><table>
+<thead>
+<tr>
+<th>约束名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NOT NULL</td>
+<td>非空约束</td>
+</tr>
+<tr>
+<td>UNIQUE</td>
+<td>唯一约束，取值不允许重复,</td>
+</tr>
+<tr>
+<td>PRIMARY KEY</td>
+<td>主键约束（主关键字），自带非空、唯一、索引</td>
+</tr>
+<tr>
+<td>FOREIGN KEY</td>
+<td>外键约束（外关键字）</td>
+</tr>
+<tr>
+<td>DEFAULT</td>
+<td>默认值（缺省值）</td>
+</tr>
+</tbody></table>
+<h3 id="二、MySQL约束类型举例"><a href="#二、MySQL约束类型举例" class="headerlink" title="#二、MySQL约束类型举例"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%BA%8C%E3%80%81mysql%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B%E4%B8%BE%E4%BE%8B">#</a>二、MySQL约束类型举例</h3><h4 id="1-NOT-NULL约束"><a href="#1-NOT-NULL约束" class="headerlink" title="#1. [NOT] NULL约束"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1-not-null%E7%BA%A6%E6%9D%9F">#</a>1. [NOT] NULL约束</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS author;</span><br><span class="line">CREATE TABLE author(</span><br><span class="line">    aut_id varchar(8) NOT NULL,    </span><br><span class="line">    aut_name varchar(50) NOT NULL,   </span><br><span class="line">    country varchar(25) NOT NULL,      </span><br><span class="line">    home_city varchar(25) NOT NULL </span><br><span class="line">); </span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7</p>
+<h4 id="2-UNIQUE约束"><a href="#2-UNIQUE约束" class="headerlink" title="#2. UNIQUE约束"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2-unique%E7%BA%A6%E6%9D%9F">#</a>2. UNIQUE约束</h4><ul>
+<li><h5 id="实现方法1（表的定义最后施加）"><a href="#实现方法1（表的定义最后施加）" class="headerlink" title="#实现方法1（表的定义最后施加）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%951-%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E6%9C%80%E5%90%8E%E6%96%BD%E5%8A%A0">#</a>实现方法1（表的定义最后施加）</h5></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drop table <span class="keyword">if</span> EXISTS author;</span><br><span class="line"><span class="function">CREATE TABLE IF NOT EXISTS <span class="title">author</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    aut_id varchar(<span class="number">8</span>) NOT <span class="literal">NULL</span> ,</span></span></span><br><span class="line"><span class="params"><span class="function">    aut_name varchar(<span class="number">50</span>) NOT <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    country varchar(<span class="number">25</span>) NOT <span class="literal">NULL</span>，</span></span></span><br><span class="line"><span class="params"><span class="function">    UNIQUE (aut_id)</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>; </span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7</p>
+<ul>
+<li><h5 id="实现方法2（字段定义的最后施加）"><a href="#实现方法2（字段定义的最后施加）" class="headerlink" title="#实现方法2（字段定义的最后施加）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%952-%E5%AD%97%E6%AE%B5%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9C%80%E5%90%8E%E6%96%BD%E5%8A%A0">#</a>实现方法2（字段定义的最后施加）</h5></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">drop table <span class="keyword">if</span> EXISTS author;</span><br><span class="line"><span class="function">CREATE TABLE IF NOT EXISTS <span class="title">author</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    aut_id varchar(<span class="number">8</span>) NOT <span class="literal">NULL</span> UNIQUE ,</span></span></span><br><span class="line"><span class="params"><span class="function">    aut_name varchar(<span class="number">50</span>) NOT <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    country varchar(<span class="number">25</span>) NOT <span class="literal">NULL</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6</p>
+<h4 id="3-DEFAULT约束"><a href="#3-DEFAULT约束" class="headerlink" title="#3. DEFAULT约束"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_3-default%E7%BA%A6%E6%9D%9F">#</a>3. DEFAULT约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">EXISTS</span> author;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> author(</span><br><span class="line">    aut_id <span class="type">varchar</span>(<span class="number">8</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">UNIQUE</span> ,</span><br><span class="line">    aut_name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    country <span class="type">varchar</span>(<span class="number">25</span>)  <span class="keyword">DEFAULT</span> <span class="string">&#x27;中国&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6</p>
+<h4 id="5-PRIMARY-KEY约束"><a href="#5-PRIMARY-KEY约束" class="headerlink" title="#5. PRIMARY KEY约束"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_5-primary-key%E7%BA%A6%E6%9D%9F">#</a>5. PRIMARY KEY约束</h4><blockquote>
+<p>主键只能有一个</p>
+</blockquote>
+<blockquote>
+<p>但是可以由多个字段构成联合主键</p>
+</blockquote>
+<ul>
+<li><h4 id="单个字段作为主键（方法1）"><a href="#单个字段作为主键（方法1）" class="headerlink" title="#单个字段作为主键（方法1）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%8D%95%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE-%E6%96%B9%E6%B3%951">#</a>单个字段作为主键（方法1）</h4></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">EXISTS</span> author;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> author(</span><br><span class="line">    aut_id <span class="type">int</span>  <span class="keyword">PRIMARY</span> KEY,       </span><br><span class="line">    aut_name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    country <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6</p>
+<ul>
+<li><h4 id="单个字段作为主键（方法2）"><a href="#单个字段作为主键（方法2）" class="headerlink" title="#单个字段作为主键（方法2）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%8D%95%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE-%E6%96%B9%E6%B3%952">#</a>单个字段作为主键（方法2）</h4></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">EXISTS</span> author;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> author(</span><br><span class="line">    aut_id <span class="type">varchar</span>(<span class="number">8</span>),       </span><br><span class="line">    aut_name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    country <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (aut_id)</span><br><span class="line">);        </span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7</p>
+<ul>
+<li><h5 id="多个字段作为主键"><a href="#多个字段作为主键" class="headerlink" title="#多个字段作为主键"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE">#</a>多个字段作为主键</h5></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">EXISTS</span> author;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> author(</span><br><span class="line">    aut_id <span class="type">varchar</span>(<span class="number">8</span>)  <span class="keyword">not</span> <span class="keyword">null</span>,       </span><br><span class="line">    aut_name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    country <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (aut_id, country)</span><br><span class="line">);  </span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7</p>
+<h4 id=""><a href="#" class="headerlink" title="#"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#">#</a></h4><h4 id="6-AUTO-INCREMENT约束"><a href="#6-AUTO-INCREMENT约束" class="headerlink" title="#6. AUTO_INCREMENT约束"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_6-auto-increment%E7%BA%A6%E6%9D%9F">#</a>6. AUTO_INCREMENT约束</h4><blockquote>
+<p>需要配合主键使用</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">EXISTS</span> author;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> author(</span><br><span class="line">    aut_id <span class="type">varchar</span>(<span class="number">8</span>)  <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,       </span><br><span class="line">    aut_name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    country <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6</p>
+<h4 id="7-FOREIGN-KEY约束"><a href="#7-FOREIGN-KEY约束" class="headerlink" title="#7. FOREIGN KEY约束"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_7-foreign-key%E7%BA%A6%E6%9D%9F">#</a>7. FOREIGN KEY约束</h4><blockquote>
+<p>外键可以建立多个，多个外键接着写就行了</p>
+<p>外键会产生的效果</p>
+<p>1、删除表时，如果不删除引用外键的表，被引用的表不能直接删除</p>
+<p>2、外键的值必须来源于引用的表的主键字段</p>
+</blockquote>
+<h5 id="语法："><a href="#语法：" class="headerlink" title="#语法："></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E8%AF%AD%E6%B3%95">#</a>语法：</h5><blockquote>
+<p>FOREIGN KEY [column list] REFERENCES [primary key table] ([column list]);</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">EXISTS</span> author;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> author(</span><br><span class="line">	aut_id <span class="type">int</span> <span class="keyword">PRIMARY</span> key auto_increment,</span><br><span class="line">	aut_name <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">	country <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;中国&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">EXISTS</span> book;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> book(</span><br><span class="line">    book_id <span class="type">int</span> <span class="keyword">PRIMARY</span> key auto_increment,</span><br><span class="line">    book_name <span class="type">varchar</span>(<span class="number">50</span>)  ,</span><br><span class="line">    aut_id <span class="type">int</span> ,        </span><br><span class="line">    book_price <span class="type">decimal</span>(<span class="number">8</span>,<span class="number">2</span>) ,</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (aut_id) <span class="keyword">REFERENCES</span> author(aut_id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">into</span> author (aut_name) <span class="keyword">VALUES</span>(<span class="string">&#x27;张妈&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">into</span> book (book_name,aut_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;王阳明大传2&#x27;</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20</p>
+<h2 id="第3章-Mysql数据查询语言"><a href="#第3章-Mysql数据查询语言" class="headerlink" title="第3章 Mysql数据查询语言"></a>第3章 Mysql数据查询语言</h2><p>重点，该语言用来查询记录，不会修改数据库和表结构。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (id,name,age,gander) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">&#x27;zhangsan&#x27;</span>,<span class="number">13</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (id,name,age) <span class="keyword">values</span> (<span class="number">2</span>,<span class="string">&#x27;lisi&#x27;</span>,<span class="number">13</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span> (<span class="number">3</span>,<span class="string">&#x27;wangwu&#x27;</span>,<span class="number">13</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">update</span> student <span class="keyword">set</span> age <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">set</span> age <span class="operator">=</span> <span class="number">13</span> <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">set</span> age <span class="operator">=</span> <span class="number">15</span>,gander <span class="operator">=</span> <span class="string">&#x27;女&#x27;</span> <span class="keyword">where</span> id <span class="operator">&gt;</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">set</span> age <span class="operator">=</span> <span class="number">90</span> <span class="keyword">where</span> id <span class="operator">&lt;</span> <span class="number">3</span> <span class="keyword">and</span>  gander<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">from</span> student <span class="keyword">where</span> age <span class="operator">&gt;</span> <span class="number">15</span>;</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">from</span> student <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> student;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12</p>
+<h3 id="一、构建数据库"><a href="#一、构建数据库" class="headerlink" title="#一、构建数据库"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%B8%80%E3%80%81%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93">#</a>一、构建数据库</h3><p><strong>创建数据库以及创建表单</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">TABLE</span> if <span class="keyword">EXISTS</span> student;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student (</span><br><span class="line">    id <span class="type">INT</span>(<span class="number">10</span>) <span class="keyword">PRIMARY</span> key,</span><br><span class="line">    name <span class="type">VARCHAR</span> (<span class="number">10</span>),</span><br><span class="line">    age <span class="type">INT</span> (<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    gander <span class="type">varchar</span>(<span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">TABLE</span> if <span class="keyword">EXISTS</span> course;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> course (</span><br><span class="line">  id <span class="type">INT</span> (<span class="number">10</span>)  <span class="keyword">PRIMARY</span> key,</span><br><span class="line">  name <span class="type">VARCHAR</span> (<span class="number">10</span>) ,</span><br><span class="line">  t_id <span class="type">INT</span> (<span class="number">10</span>) </span><br><span class="line">) ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">TABLE</span> if <span class="keyword">EXISTS</span> teacher;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> teacher(</span><br><span class="line">  id <span class="type">INT</span> (<span class="number">10</span>)  <span class="keyword">PRIMARY</span> key,</span><br><span class="line">  name <span class="type">VARCHAR</span> (<span class="number">10</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">TABLE</span> if <span class="keyword">EXISTS</span> scores;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> scores(</span><br><span class="line">  s_id <span class="type">INT</span> ,</span><br><span class="line">  score <span class="type">INT</span> (<span class="number">10</span>),</span><br><span class="line">  c_id <span class="type">INT</span> (<span class="number">10</span>) ,</span><br><span class="line">	<span class="keyword">PRIMARY</span> key(s_id,c_id)</span><br><span class="line">) ;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28</p>
+<p>表单填充数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">&#x27;白杰&#x27;</span>,<span class="number">19</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="string">&#x27;连宇栋&#x27;</span>,<span class="number">19</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="string">&#x27;邸志伟&#x27;</span>,<span class="number">24</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">4</span>,<span class="string">&#x27;李兴&#x27;</span>,<span class="number">11</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">5</span>,<span class="string">&#x27;张琪&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">6</span>,<span class="string">&#x27;武三水&#x27;</span>,<span class="number">18</span>,<span class="string">&#x27;女&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">7</span>,<span class="string">&#x27;张志伟&#x27;</span>,<span class="number">16</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">8</span>,<span class="string">&#x27;康永亮&#x27;</span>,<span class="number">23</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="string">&#x27;杨涛瑞&#x27;</span>,<span class="number">22</span>,<span class="string">&#x27;女&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  student (id,name,age,gander)<span class="keyword">VALUES</span>(<span class="number">10</span>,<span class="string">&#x27;王杰&#x27;</span>,<span class="number">21</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  course (id,name,t_id)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  course (id,name,t_id)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  course (id,name,t_id)<span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="string">&#x27;c++&#x27;</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  course (id,name,t_id)<span class="keyword">VALUES</span>(<span class="number">4</span>,<span class="string">&#x27;java&#x27;</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  course (id,name)<span class="keyword">VALUES</span>(<span class="number">5</span>,<span class="string">&#x27;php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  teacher (id,name)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">&#x27;张楠&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  teacher (id,name)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="string">&#x27;老孙&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  teacher (id,name)<span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="string">&#x27;薇薇姐&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  teacher (id,name)<span class="keyword">VALUES</span>(<span class="number">4</span>,<span class="string">&#x27;磊磊哥&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  teacher (id,name)<span class="keyword">VALUES</span>(<span class="number">5</span>,<span class="string">&#x27;大微姐&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">80</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">56</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">95</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">30</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">76</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="number">35</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="number">86</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="number">45</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="number">94</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="number">79</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="number">65</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="number">85</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="number">37</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="number">79</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">4</span>,<span class="number">66</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">4</span>,<span class="number">39</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">4</span>,<span class="number">85</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">5</span>,<span class="number">66</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">5</span>,<span class="number">89</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">5</span>,<span class="number">74</span>,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">6</span>,<span class="number">80</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">6</span>,<span class="number">56</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">6</span>,<span class="number">95</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">6</span>,<span class="number">30</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">6</span>,<span class="number">76</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">7</span>,<span class="number">35</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">7</span>,<span class="number">86</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">7</span>,<span class="number">45</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">7</span>,<span class="number">94</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">7</span>,<span class="number">79</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">8</span>,<span class="number">65</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">8</span>,<span class="number">85</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">8</span>,<span class="number">37</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">8</span>,<span class="number">79</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="number">66</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="number">39</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="number">85</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="number">79</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">10</span>,<span class="number">66</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">10</span>,<span class="number">89</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">10</span>,<span class="number">74</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span>  scores (s_id,score,c_id)<span class="keyword">VALUES</span>(<span class="number">10</span>,<span class="number">79</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77</p>
+<h3 id="二、单表查询"><a href="#二、单表查询" class="headerlink" title="#二、单表查询"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%BA%8C%E3%80%81%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2">#</a>二、单表查询</h3><h4 id="1、基本查询-后缀都是统一为from-表名"><a href="#1、基本查询-后缀都是统一为from-表名" class="headerlink" title="#1、基本查询(后缀都是统一为from 表名)"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1%E3%80%81%E5%9F%BA%E6%9C%AC%E6%9F%A5%E8%AF%A2-%E5%90%8E%E7%BC%80%E9%83%BD%E6%98%AF%E7%BB%9F%E4%B8%80%E4%B8%BAfrom-%E8%A1%A8%E5%90%8D">#</a>1、基本查询(后缀都是统一为from 表名)</h4><p>（1）查询所有列:<code>select * from 表名;</code>其中＊表示查询所有列，而不是所有行的意思。</p>
+<p>（2）查询指定列:<code>select 列1，列2，列n from 表名；</code></p>
+<p>（3）完全重复的记录只显示一次:在查询的列之前添加distinct</p>
+<p>（4）列运算</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.数量类型的列可以做加、减、乘、除:`SELECT sal*5 from 表名；`说明:1.遇到null加任何值都等于null的情况，需要用到ifnull()函数。2.将字符串做加减乘除运算，会把字符串当作0。</span><br><span class="line"></span><br><span class="line">b.字符串累类型可以做连续运算(需要用到concat()函数):`select concat(列名1，列名2) from 表名;`其中列名的类型要为字符串。</span><br><span class="line"></span><br><span class="line">c. 给列名起别名:`select 列名1 (as) 别名1,列名2 (as) 别名2 from 表名；`</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5</p>
+<p>（5）条件控制</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.条件查询。在后面添加<span class="keyword">where</span>指定条件:`<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> 列名＝指定值;`</span><br><span class="line">b.模糊查询：当你想查询所有姓张的记录。用到关键字<span class="keyword">like</span>。</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> 列名 <span class="keyword">like</span> ‘张_’;</span><br><span class="line">(_代表匹配任意一个字符，％代表匹配<span class="number">0</span>～n个任意字符)。</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5</p>
+<h4 id="2、排序-所谓升序和降序都是从上往下排列"><a href="#2、排序-所谓升序和降序都是从上往下排列" class="headerlink" title="#2、排序(所谓升序和降序都是从上往下排列)"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2%E3%80%81%E6%8E%92%E5%BA%8F-%E6%89%80%E8%B0%93%E5%8D%87%E5%BA%8F%E5%92%8C%E9%99%8D%E5%BA%8F%E9%83%BD%E6%98%AF%E4%BB%8E%E4%B8%8A%E5%BE%80%E4%B8%8B%E6%8E%92%E5%88%97">#</a>2、排序(所谓升序和降序都是从上往下排列)</h4><ul>
+<li>1.升序:<code>select * form 表名 order by 列名 (ASC );</code> ()里面的内容为缺省值；</li>
+<li>2.降序:<code>select * from 表名 order by 列名 DESC;</code></li>
+<li>3.使用多列作为排序条件： 当第一列排序条件相同时，根据第二列排序条件排序(当第二列依旧相同时可视情况根据第三例条件排序)。eg:<code>select * from 表名 order by 列名1 ASC, 列名2 DESC;</code>意思是当列名1的值相同时按照列名2的值降序排。</li>
+</ul>
+<h4 id="3、聚合函数"><a href="#3、聚合函数" class="headerlink" title="#3、聚合函数"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_3%E3%80%81%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0">#</a>3、聚合函数</h4><ul>
+<li>1.count:<code>select count(列名) from 表名；</code>，记录行数。</li>
+<li>2.max:<code>select max(列名) from 表名；</code>，列中最大值。</li>
+<li>3.min:<code>select min(列名) from 表名；</code>，列中最小值。</li>
+<li>4.sum:<code>select sum(列名) from 表名；</code>，求列的总值，null 和字符串默认为0。</li>
+<li>5.avg:<code>select avg(列名) from 表名;</code>，一列的平均值。</li>
+</ul>
+<h4 id="4、分组查询"><a href="#4、分组查询" class="headerlink" title="#4、分组查询"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_4%E3%80%81%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2">#</a>4、分组查询</h4><p>分组查询的信息都是组的信息，不能查到个人的信息，其中查询组的信息是通过聚合函数得到的。</p>
+<p>语法：<code>select 分组列名，聚合函数1,聚合函数2 from 表名 group by 该分组列名；</code>其中分组列名需要的条件是该列名中有重复的信息。</p>
+<p>查询的结果只能为：作为分组条件的列和聚合函数；查出的信息都是组的信息。</p>
+<p>分组查询前，还可以通过关键字where先把满足条件的人分出来，再分组。语法为:<code>select 分组列，聚合函数 from 表名 where 条件 group by 分组列；</code></p>
+<p>分组查询后，也可以通过关键字having把组信息中满足条件的组再细分出来。语法为：<code>select 分组列，聚合函数 from 表名 where 条件 group by 分组列 having 聚合函数或列名(条件)；</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select gander,avg(age) avg_age,sum(age) sum_age from student GROUP BY gander HAVING  gander = &#x27;男&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<h4 id="5、LIMIT子句-mysql中独有的语法"><a href="#5、LIMIT子句-mysql中独有的语法" class="headerlink" title="#5、LIMIT子句(mysql中独有的语法)"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_5%E3%80%81limit%E5%AD%90%E5%8F%A5-mysql%E4%B8%AD%E7%8B%AC%E6%9C%89%E7%9A%84%E8%AF%AD%E6%B3%95">#</a>5、LIMIT子句(mysql中独有的语法)</h4><p>LIMIT用来限定查询结果的起始行，以及总行数。</p>
+<p>例如：<code>select * from 表名 limit 4，3；</code>表示起始行为第5行，一共查询3行记录。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--如果一个参数 说明从开始查找三条记录</span><br><span class="line">SELECT id,name,age,gander FROM student limit 3</span><br><span class="line">--如果两个参数 说明从第三行起（不算），向后查三条记录</span><br><span class="line">SELECT id,name,age,gander FROM student limit 3,3</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4</p>
+<p>union</p>
+<p>union all</p>
+<h3 id="三、多表查询"><a href="#三、多表查询" class="headerlink" title="#三、多表查询"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%B8%89%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2">#</a>三、多表查询</h3><p>笛卡尔积：简单来说就是两个集合相乘的结果，集合A和集合B中<strong>任意</strong>两个元素结合在一起。</p>
+<h4 id="1、内连接"><a href="#1、内连接" class="headerlink" title="#1、内连接"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1%E3%80%81%E5%86%85%E8%BF%9E%E6%8E%A5">#</a>1、内连接</h4><p><strong>内连接</strong></p>
+<p>内连接查询操作只列出与连接条件匹配的数据行，使用<strong>INNER JOIN</strong>或者直接使用<strong>JOIN</strong> 进行连接。</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164208184.813bac1a.png" alt="image-20220304164208184"></p>
+<p>内连接可以没有连接条件，没有条件之后的查询结果，会保留所有结果（<strong>笛卡尔集</strong>），与后面分享的交叉连接差不多。</p>
+<p>在连接条件中使用<strong>等于号（&#x3D;）</strong>运算符比较被连接列的列值，其查询结果中列出被连接表中的所有列，<strong>包括其中的重复列</strong>。</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164218487.e9940edb.png" alt="image-20220304164218487"></p>
+<p>查询结果，注意列数是 4 列，两张表的字段直接拼接在一起，重复的字段在后面添加数字序列以做区分</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164156642.793427de.png" alt="image-20220304164156642"></p>
+<p>通俗讲就是根据条件，找到表 A 和 表 B 的数据的交集</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164144080.8c54682a.png" alt="image-20220304164144080"></p>
+<p>例子：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">普通的多表查，课内连接接通相同</span><br><span class="line">SELECT * from teacher t , course c where t.id = c.t_id   </span><br><span class="line">（这样会先生成笛卡尔积，效率可能略低）</span><br><span class="line"></span><br><span class="line">SELECT * from teacher t JOIN course c on t.id = c.t_id </span><br><span class="line">SELECT * from teacher t inner JOIN course c on t.id = c.t_id </span><br><span class="line"></span><br><span class="line">结果：只有满足条件的会显示，5号老师没课程，5号课程没老师都不会显示</span><br><span class="line">1	王宝强	1	数学	1</span><br><span class="line">2	贾宝玉	2	语文	2</span><br><span class="line">3	温迪	3	c++	3</span><br><span class="line">4	路人甲	4	java	4</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</p>
+<h4 id="2、外连接（常用）"><a href="#2、外连接（常用）" class="headerlink" title="#2、外连接（常用）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2%E3%80%81%E5%A4%96%E8%BF%9E%E6%8E%A5-%E5%B8%B8%E7%94%A8">#</a>2、外连接（常用）</h4><p>外连接<strong>不只</strong>列出与连接条件相匹配的行，而且还加上左表(左外连接时)或右表(右外连接时)或两个表(全外连接时)中所有符合搜索条件的数据行。</p>
+<h5 id="（1）左连接（左外连接）"><a href="#（1）左连接（左外连接）" class="headerlink" title="#（1）左连接（左外连接）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1-%E5%B7%A6%E8%BF%9E%E6%8E%A5-%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5">#</a>（1）左连接（左外连接）</h5><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164135657.0ffe9b3e.png" alt="image-20220304164135657"></p>
+<p>查询结果如下</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164125011.a35755f1.png" alt="image-20220304164125011"></p>
+<p>根据条件，用右表（B）匹配左表（A），能匹配，正确保留，<strong>不能匹配其他表的字段都置空 Null</strong>。</p>
+<p>也就是，根据条件找到表 A 和 表 B 的数据的交集，再加上左表的数据集， Venn 图表示就是</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164107587.d90aa4e8.png" alt="image-20220304164107587"></p>
+<p>红色部分代表查询结果</p>
+<p>例子：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from teacher t LEFT JOIN course c on t.id = c.t_id </span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">结果：只有满足条件的会显示，5号老师没课程，依然显示，5号课程没老师都不会显示，</span><br><span class="line">左边表的所有数据都显示</span><br><span class="line"></span><br><span class="line">1	王宝强	1	数学	1</span><br><span class="line">2	贾宝玉	2	语文	2</span><br><span class="line">3	温迪	3	c++	3</span><br><span class="line">4	路人甲	4	java	4</span><br><span class="line">5	路人乙			</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</p>
+<h5 id="（2）右连接（右外连接）"><a href="#（2）右连接（右外连接）" class="headerlink" title="#（2）右连接（右外连接）"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2-%E5%8F%B3%E8%BF%9E%E6%8E%A5-%E5%8F%B3%E5%A4%96%E8%BF%9E%E6%8E%A5">#</a><strong>（2）右连接（右外连接）</strong></h5><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164054187.44f11c2b.png" alt="image-20220304164054187"></p>
+<p>根据条件，用左表（A）匹配右表（B），能匹配，正确保留，<strong>不能匹配其他表的字段都置空 Null</strong>。</p>
+<p>也就是，根据条件找到表 A 和 表 B 的数据的交集，再加上右表的数据集， Venn 图表示就是</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164032544.1e880a64.png" alt="image-20220304164032544"></p>
+<p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> teacher t <span class="keyword">right</span> <span class="keyword">JOIN</span> course c <span class="keyword">on</span> t.id <span class="operator">=</span> c.t_id</span><br><span class="line"></span><br><span class="line">结果：只有满足条件的会显示，<span class="number">5</span>号老师没课程不显示，<span class="number">5</span>号课程没老师都，依然显示，</span><br><span class="line">右边表的所有数据都显示</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>	王宝强	<span class="number">1</span>	数学	<span class="number">1</span></span><br><span class="line"><span class="number">2</span>	贾宝玉	<span class="number">2</span>	语文	<span class="number">2</span></span><br><span class="line"><span class="number">3</span>	温迪	<span class="number">3</span>	c<span class="operator">+</span><span class="operator">+</span>	<span class="number">3</span></span><br><span class="line"><span class="number">4</span>	路人甲	<span class="number">4</span>	java	<span class="number">4</span></span><br><span class="line">		  <span class="number">5</span>	   php	</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</p>
+<h4 id="3、全连接，mysql不支持，oracle支持"><a href="#3、全连接，mysql不支持，oracle支持" class="headerlink" title="#3、全连接，mysql不支持，oracle支持"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_3%E3%80%81%E5%85%A8%E8%BF%9E%E6%8E%A5-mysql%E4%B8%8D%E6%94%AF%E6%8C%81-oracle%E6%94%AF%E6%8C%81">#</a>3、全连接，mysql不支持，oracle支持</h4><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304164019731.4619d5da.png" alt="image-20220304164019731"></p>
+<p>目前我的 MySQL 不支持此种方式，可以用其他方式替代解决，在此不展开。</p>
+<p>理论上是根据条件找到表 A 和 表 B 的数据的交集，再加上左右表的数据集</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20220304163958779.8cfebe91.png" alt="image-20220304163958779"></p>
+<h3 id="四、子查询"><a href="#四、子查询" class="headerlink" title="#四、子查询"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%9B%9B%E3%80%81%E5%AD%90%E6%9F%A5%E8%AF%A2">#</a>四、子查询</h3><h4 id="1、where-型子查询"><a href="#1、where-型子查询" class="headerlink" title="#1、where 型子查询"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1%E3%80%81where-%E5%9E%8B%E5%AD%90%E6%9F%A5%E8%AF%A2">#</a>1、where 型子查询</h4><p>将查询结果当条件</p>
+<p>例子：查询有<strong>一门学科分数大于八十分</strong>的<strong>学生信息</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from student where id in</span><br><span class="line">(select DISTINCT s_id from scores where score &gt; 90);</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2</p>
+<p>where 型子查询，如果是 where 列 &#x3D;（内层 sql） 则内层 sql 返回的必须是单行单列，单个值。</p>
+<p>where 型子查询，如果是 where 列 in（内层 sql） 则内层 sql 返回的必须是单列，可以多行。</p>
+<h4 id="2、from-型子查询"><a href="#2、from-型子查询" class="headerlink" title="#2、from 型子查询"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2%E3%80%81from-%E5%9E%8B%E5%AD%90%E6%9F%A5%E8%AF%A2">#</a>2、from 型子查询</h4><p>在学习 from 子查询之前，需要理解一个概念：<strong>查询结果集在结构上可以当成表看</strong>，那就可以当成临时表对他进行再次查询：</p>
+<p>取排名<strong>数学成绩</strong>前五名的学生，正序排列。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span>  (<span class="keyword">SELECT</span> s.id,s.name,e.score,c.`name` cname <span class="keyword">from</span> student s <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scores e</span><br><span class="line"><span class="keyword">on</span> s.id <span class="operator">=</span> e.s_id <span class="keyword">left</span> <span class="keyword">JOIN</span> course c <span class="keyword">on</span> e.c_id <span class="operator">=</span> c.id</span><br><span class="line"><span class="keyword">where</span> c.`name` <span class="operator">=</span> <span class="string">&#x27;数学&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> e.score <span class="keyword">desc</span> limit <span class="number">5</span> ) t <span class="keyword">ORDER</span> <span class="keyword">BY</span> t.score</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3</p>
+<h3 id="五、练习题"><a href="#五、练习题" class="headerlink" title="#五、练习题"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%BA%94%E3%80%81%E7%BB%83%E4%B9%A0%E9%A2%98">#</a>五、练习题</h3><p>1、查询‘01’号学生的姓名和各科成绩。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">s.`name` &quot;学生名字&quot;,</span><br><span class="line">e.name &quot;课程名称&quot;,</span><br><span class="line">c.score &quot;成绩&quot;</span><br><span class="line"><span class="keyword">from</span> student s </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scores c </span><br><span class="line"><span class="keyword">on</span> s.id <span class="operator">=</span> c.s_id</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> course e</span><br><span class="line"><span class="keyword">on</span> e.id <span class="operator">=</span> c.c_id</span><br><span class="line"><span class="keyword">where</span> s.id <span class="operator">=</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</p>
+<p>2、查询各个学科的平均成绩，最高成绩。</p>
+<p>3、查询每个同学的最高成绩及科目名称。</p>
+<p>4、查询所有姓张的同学的各科成绩。</p>
+<p>5、查询每个课程最高分的同学信息。</p>
+<p>6、查询名字中含有“张”和‘李’字的学生信息和各科成绩</p>
+<p>7、查询平均成绩及格的同学的信息。</p>
+<p>8、将学生按照总分数进行排名。</p>
+<p>9、查询数学成绩的最高分、最低分、平均分。</p>
+<p>10、将各科目按照平均分排序。</p>
+<p>11、查询老师的信息和他所带科目的平均分。</p>
+<p>12、查询被“张楠”和‘‘老孙’叫的课程的最高分和平均分。</p>
+<p>13、查询查询每个同学的最好成绩的科目名称。</p>
+<p>14、查询所有学生的课程及分数。</p>
+<p>15、查询课程编号为01且课程成绩在80分以上的学生的学号和姓名。**</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s.id,s.name <span class="keyword">from</span> student s <span class="keyword">where</span></span><br><span class="line">s.id <span class="keyword">in</span> (</span><br><span class="line">	<span class="keyword">select</span> c.s_id <span class="keyword">from</span>  scores c</span><br><span class="line">	<span class="keyword">where</span> c.c_id <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">and</span> c.score <span class="operator">&gt;</span> <span class="number">40</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5</p>
+<p>16、查询平均成绩大于等于85的所有学生的学号、姓名和平均成绩。</p>
+<p>17、查询有不及格课程的同学信息。</p>
+<p>18、求每门课程的学生人数。</p>
+<p>19、查询每门课程的平均成绩，结果按平均成绩降序排列，平均成绩相同时，按课程编号升序排列</p>
+<p>20、查询平均成绩大于等于60分的同学的学生编号和学生姓名和平均成绩。</p>
+<p>21、查询有一门课程成绩在90分以上的学生信息；</p>
+<p>22、查询出只有三门课程的全部学生的学号和姓名</p>
+<p>23、查询有不及格课程的课程信息</p>
+<p>24、检索至少选修四门课程的学生学号</p>
+<p>25、查询没有学全所有课程的同学的信息</p>
+<p>26、查询学全所有课程的同学的信息。</p>
+<p>27、 查询各学生都选了多少门课</p>
+<p>28、查询课程名称为”java”，且分数低于60的学生姓名和分数。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> s.`name`,m.score  <span class="keyword">from</span> student s <span class="keyword">left</span> <span class="keyword">join</span></span><br><span class="line">(<span class="keyword">select</span> c.s_id,c.score </span><br><span class="line"><span class="keyword">from</span>  scores c <span class="keyword">left</span> <span class="keyword">JOIN</span> course t</span><br><span class="line"><span class="keyword">on</span> c.c_id <span class="operator">=</span> t.id </span><br><span class="line"><span class="keyword">where</span> t.name <span class="operator">=</span> <span class="string">&#x27;java&#x27;</span> <span class="keyword">and</span> c.score <span class="operator">&lt;</span> <span class="number">60</span>) m</span><br><span class="line"><span class="keyword">on</span> m.s_id <span class="operator">=</span> s.id </span><br><span class="line"><span class="keyword">where</span> m.s_id <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7</p>
+<p>29、查询学过”张楠”老师授课的同学的信息 。</p>
+<p>30、查询没学过”张楠”老师授课的同学的信息</p>
+<h2 id="第4章-MySQL常用函数介绍"><a href="#第4章-MySQL常用函数介绍" class="headerlink" title="第4章 MySQL常用函数介绍"></a>第4章 MySQL常用函数介绍</h2><p>MySQL数据库中提供了很丰富的函数，比如我们常用的聚合函数，日期及字符串处理函数等。SELECT语句及其条件表达式都可以使用这些函数，函数可以帮助用户更加方便的处理表中的数据，使MySQL数据库的功能更加强大。本篇文章主要为大家介绍几类常用函数的用法。</p>
+<h3 id="一、聚合函数"><a href="#一、聚合函数" class="headerlink" title="#一、聚合函数"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%B8%80%E3%80%81%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0">#</a>一、聚合函数</h3><p>聚合函数是平时比较常用的一类函数，这里列举如下：</p>
+<ul>
+<li>COUNT(col) 统计查询结果的行数</li>
+<li>MIN(col) 查询指定列的最小值</li>
+<li>MAX(col) 查询指定列的最大值</li>
+<li>SUM(col) 求和，返回指定列的总和</li>
+<li>AVG(col) 求平均值，返回指定列数据的平均值</li>
+</ul>
+<h3 id="二、数值型函数"><a href="#二、数值型函数" class="headerlink" title="#二、数值型函数"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%BA%8C%E3%80%81%E6%95%B0%E5%80%BC%E5%9E%8B%E5%87%BD%E6%95%B0">#</a>二、数值型函数</h3><p>数值型函数主要是对数值型数据进行处理，得到我们想要的结果，常用的几个列举如下，具体使用方法大家可以试试看。</p>
+<ul>
+<li>CEILING(x) 返回大于x的最小整数值，向上取整</li>
+<li>FLOOR(x) 返回小于x的最大整数值，向下取整</li>
+<li>ROUND(x,y) 返回参数x的四舍五入的有y位小数的值 四舍五入</li>
+<li>TRUNCATE(x,y) 返回数字x截短为y位小数的结果</li>
+<li>PI() 返回pi的值（圆周率）</li>
+<li>RAND() 返回０到１内的随机值,可以通过提供一个参数(种子)使RAND()随机数生成器生成一个指定的值</li>
+</ul>
+<p>一些示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># <span class="built_in">ABS</span>()函数求绝对值</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="built_in">ABS</span>(<span class="number">5</span>),<span class="built_in">ABS</span>(<span class="number">-2.4</span>),<span class="built_in">ABS</span>(<span class="number">-24</span>),<span class="built_in">ABS</span>(<span class="number">0</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+-----------+----------+--------+</span></span><br><span class="line"><span class="operator">|</span> <span class="built_in">ABS</span>(<span class="number">5</span>) <span class="operator">|</span> <span class="built_in">ABS</span>(<span class="number">-2.4</span>) <span class="operator">|</span> <span class="built_in">ABS</span>(<span class="number">-24</span>) <span class="operator">|</span> <span class="built_in">ABS</span>(<span class="number">0</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+-----------+----------+--------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">5</span> <span class="operator">|</span>       <span class="number">2.4</span> <span class="operator">|</span>       <span class="number">24</span> <span class="operator">|</span>      <span class="number">0</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+-----------+----------+--------+</span></span><br><span class="line"></span><br><span class="line"># 取整函数 <span class="built_in">CEIL</span>(x) 和 <span class="built_in">CEILING</span>(x) 的意义相同，返回不小于 x 的最小整数值</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="built_in">CEIL</span>(<span class="number">-2.5</span>),<span class="built_in">CEILING</span>(<span class="number">2.5</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="built_in">CEIL</span>(<span class="number">-2.5</span>) <span class="operator">|</span> <span class="built_in">CEILING</span>(<span class="number">2.5</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"><span class="operator">|</span>         <span class="number">-2</span> <span class="operator">|</span>            <span class="number">3</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+</span></span><br><span class="line"></span><br><span class="line"># 求余函数 <span class="built_in">MOD</span>(x,y) 返回 x 被 y 除后的余数</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="built_in">MOD</span>(<span class="number">63</span>,<span class="number">8</span>),<span class="built_in">MOD</span>(<span class="number">120</span>,<span class="number">10</span>),<span class="built_in">MOD</span>(<span class="number">15.5</span>,<span class="number">3</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+-------------+-------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="built_in">MOD</span>(<span class="number">63</span>,<span class="number">8</span>) <span class="operator">|</span> <span class="built_in">MOD</span>(<span class="number">120</span>,<span class="number">10</span>) <span class="operator">|</span> <span class="built_in">MOD</span>(<span class="number">15.5</span>,<span class="number">3</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+-------------+-------------+</span></span><br><span class="line"><span class="operator">|</span>         <span class="number">7</span> <span class="operator">|</span>           <span class="number">0</span> <span class="operator">|</span>         <span class="number">0.5</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+-------------+-------------+</span></span><br><span class="line"></span><br><span class="line"># RAND() 函数被调用时，可以产生一个在 <span class="number">0</span> 和 <span class="number">1</span> 之间的随机数</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> RAND(), RAND(), RAND();</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+--------------------+----------------------+</span></span><br><span class="line"><span class="operator">|</span> RAND()              <span class="operator">|</span> RAND()             <span class="operator">|</span> RAND()               <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+--------------------+----------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">0.24996517063115273</span> <span class="operator">|</span> <span class="number">0.9559759106077029</span> <span class="operator">|</span> <span class="number">0.029984071878701515</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+--------------------+----------------------+</span></span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31</p>
+<h3 id="三、字符串函数"><a href="#三、字符串函数" class="headerlink" title="#三、字符串函数"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%B8%89%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0">#</a>三、字符串函数</h3><p>字符串函数可以对字符串类型数据进行处理，在程序应用中用处还是比较大的，同样这里列举几个常用的如下：</p>
+<ul>
+<li>LENGTH(s) 计算字符串长度函数，返回字符串的字节长度</li>
+<li>CONCAT(s1,s2…,sn) 合并字符串函数，返回结果为连接参数产生的字符串，参数可以是一个或多个</li>
+<li>LOWER(str) 将字符串中的字母转换为小写</li>
+<li>UPPER(str) 将字符串中的字母转换为大写</li>
+<li>LEFT(str,x) 返回字符串str中最左边的x个字符</li>
+<li>RIGHT(str,x) 返回字符串str中最右边的x个字符</li>
+<li>TRIM(str) 删除字符串左右两侧的空格</li>
+<li>REPLACE 字符串替换函数，返回替换后的新字符串 REPLACE(name,’白’,’黑’)</li>
+<li>SUBSTRING 截取字符串，返回从指定位置开始的指定长度的字符换</li>
+<li>REVERSE(str) 返回颠倒字符串str的结果</li>
+</ul>
+<p>一些示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"># LENGTH(str) 函数的返回值为字符串的字节长度</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> LENGTH(<span class="string">&#x27;name&#x27;</span>),LENGTH(<span class="string">&#x27;数据库&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+---------------------+</span></span><br><span class="line"><span class="operator">|</span> LENGTH(<span class="string">&#x27;name&#x27;</span>) <span class="operator">|</span> LENGTH(<span class="string">&#x27;数据库&#x27;</span>)    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+---------------------+</span></span><br><span class="line"><span class="operator">|</span>              <span class="number">4</span> <span class="operator">|</span>                   <span class="number">9</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+---------------------+</span></span><br><span class="line"></span><br><span class="line"># CONCAT(sl，s2，...) 函数返回结果为连接参数产生的字符串 若有任何一个参数为 <span class="keyword">NULL</span>，则返回值为 <span class="keyword">NULL</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> CONCAT(<span class="string">&#x27;MySQL&#x27;</span>,<span class="string">&#x27;5.7&#x27;</span>),CONCAT(<span class="string">&#x27;MySQL&#x27;</span>,<span class="keyword">NULL</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------------+----------------------+</span></span><br><span class="line"><span class="operator">|</span> CONCAT(<span class="string">&#x27;MySQL&#x27;</span>,<span class="string">&#x27;5.7&#x27;</span>) <span class="operator">|</span> CONCAT(<span class="string">&#x27;MySQL&#x27;</span>,<span class="keyword">NULL</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------------+----------------------+</span></span><br><span class="line"><span class="operator">|</span> MySQL5<span class="number">.7</span>              <span class="operator">|</span> <span class="keyword">NULL</span>                 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------------+----------------------+</span></span><br><span class="line"></span><br><span class="line"># <span class="keyword">INSERT</span>(s1，x，len，s2) 返回字符串 s1，子字符串起始于 x 位置，并且用 len 个字符长的字符串代替 s2</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="keyword">INSERT</span>(<span class="string">&#x27;Football&#x27;</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="string">&#x27;Play&#x27;</span>) <span class="keyword">AS</span> col1,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">INSERT</span>(<span class="string">&#x27;Football&#x27;</span>,<span class="number">-1</span>,<span class="number">4</span>,<span class="string">&#x27;Play&#x27;</span>) <span class="keyword">AS</span> col2,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">INSERT</span>(<span class="string">&#x27;Football&#x27;</span>,<span class="number">3</span>,<span class="number">20</span>,<span class="string">&#x27;Play&#x27;</span>) <span class="keyword">AS</span> col3;</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+----------+--------+</span></span><br><span class="line"><span class="operator">|</span> col1     <span class="operator">|</span> col2     <span class="operator">|</span> col3   <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+----------+--------+</span></span><br><span class="line"><span class="operator">|</span> FPlayall <span class="operator">|</span> Football <span class="operator">|</span> FoPlay <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+----------+--------+</span></span><br><span class="line"></span><br><span class="line"># UPPER,LOWER是大小写转换函数</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="built_in">LOWER</span>(<span class="string">&#x27;BLUE&#x27;</span>),<span class="built_in">LOWER</span>(<span class="string">&#x27;Blue&#x27;</span>),<span class="built_in">UPPER</span>(<span class="string">&#x27;green&#x27;</span>),<span class="built_in">UPPER</span>(<span class="string">&#x27;Green&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------+---------------+----------------+----------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="built_in">LOWER</span>(<span class="string">&#x27;BLUE&#x27;</span>) <span class="operator">|</span> <span class="built_in">LOWER</span>(<span class="string">&#x27;Blue&#x27;</span>) <span class="operator">|</span> <span class="built_in">UPPER</span>(<span class="string">&#x27;green&#x27;</span>) <span class="operator">|</span> <span class="built_in">UPPER</span>(<span class="string">&#x27;Green&#x27;</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------+---------------+----------------+----------------+</span></span><br><span class="line"><span class="operator">|</span> blue          <span class="operator">|</span> blue          <span class="operator">|</span> GREEN          <span class="operator">|</span> GREEN          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------+---------------+----------------+----------------+</span></span><br><span class="line"></span><br><span class="line"># <span class="keyword">LEFT</span>,<span class="keyword">RIGHT</span>是截取左边或右边字符串函数</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="keyword">LEFT</span>(<span class="string">&#x27;MySQL&#x27;</span>,<span class="number">2</span>),<span class="keyword">RIGHT</span>(<span class="string">&#x27;MySQL&#x27;</span>,<span class="number">3</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">LEFT</span>(<span class="string">&#x27;MySQL&#x27;</span>,<span class="number">2</span>) <span class="operator">|</span> <span class="keyword">RIGHT</span>(<span class="string">&#x27;MySQL&#x27;</span>,<span class="number">3</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> My              <span class="operator">|</span> <span class="keyword">SQL</span>              <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+------------------+</span></span><br><span class="line"></span><br><span class="line"># REPLACE(s，s1，s2) 使用字符串 s2 替换字符串 s 中所有的字符串 s1</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> REPLACE(<span class="string">&#x27;aaa.mysql.com&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;w&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">----------------------------------+</span></span><br><span class="line"><span class="operator">|</span> REPLACE(<span class="string">&#x27;aaa.mysql.com&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;w&#x27;</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------------------------+</span></span><br><span class="line"><span class="operator">|</span> www.mysql.com                    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------------------------+</span></span><br><span class="line"></span><br><span class="line"># 函数 <span class="built_in">SUBSTRING</span>(s，n，len) 带有 len 参数的格式，从字符串 s 返回一个长度同 len 字符相同的子字符串，起始于位置 n</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="built_in">SUBSTRING</span>(<span class="string">&#x27;computer&#x27;</span>,<span class="number">3</span>) <span class="keyword">AS</span> col1,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="built_in">SUBSTRING</span>(<span class="string">&#x27;computer&#x27;</span>,<span class="number">3</span>,<span class="number">4</span>) <span class="keyword">AS</span> col2,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="built_in">SUBSTRING</span>(<span class="string">&#x27;computer&#x27;</span>,<span class="number">-3</span>) <span class="keyword">AS</span> col3,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="built_in">SUBSTRING</span>(<span class="string">&#x27;computer&#x27;</span>,<span class="number">-5</span>,<span class="number">3</span>) <span class="keyword">AS</span> col4;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+------+------+</span></span><br><span class="line"><span class="operator">|</span> col1   <span class="operator">|</span> col2 <span class="operator">|</span> col3 <span class="operator">|</span> col4 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+------+------+</span></span><br><span class="line"><span class="operator">|</span> mputer <span class="operator">|</span> mput <span class="operator">|</span> ter  <span class="operator">|</span> put  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+------+------+</span></span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60</p>
+<h3 id="四、日期和时间函数"><a href="#四、日期和时间函数" class="headerlink" title="#四、日期和时间函数"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%9B%9B%E3%80%81%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0">#</a>四、日期和时间函数</h3><ul>
+<li>CURDATE 和 CURRENT_DATE 两个函数作用相同，返回当前系统的日期值</li>
+<li>CURTIME 和 CURRENT_TIME 两个函数作用相同，返回当前系统的时间值</li>
+<li><strong>NOW</strong> 和 SYSDATE 两个函数作用相同，返回当前系统的日期和时间值</li>
+<li>UNIX_TIMESTAMP 获取UNIX时间戳函数，返回一个以 UNIX 时间戳为基础的无符号整数</li>
+<li><strong>FROM_UNIXTIME 将 UNIX 时间戳转换为时间格式，与UNIX_TIMESTAMP互为反函数</strong></li>
+<li>MONTH 获取指定日期中的月份</li>
+<li>MONTHNAME 获取指定日期中的月份英文名称</li>
+<li>DAYNAME 获取指定曰期对应的星期几的英文名称</li>
+<li>DAYOFWEEK 获取指定日期对应的一周的索引位置值</li>
+<li>WEEK 获取指定日期是一年中的第几周，返回值的范围是否为 0〜52 或 1〜53</li>
+<li>DAYOFYEAR 获取指定曰期是一年中的第几天，返回值范围是1~366</li>
+<li>DAYOFMONTH 获取指定日期是一个月中是第几天，返回值范围是1~31</li>
+<li>YEAR 获取年份，返回值范围是 1970〜2069</li>
+<li>DATE_ADD 和 ADDDATE 两个函数功能相同，都是向日期添加指定的时间间隔</li>
+<li>DATE_SUB 和 SUBDATE 两个函数功能相同，都是向日期减去指定的时间间隔</li>
+<li>ADDTIME 时间加法运算，在原始时间上添加指定的时间</li>
+<li>SUBTIME 时间减法运算，在原始时间上减去指定的时间</li>
+<li>DATEDIFF 获取两个日期之间间隔，返回参数 1 减去参数 2 的值</li>
+<li><strong>DATE_FORMAT 格式化指定的日期，根据参数返回指定格式的值</strong></li>
+</ul>
+<p>当使用了表达式计算后，不能直接使用别名进行判断了。</p>
+<p>一些示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># CURDATE() 和 <span class="built_in">CURRENT_DATE</span>() 函数的作用相同，将当前日期按照“YYYY<span class="operator">-</span>MM<span class="operator">-</span>DD”或“YYYYMMDD”格式的值返回</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> CURDATE(),<span class="built_in">CURRENT_DATE</span>(),<span class="built_in">CURRENT_DATE</span>()<span class="operator">+</span><span class="number">0</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------+----------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> CURDATE()  <span class="operator">|</span> <span class="built_in">CURRENT_DATE</span>() <span class="operator">|</span> <span class="built_in">CURRENT_DATE</span>()<span class="operator">+</span><span class="number">0</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+----------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2019</span><span class="number">-10</span><span class="number">-22</span> <span class="operator">|</span> <span class="number">2019</span><span class="number">-10</span><span class="number">-22</span>     <span class="operator">|</span>         <span class="number">20191022</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+----------------+------------------+</span></span><br><span class="line"></span><br><span class="line"># <span class="keyword">MONTH</span>(<span class="type">date</span>) 函数返回指定 <span class="type">date</span> 对应的月份</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="keyword">MONTH</span>(<span class="string">&#x27;2017-12-15&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">MONTH</span>(<span class="string">&#x27;2017-12-15&#x27;</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="operator">|</span>                  <span class="number">12</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"></span><br><span class="line"># DATE_ADD(<span class="type">date</span>,<span class="type">INTERVAL</span> expr type) 和 ADDDATE(<span class="type">date</span>,<span class="type">INTERVAL</span> expr type) 两个函数的作用相同，都是用于执行日期的加运算。</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> DATE_ADD(<span class="string">&#x27;2018-10-31 23:59:59&#x27;</span>,<span class="type">INTERVAL</span> <span class="number">1</span> <span class="keyword">SECOND</span>) <span class="keyword">AS</span> C1,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> DATE_ADD(<span class="string">&#x27;2018-10-31 23:59:59&#x27;</span>,<span class="type">INTERVAL</span> <span class="string">&#x27;1:1&#x27;</span> MINUTE_SECOND) <span class="keyword">AS</span> C2,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ADDDATE(<span class="string">&#x27;2018-10-31 23:59:59&#x27;</span>,<span class="type">INTERVAL</span> <span class="number">1</span> <span class="keyword">SECOND</span>) <span class="keyword">AS</span> C3;</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+---------------------+---------------------+</span></span><br><span class="line"><span class="operator">|</span> C1                  <span class="operator">|</span> C2                  <span class="operator">|</span> C3                  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+---------------------+---------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2018</span><span class="number">-11</span><span class="number">-01</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> <span class="operator">|</span> <span class="number">2018</span><span class="number">-11</span><span class="number">-01</span> <span class="number">00</span>:<span class="number">01</span>:<span class="number">00</span> <span class="operator">|</span> <span class="number">2018</span><span class="number">-11</span><span class="number">-01</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+---------------------+---------------------+</span></span><br><span class="line"></span><br><span class="line"># DATEDIFF(date1，date2) 返回起始时间 date1 和结束时间 date2 之间的天数</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> DATEDIFF(<span class="string">&#x27;2017-11-30&#x27;</span>,<span class="string">&#x27;2017-11-29&#x27;</span>) <span class="keyword">AS</span> COL1,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> DATEDIFF(<span class="string">&#x27;2017-11-30&#x27;</span>,<span class="string">&#x27;2017-12-15&#x27;</span>) <span class="keyword">AS</span> col2;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+------+</span></span><br><span class="line"><span class="operator">|</span> COL1 <span class="operator">|</span> col2 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span>  <span class="number">-15</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+------+</span></span><br><span class="line"></span><br><span class="line"># DATE_FORMAT(<span class="type">date</span>，format) 函数是根据 format 指定的格式显示 <span class="type">date</span> 值</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> DATE_FORMAT(<span class="string">&#x27;2017-11-15 21:45:00&#x27;</span>,<span class="string">&#x27;%W %M %D %Y&#x27;</span>) <span class="keyword">AS</span> col1,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> DATE_FORMAT(<span class="string">&#x27;2017-11-15 21:45:00&#x27;</span>,<span class="string">&#x27;%h:i% %p %M %D %Y&#x27;</span>) <span class="keyword">AS</span> col2;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------------------------+----------------------------+</span></span><br><span class="line"><span class="operator">|</span> col1                         <span class="operator">|</span> col2                       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------------------+----------------------------+</span></span><br><span class="line"><span class="operator">|</span> Wednesday November <span class="number">15</span>th <span class="number">2017</span> <span class="operator">|</span> <span class="number">09</span>:i PM November <span class="number">15</span>th <span class="number">2017</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------------------+----------------------------+</span></span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43</p>
+<h3 id="五、流程控制函数"><a href="#五、流程控制函数" class="headerlink" title="#五、流程控制函数"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%BA%94%E3%80%81%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%87%BD%E6%95%B0">#</a>五、流程控制函数</h3><p>流程控制类函数可以进行条件操作，用来实现SQL的条件逻辑，允许开发者将一些应用程序业务逻辑转换到数据库后台，列举如下：</p>
+<ul>
+<li><p>IF(test,t,f) 如果test是真，返回t；否则返回f</p>
+</li>
+<li><p>IFNULL(arg1,arg2) 如果arg1不是空，返回arg1，否则返回arg2</p>
+</li>
+<li><p>NULLIF(arg1,arg2) 如果arg1&#x3D;arg2返回NULL；否则返回arg1</p>
+</li>
+<li><p>CASE WHEN[test1] THEN [result1]…ELSE [default] END 如果testN是真，则返回resultN，否则返回default</p>
+</li>
+<li><p>CASE [test] WHEN[val1] THEN [result]…ELSE [default]END 如果test和valN相等，则返回resultN，否则返回default</p>
+</li>
+<li><p>CASE 列名</p>
+</li>
+<li><p>WHEN condition THEN result</p>
+<p>WHEN condition THEN result</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   　　　.............</span><br><span class="line">   　　　[WHEN ...] </span><br><span class="line">   　　　[ELSE result] </span><br></pre></td></tr></table></figure>
+
+<p>END</p>
+</li>
+</ul>
+<p> 语文 数学 英语</p>
+<p>张三</p>
+<p>列转行案例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `mystudent` (</span><br><span class="line">  `ID` <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `USER_NAME` <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `COURSE` <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `SCORE` <span class="type">float</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`ID`)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> mystudent(USER_NAME, COURSE, SCORE)  <span class="keyword">values</span></span><br><span class="line">(&quot;张三&quot;, &quot;数学&quot;, <span class="number">34</span>),</span><br><span class="line">(&quot;张三&quot;, &quot;语文&quot;, <span class="number">58</span>),</span><br><span class="line">(&quot;张三&quot;, &quot;英语&quot;, <span class="number">58</span>),</span><br><span class="line">(&quot;李四&quot;, &quot;数学&quot;, <span class="number">45</span>),</span><br><span class="line">(&quot;李四&quot;, &quot;语文&quot;, <span class="number">87</span>),</span><br><span class="line">(&quot;李四&quot;, &quot;英语&quot;, <span class="number">45</span>),</span><br><span class="line">(&quot;王五&quot;, &quot;数学&quot;, <span class="number">76</span>),</span><br><span class="line">(&quot;王五&quot;, &quot;语文&quot;, <span class="number">34</span>),</span><br><span class="line">(&quot;王五&quot;, &quot;英语&quot;, <span class="number">89</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> user_name ,</span><br><span class="line">    <span class="built_in">MAX</span>(<span class="keyword">CASE</span> course <span class="keyword">WHEN</span> <span class="string">&#x27;数学&#x27;</span> <span class="keyword">THEN</span> score <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) 数学,</span><br><span class="line">    <span class="built_in">MAX</span>(<span class="keyword">CASE</span> course <span class="keyword">WHEN</span> <span class="string">&#x27;语文&#x27;</span> <span class="keyword">THEN</span> score <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) 语文,</span><br><span class="line">    <span class="built_in">MAX</span>(<span class="keyword">CASE</span> course <span class="keyword">WHEN</span> <span class="string">&#x27;英语&#x27;</span> <span class="keyword">THEN</span> score <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) 英语</span><br><span class="line"><span class="keyword">FROM</span> mystudent</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> USER_NAME;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> mystudent</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27</p>
+<h3 id="六、加密函数"><a href="#六、加密函数" class="headerlink" title="#六、加密函数"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E5%85%AD%E3%80%81%E5%8A%A0%E5%AF%86%E5%87%BD%E6%95%B0">#</a>六、加密函数</h3><ul>
+<li><strong>MD5()</strong> 计算字符串str的MD5校验和</li>
+</ul>
+<h2 id="第5章-数据库设计"><a href="#第5章-数据库设计" class="headerlink" title="第5章 数据库设计"></a>第5章 数据库设计</h2><h3 id="一、三范式"><a href="#一、三范式" class="headerlink" title="#一、三范式"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%B8%80%E3%80%81%E4%B8%89%E8%8C%83%E5%BC%8F">#</a>一、三范式</h3><p>注：设计只是一种思想一种理念，我们按照规范的设计方式设计数据库对我们来说有好处，但绝对不是说一定要严格遵守，<code>三范式能极大的**减少数据冗余</code>，但是相对编写sql而言是增加了难度的，所以所有好的设计都是要权衡利弊的，要对编码难度，存储大小，执行效率等多方面进行综合考量，但是在学习初期最好紧紧的遵循三范式，在后续的编码中体会和总结自己的经验。</p>
+<p>设计数据库表的时候所依据的规范，共三个规范：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一范式：要求有主键，并且要求每一个字段原子性不可再分</span><br><span class="line">第二范式：要求所有非主键字段完全依赖主键，不能产生部分依赖</span><br><span class="line">第三范式：所有非主键字段和主键字段之间不能产生传递依赖</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3</p>
+<h4 id="1、第一范式"><a href="#1、第一范式" class="headerlink" title="#1、第一范式"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1%E3%80%81%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F">#</a>1、第一范式</h4><p>数据库表中不能出现重复记录，每个字段是原子性的不能再分</p>
+<p>不符合第一范式的实例：</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>学生姓名</th>
+<th>联系方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>白杰</td>
+<td><a href="mailto:&#98;&#x6a;&#64;&#113;&#x71;&#x2e;&#99;&#111;&#109;">&#98;&#x6a;&#64;&#113;&#x71;&#x2e;&#99;&#111;&#109;</a>,18565987896</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>杨春旺</td>
+<td><a href="mailto:&#x79;&#99;&#x77;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x79;&#99;&#x77;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>,13659874598</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>张志伟</td>
+<td><a href="mailto:&#x7a;&#122;&#x77;&#x40;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#x7a;&#122;&#x77;&#x40;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>,12598745698</td>
+</tr>
+</tbody></table>
+<p>解决方案</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>学生姓名</th>
+<th>邮箱地址</th>
+<th>联系电话</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>白杰</td>
+<td><a href="mailto:&#98;&#x6a;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#109;">&#98;&#x6a;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#109;</a></td>
+<td>18565987896</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>杨春旺</td>
+<td><a href="mailto:&#121;&#x63;&#x77;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#121;&#x63;&#x77;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;</a></td>
+<td>13659874598</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>张志伟</td>
+<td><a href="mailto:&#x7a;&#x7a;&#119;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#109;">&#x7a;&#x7a;&#119;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#109;</a></td>
+<td>12598745698</td>
+</tr>
+</tbody></table>
+<p>不符合第一范式的实例，不是说他错哈：</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>学生姓名</th>
+<th>联系地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>白杰</td>
+<td>太原市尖草坪区恒山路108号</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>杨春旺</td>
+<td>太原市迎泽区迎泽大家100号</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>张志伟</td>
+<td>太原市杏花岭区北大街152号</td>
+</tr>
+</tbody></table>
+<p>解决方案：</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>学生姓名</th>
+<th>市</th>
+<th>区</th>
+<th>详细地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>白杰</td>
+<td>太原市</td>
+<td>尖草坪区</td>
+<td>恒山路108号</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>杨春旺</td>
+<td>太原市</td>
+<td>迎泽区</td>
+<td>迎泽大街100号</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>张志伟</td>
+<td>太原市</td>
+<td>杏花岭区</td>
+<td>北大街152号</td>
+</tr>
+</tbody></table>
+<p>必须有主键，这是数据库设计的最基本要求，主要采用数值型或定长字符串表示，<strong>关于列不可再分，应该根据具体的情况来决定</strong>。如联系方式，为了开发上的便利可能就采用一个字段。</p>
+<p>关于第一范式，每一行必须唯一，也就是每个表必须有主键，这是数据库设计的最基本要求，主要采用数值型或定长字符串表示，<strong>关于列不可再分，应该根据具体的情况来决定</strong>。如联系方式，为了开发上的便利可能就采用一个字段。</p>
+<h4 id="2、第二范式"><a href="#2、第二范式" class="headerlink" title="#2、第二范式"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2%E3%80%81%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F">#</a>2、第二范式</h4><p>第二范式是建立在第一范式基础上的，另外要求所有非主键字段完全依赖主键，不能产生<strong>部分依赖</strong></p>
+<p>不符合第二范式的案例：</p>
+<p>其中学生编号和课程编号为联合主键</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>性别</th>
+<th>学生姓名</th>
+<th>课程编号</th>
+<th>课程名称</th>
+<th>教室</th>
+<th>成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>男</td>
+<td>白杰</td>
+<td>2001</td>
+<td>java</td>
+<td>3004</td>
+<td>89</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>男</td>
+<td>杨春旺</td>
+<td>2002</td>
+<td>mysql</td>
+<td>3003</td>
+<td>88</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>女</td>
+<td>刘慧慧</td>
+<td>2003</td>
+<td>html</td>
+<td>3005</td>
+<td>90</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>男</td>
+<td>白杰</td>
+<td>2002</td>
+<td>mysql</td>
+<td>3003</td>
+<td>77</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>男</td>
+<td>白杰</td>
+<td>2003</td>
+<td>html</td>
+<td>3005</td>
+<td>89</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>女</td>
+<td>刘慧慧</td>
+<td>2001</td>
+<td>java</td>
+<td>3004</td>
+<td>90</td>
+</tr>
+</tbody></table>
+<p>以上虽然确定了主键，但此表会出现大量的数据冗余，出现冗余的原因在于，学生信息部分依赖了主键的一个字段学生编号，和课程id没有毛线关系。同时课程的信息只是依赖课程id，和学生id没有毛线关系。只有成绩一个字段完全依赖主键的两个部分，这就是第二范式<strong>部分依赖</strong>。</p>
+<p><strong>解决方案：</strong></p>
+<p>学生表：学生编号为主键</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>性别</th>
+<th>学生姓名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>男</td>
+<td>白杰</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>男</td>
+<td>杨春旺</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>女</td>
+<td>刘慧慧</td>
+</tr>
+</tbody></table>
+<p>课程表：课程编号为主键</p>
+<table>
+<thead>
+<tr>
+<th>课程编号</th>
+<th>课程名称</th>
+<th>教室</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2001</td>
+<td>java</td>
+<td>3003</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>mysql</td>
+<td>3003</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>html</td>
+<td>3005</td>
+</tr>
+</tbody></table>
+<p>成绩表：学生编号和课程编号为联合主键</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>课程编号</th>
+<th>成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>2001</td>
+<td>89</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>2002</td>
+<td>88</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>2003</td>
+<td>90</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>2002</td>
+<td>77</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>2003</td>
+<td>89</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>2001</td>
+<td>90</td>
+</tr>
+</tbody></table>
+<p>如果一个表是单一主键，那么它就是复合第二范式，部分依赖和主键有关系</p>
+<p>以上是典型的“多对多”设计</p>
+<h4 id="3、第三范式"><a href="#3、第三范式" class="headerlink" title="#3、第三范式"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_3%E3%80%81%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F">#</a>3、第三范式</h4><p>建立在第二范式基础上的，非主键字段不能传递依赖于主键字段（不要产生传递依赖）</p>
+<p>不满足第三范式的例子：</p>
+<p>其中学生编号是主键</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>学生姓名</th>
+<th>专业编号</th>
+<th>专业名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>白杰</td>
+<td>2001</td>
+<td>计算机</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>杨春旺</td>
+<td>2002</td>
+<td>自动化</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>张志伟</td>
+<td>2001</td>
+<td>计算机</td>
+</tr>
+</tbody></table>
+<p>何为传递依赖？</p>
+<p>专业编号依赖学生编号，因为该学生学的就是这个专业啊。但是专业名称和学生其实没多大关系，专业名称依赖于专业编号。这就叫传递依赖，就是某一个字段不直接依赖主键，而是依赖 依赖主键的另一个字段。</p>
+<p>解决方法：</p>
+<p>学生表，学生编号为主键：</p>
+<p>学生编号为主键：</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>学生姓名</th>
+<th>专业编号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>白杰</td>
+<td>2001</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>杨春旺</td>
+<td>2002</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>张志伟</td>
+<td>2001</td>
+</tr>
+</tbody></table>
+<p>专业表，专业编号为主键：</p>
+<table>
+<thead>
+<tr>
+<th>专业编号</th>
+<th>专业名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2001</td>
+<td>计算机</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>自动化</td>
+</tr>
+</tbody></table>
+<p>以上设计是典型的一对多的设计，一存储在一张表中，多存储在一张表中，<strong>在多的那张表中添加外键指向一的一方</strong>。</p>
+<h3 id="二、常见表关系"><a href="#二、常见表关系" class="headerlink" title="#二、常见表关系"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E8%A1%A8%E5%85%B3%E7%B3%BB">#</a>二、常见表关系</h3><h4 id="1、一对一-用的不多"><a href="#1、一对一-用的不多" class="headerlink" title="#1、一对一 用的不多"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_1%E3%80%81%E4%B8%80%E5%AF%B9%E4%B8%80-%E7%94%A8%E7%9A%84%E4%B8%8D%E5%A4%9A">#</a>1、一对一 用的不多</h4><p>一个表和另一张表存在的关系是一对一，此种设计不常用，因为此种关系经常会将多张表合并为一张表。</p>
+<p>举例：</p>
+<p>学生信息表可以分为基本信息表和详细信息表。</p>
+<p>可能有这种需求，需要给个某个账户对学生表的操作，但是有些私密信息又不能暴露，就可以拆分。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一种方案：分两张表存储，共享主键</span><br><span class="line">第二种方案：分两张表存储，外键唯一</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2</p>
+<h4 id="2、一对多"><a href="#2、一对多" class="headerlink" title="#2、一对多"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_2%E3%80%81%E4%B8%80%E5%AF%B9%E5%A4%9A">#</a>2、一对多</h4><p>第三范式的例子</p>
+<p>两张表 外键建在多的一方</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">分两张表存储，在多的一方添加外键，</span><br><span class="line">这个外键字段引用一的一方中的主键字段</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3、多对多"><a href="#3、多对多" class="headerlink" title="#3、多对多"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/mysql/#_3%E3%80%81%E5%A4%9A%E5%AF%B9%E5%A4%9A">#</a>3、多对多</h4><p>第二范式的例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">分三张表存储，在学生表中存储学生信息，在课程表中存储课程信息，</span><br><span class="line">在成绩表中存储学生和课程的关系信息</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8-ydlclass/">https://manamn.space/2022/05/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8-ydlclass/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="https://tva2.sinaimg.cn/large/9bd9b167ly1g2qjwrhebmj21hc0u07da.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/MySQL%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84-ydlclass/"><img class="prev-cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhvrhhimj21hc0xc1kx.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL目录结构-ydlclass</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/MySQL%E7%9A%84%E9%82%A3%E4%BA%9B%E6%97%A5%E5%BF%97/"><img class="next-cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g4li9zkmi6j21hc0xcb29.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL的那些日志</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/27/MySQL%20(%E4%B8%80)%20%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/" title="第01章数据库概述-shk"><img class="cover" src="https://static.likepoems.com/2020/09/19/a7a2cf48f2f45bd0fa07c6dc8073df346.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="title">第01章数据库概述-shk</div></div></a></div><div><a href="/2022/05/03/MySQL%E4%BA%8B%E5%8A%A1-ydlclass/" title="MySQL事务-ydlclass"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167ly1fwshe0rnjqj21hc0u0npd.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL事务-ydlclass</div></div></a></div><div><a href="/2022/05/03/MySQL%E4%BC%98%E5%8C%96/" title="MySQL优化"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1g2qk3vv0gvj21hc0u0nab.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL优化</div></div></a></div><div><a href="/2022/05/03/MySQL-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/" title="MySQL 高级主题"><img class="cover" src="https://tva3.sinaimg.cn/large/9bd9b167gy1g4lhoqy40xj21hc0xc7ts.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL 高级主题</div></div></a></div><div><a href="/2022/05/03/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0-ydlclass/" title="MySQL存储过程与函数-ydlclass"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1fwsgdypprdj21hc0u0b29.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL存储过程与函数-ydlclass</div></div></a></div><div><a href="/2022/05/03/MySQL-%E5%85%A5%E9%97%A8%E5%A4%A7%E5%85%A8/" title="MySQL 入门大全"><img class="cover" src="https://tva1.sinaimg.cn/large/0072Vf1pgy1foxk3hgxp3j31hc0u04di.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL 入门大全</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">Mysql数据库入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-Mysql%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">第1章 Mysql数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%A5%E9%97%A8%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">一、入门简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1、介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81socket-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2、socket 介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SQL"><span class="toc-number">1.1.2.</span> <span class="toc-text">二、SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SQL%E8%AF%AD%E5%8F%A5%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.SQL语句分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81DCL-%E6%95%B0%E6%8D%AE%E6%8E%A7%E5%88%B6%E8%AF%AD%E8%A8%80-%E8%AF%AD%E6%B3%95%EF%BC%88%E4%B8%8D%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2、DCL(数据控制语言)语法（不重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.2.2.1.</span> <span class="toc-text">2.1 创建用户</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-%E7%BB%99%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83"><span class="toc-number">1.1.2.2.2.</span> <span class="toc-text">2.2 给用户授权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-%E6%92%A4%E9%94%80%E6%8E%88%E6%9D%83"><span class="toc-number">1.1.2.2.3.</span> <span class="toc-text">2.3 撤销授权</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-%E6%9F%A5%E7%9C%8B%E6%9D%83%E9%99%90"><span class="toc-number">1.1.2.2.4.</span> <span class="toc-text">2.4 查看权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.2.2.5.</span> <span class="toc-text">2.5 删除用户</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81DDL-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80-%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">3、DDL(数据定义语言)语法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.2.3.1.</span> <span class="toc-text">3.1常用的数据类型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81DML-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80-%E8%AF%AD%E6%B3%95%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">4、DML(数据操作语言)语法（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE-%E4%B8%80%E6%AC%A1%E6%8F%92%E5%85%A5%E5%B0%B1%E6%98%AF%E6%8F%92%E5%85%A5%E4%B8%80%E8%A1%8C"><span class="toc-number">1.1.2.4.1.</span> <span class="toc-text">4.1 插入数据(一次插入就是插入一行)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-%E4%BF%AE%E6%94%B9%E8%AE%B0%E5%BD%95"><span class="toc-number">1.1.2.4.2.</span> <span class="toc-text">4.2 修改记录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE-%E5%88%A0%E9%99%A4%E6%95%B4%E8%A1%8C"><span class="toc-number">1.1.2.4.3.</span> <span class="toc-text">4.4 删除数据(删除整行)</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-MySQL%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BB%BA%E8%A1%A8%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.</span> <span class="toc-text">第2章 MySQL常见的建表约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81MySQL%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、MySQL约束类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MySQL%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、MySQL约束类型举例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-NOT-NULL%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1. [NOT] NULL约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-UNIQUE%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2. UNIQUE约束</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%951%EF%BC%88%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E6%9C%80%E5%90%8E%E6%96%BD%E5%8A%A0%EF%BC%89"><span class="toc-number">1.2.2.2.1.</span> <span class="toc-text">实现方法1（表的定义最后施加）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%952%EF%BC%88%E5%AD%97%E6%AE%B5%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9C%80%E5%90%8E%E6%96%BD%E5%8A%A0%EF%BC%89"><span class="toc-number">1.2.2.2.2.</span> <span class="toc-text">实现方法2（字段定义的最后施加）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-DEFAULT%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3. DEFAULT约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-PRIMARY-KEY%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">5. PRIMARY KEY约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE%EF%BC%88%E6%96%B9%E6%B3%951%EF%BC%89"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">单个字段作为主键（方法1）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE%EF%BC%88%E6%96%B9%E6%B3%952%EF%BC%89"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">单个字段作为主键（方法2）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE"><span class="toc-number">1.2.2.6.1.</span> <span class="toc-text">多个字段作为主键</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">#</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-AUTO-INCREMENT%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.2.8.</span> <span class="toc-text">6. AUTO_INCREMENT约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-FOREIGN-KEY%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.2.2.9.</span> <span class="toc-text">7. FOREIGN KEY约束</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-number">1.2.2.9.1.</span> <span class="toc-text">语法：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-Mysql%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="toc-number">1.3.</span> <span class="toc-text">第3章 Mysql数据查询语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.1.</span> <span class="toc-text">一、构建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.2.</span> <span class="toc-text">二、单表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E6%9F%A5%E8%AF%A2-%E5%90%8E%E7%BC%80%E9%83%BD%E6%98%AF%E7%BB%9F%E4%B8%80%E4%B8%BAfrom-%E8%A1%A8%E5%90%8D"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">1、基本查询(后缀都是统一为from 表名)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E6%8E%92%E5%BA%8F-%E6%89%80%E8%B0%93%E5%8D%87%E5%BA%8F%E5%92%8C%E9%99%8D%E5%BA%8F%E9%83%BD%E6%98%AF%E4%BB%8E%E4%B8%8A%E5%BE%80%E4%B8%8B%E6%8E%92%E5%88%97"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">2、排序(所谓升序和降序都是从上往下排列)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">3、聚合函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">4、分组查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81LIMIT%E5%AD%90%E5%8F%A5-mysql%E4%B8%AD%E7%8B%AC%E6%9C%89%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">5、LIMIT子句(mysql中独有的语法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.3.</span> <span class="toc-text">三、多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">1、内连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%A4%96%E8%BF%9E%E6%8E%A5%EF%BC%88%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">2、外连接（常用）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%B7%A6%E8%BF%9E%E6%8E%A5%EF%BC%88%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5%EF%BC%89"><span class="toc-number">1.3.3.2.1.</span> <span class="toc-text">（1）左连接（左外连接）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%8F%B3%E8%BF%9E%E6%8E%A5%EF%BC%88%E5%8F%B3%E5%A4%96%E8%BF%9E%E6%8E%A5%EF%BC%89"><span class="toc-number">1.3.3.2.2.</span> <span class="toc-text">（2）右连接（右外连接）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%85%A8%E8%BF%9E%E6%8E%A5%EF%BC%8Cmysql%E4%B8%8D%E6%94%AF%E6%8C%81%EF%BC%8Coracle%E6%94%AF%E6%8C%81"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">3、全连接，mysql不支持，oracle支持</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.4.</span> <span class="toc-text">四、子查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81where-%E5%9E%8B%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">1、where 型子查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81from-%E5%9E%8B%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">2、from 型子查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.3.5.</span> <span class="toc-text">五、练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-MySQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.</span> <span class="toc-text">第4章 MySQL常用函数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.1.</span> <span class="toc-text">一、聚合函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E5%80%BC%E5%9E%8B%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">二、数值型函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.3.</span> <span class="toc-text">三、字符串函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.4.</span> <span class="toc-text">四、日期和时间函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.5.</span> <span class="toc-text">五、流程控制函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%8A%A0%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.6.</span> <span class="toc-text">六、加密函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">第5章 数据库设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="toc-number">1.5.1.</span> <span class="toc-text">一、三范式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">1、第一范式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">2、第二范式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">3、第三范式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E8%A1%A8%E5%85%B3%E7%B3%BB"><span class="toc-number">1.5.2.</span> <span class="toc-text">二、常见表关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%80%E5%AF%B9%E4%B8%80-%E7%94%A8%E7%9A%84%E4%B8%8D%E5%A4%9A"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">1、一对一 用的不多</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%B8%80%E5%AF%B9%E5%A4%9A"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">2、一对多</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E5%AF%B9%E5%A4%9A"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">3、多对多</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

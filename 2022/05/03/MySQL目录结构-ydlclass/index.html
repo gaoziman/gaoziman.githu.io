@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL目录结构-ydlclass | 爱笑的Gao的个人博客</title><meta name="keywords" content="MySQL"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL目录结构一、了解mysql的安装目录#1、windows中的目录#（1）整体的目录结构 #（2）数据文件目录  1、bin目录 用于放置一些可执行文件，如mysql.exe、mysqld.exe、mysqlshow.exe等。 2、data目录 用于放置一些日志文件以及数据库。 3、include目录 用于放置一些头文件，如：mysql.h、mysql_ername.h等。 4、lib目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL目录结构-ydlclass">
+<meta property="og:url" content="https://manamn.space/2022/05/03/MySQL%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84-ydlclass/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="MySQL目录结构一、了解mysql的安装目录#1、windows中的目录#（1）整体的目录结构 #（2）数据文件目录  1、bin目录 用于放置一些可执行文件，如mysql.exe、mysqld.exe、mysqlshow.exe等。 2、data目录 用于放置一些日志文件以及数据库。 3、include目录 用于放置一些头文件，如：mysql.h、mysql_ername.h等。 4、lib目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhvrhhimj21hc0xc1kx.jpg">
+<meta property="article:published_time" content="2022-05-03T09:19:17.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:36.238Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhvrhhimj21hc0xc1kx.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/MySQL%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84-ydlclass/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL目录结构-ydlclass',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhvrhhimj21hc0xc1kx.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL目录结构-ydlclass</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T09:19:17.000Z" title="发表于 2022-05-03 17:19:17">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:36.238Z" title="更新于 2022-05-06 11:52:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL目录结构-ydlclass"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="MySQL目录结构"><a href="#MySQL目录结构" class="headerlink" title="MySQL目录结构"></a>MySQL目录结构</h1><h2 id="一、了解mysql的安装目录"><a href="#一、了解mysql的安装目录" class="headerlink" title="一、了解mysql的安装目录"></a>一、了解mysql的安装目录</h2><h3 id="1、windows中的目录"><a href="#1、windows中的目录" class="headerlink" title="#1、windows中的目录"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_1%E3%80%81windows%E4%B8%AD%E7%9A%84%E7%9B%AE%E5%BD%95">#</a>1、windows中的目录</h3><h4 id="（1）整体的目录结构"><a href="#（1）整体的目录结构" class="headerlink" title="#（1）整体的目录结构"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_1-%E6%95%B4%E4%BD%93%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">#</a>（1）整体的目录结构</h4><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201201151814062.82ec67ba.png" alt="image-20201201151814062"></p>
+<h4 id="（2）数据文件目录"><a href="#（2）数据文件目录" class="headerlink" title="#（2）数据文件目录"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_2-%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95">#</a>（2）数据文件目录</h4><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201124143358592.e6ead470.png" alt="image-20201124143358592"></p>
+<ul>
+<li>1、<code>bin</code>目录</li>
+<li>用于放置一些可执行文件，如mysql.exe、mysqld.exe、mysqlshow.exe等。</li>
+<li>2、<code>data</code>目录</li>
+<li>用于放置一些日志文件以及数据库。</li>
+<li>3、<code>include</code>目录</li>
+<li>用于放置一些头文件，如：mysql.h、mysql_ername.h等。</li>
+<li>4、<code>lib</code>目录</li>
+<li>用于放置一系列库文件。</li>
+<li>5、<code>share</code>目录</li>
+<li>用于存放字符集、语言等信息。</li>
+<li>6、<code>my.ini</code>这个很重要</li>
+<li>是MySQL数据库中使用的配置文件。</li>
+</ul>
+<p>配置文件很重要，所谓配置文件就是配置一下你的mysql让他成为你想要的的样子。</p>
+<h3 id="2、linux中的文件目录"><a href="#2、linux中的文件目录" class="headerlink" title="#2、linux中的文件目录"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_2%E3%80%81linux%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95">#</a>2、linux中的文件目录</h3><p>咱们当时使用的是rpm安装，他会有个默认的路径。</p>
+<h4 id="（1）bin"><a href="#（1）bin" class="headerlink" title="#（1）bin"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_1-bin">#</a>（1）bin</h4><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201124144036825.f6083823.png" alt="image-20201124144036825"></p>
+<h4 id="（2）配置文件"><a href="#（2）配置文件" class="headerlink" title="#（2）配置文件"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">#</a>（2）配置文件</h4><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201124144308513.1edc6745.png" alt="image-20201124144308513"></p>
+<h4 id="（3）pid文件"><a href="#（3）pid文件" class="headerlink" title="#（3）pid文件"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_3-pid%E6%96%87%E4%BB%B6">#</a>（3）pid文件</h4><p>这个文件用来指导当前运行的mysql实例的进程号！</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201124145129705.3d57ca1b.png" alt="image-20201124145129705"></p>
+<h4 id="（4）数据库文件"><a href="#（4）数据库文件" class="headerlink" title="#（4）数据库文件"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_4-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6">#</a>（4）数据库文件</h4><p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201124145235600.2b47a32d.png" alt="image-20201124145235600"></p>
+<h3 id="3、附录：常用配置"><a href="#3、附录：常用配置" class="headerlink" title="#3、附录：常用配置"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_3%E3%80%81%E9%99%84%E5%BD%95-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE">#</a>3、附录：常用配置</h3><ul>
+<li>port：端口</li>
+<li>server-id：数据库唯一标识码</li>
+<li>datadir：数据目录路径</li>
+<li>basedir：基本路径</li>
+<li>socket：指定socket文件路径</li>
+<li>skip-name-resolve：禁止mysql对外部连接进行DNS解析，启用时所有远程连接都要使用ip地址方式</li>
+<li>skip-external-locking：避免外部锁，默认开启</li>
+<li>skip-grant-tables：mysql启动时不使用grant-tables授权表，常用于忘记密码情况下</li>
+<li>user：使用的用户</li>
+<li>sql_mode：约束SQL语法模式</li>
+<li>show_query_log_file：慢日志存储路径，5.6及以上版本，log-slow-queries是5.6以下版本</li>
+<li>long_query_time：设置慢查询时间，默认10s</li>
+<li>log-queries-not-using-indexes：记录未使用索引查询</li>
+<li>log_throttle_queries_not_using_indexs：5.6.5版本新增参数，设定每分钟记录到日志未使用索引的语句数目，超过则之后只记录语句数量和花费总时间</li>
+<li>log_output：日志存储方式，默认FILE，TABLE表示写入到mysql.slow_log表</li>
+<li>expire_logs_days：二进制日志保留的时间</li>
+<li>log-bin：设置日志文件路径及名称</li>
+<li>log-bin-index：日志文件后缀形式</li>
+<li>relay-bin：中继日志文件</li>
+<li>relay-bin-index：中继日志文件后缀形式</li>
+<li>max_connections：mysql最大连接数（超出会报Too many connections）</li>
+<li>back_log：mysql暂存的连接数量(每个连接占用256kb)</li>
+<li>wait_timeout：关闭一个非交互的连接之前所需要等待的秒数</li>
+<li>max_connect_errors：最大错误连接数，flush host进行解禁</li>
+<li>max_allowed_packet：接受数据包大小，需要是才会分配内存，设置过大会造成内存溢出</li>
+<li>max_heap_table_size：用户可以创建的内存表大小</li>
+<li>tmp_table_size：mysql的heap表缓冲大小</li>
+<li>read_rnd_buffer_size：mysql随机读缓冲区大小</li>
+<li>sort_buffer_size：mysql执行排序使用的缓冲大小</li>
+<li>join_buffer_size：联合查询操作所能使用的缓冲区大小</li>
+</ul>
+<h3 id="4、mysql修改配置的方法"><a href="#4、mysql修改配置的方法" class="headerlink" title="#4、mysql修改配置的方法"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_4%E3%80%81mysql%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E7%9A%84%E6%96%B9%E6%B3%95">#</a>4、mysql修改配置的方法</h3><p>（1）设置全局变量方法1(不推荐): 修改参数文件, 然后重启mysqld</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line">wait_timeout=10</span><br><span class="line"># service mysqld restart</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4</p>
+<p>不过这个方法太生硬了, 线上服务重启无论如何都应该尽可能避免.</p>
+<p>（2）设置全局变量方法2(推荐): 在命令行里通过SET来设置, 然后再修改参数文件**</p>
+<p>如果要修改全局变量, 必须要显示指定”GLOBAL”或者”@@global.”, 同时必须要有SUPER权限.</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global wait_timeout=10;</span><br><span class="line">mysql&gt; set @@global.wait_timeout=10;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2</p>
+<p>然后查看设置是否成功:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select @@global.wait_timeout=10;</span><br><span class="line">or</span><br><span class="line">mysql&gt; show global variables like &#x27;wait_timeout&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3</p>
+<p>如果查询时使用的是show variables的话, 会发现设置并没有生效, 除非重新登录再查看. 这是因为使用show variables的话就等同于使用show session variables, 查询的是会话变量, 只有使用show global variables查询的才是全局变量. 如果仅仅想修改会话变量的话, 可以使用类似set wait_timeout&#x3D;10;或者set session wait_timeout&#x3D;10;这样的语法.</p>
+<p>当前只修改了正在运行的MySQL实例参数, 但下次重启mysqld又会回到默认值, 所以别忘了修改参数文件:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line">wait_timeout=10</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3</p>
+<p>（3）设置会话变量方法: 在命令行里通过SET来设置</p>
+<p>如果要修改会话变量值, 可以指定”SESSION”或者”@@session.”或者”@@”或者”LOCAL”或者”@@local.”, 或者什么都不使用.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> wait_timeout<span class="operator">=</span><span class="number">10</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> session wait_timeout<span class="operator">=</span><span class="number">10</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> <span class="keyword">local</span> wait_timeout<span class="operator">=</span><span class="number">10</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> @<span class="variable">@wait</span>_timeout<span class="operator">=</span><span class="number">10</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> @<span class="variable">@session</span>.wait_timeout<span class="operator">=</span><span class="number">10</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> @<span class="variable">@local</span>.wait_timeout<span class="operator">=</span><span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6</p>
+<p>然后查看设置是否成功:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> @<span class="variable">@wait</span>_timeout;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> @<span class="variable">@session</span>.wait_timeout;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> @<span class="variable">@local</span>.wait_timeout;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;wait_timeout&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">local</span> variables <span class="keyword">like</span> <span class="string">&#x27;wait_timeout&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> session variables <span class="keyword">like</span> <span class="string">&#x27;wait_timeout&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4<br>5<br>6</p>
+<p>（4）会话变量和全局变量转换方法:</p>
+<p>在命令行里通过SET来设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将会话变量值设置为对应的全局变量值呢:</span></span><br><span class="line">mysql&gt; <span class="built_in">set</span> @@session.wait_timeout=@@global.wait_timeout;</span><br><span class="line"><span class="comment"># 将会话变量值设置为MySQL编译时的默认值(wait_timeout=28800):</span></span><br><span class="line">mysql&gt; <span class="built_in">set</span> wait_timeout=DEFAULT;</span><br></pre></td></tr></table></figure>
+
+<p>1<br>2<br>3<br>4</p>
+<p>这里要注意的是, 并不是所有的系统变量都能被设置为DEFAULT, 如果设置这些变量为DEFAULT则会返回错误.</p>
+<h2 id="二、mysql的系统架构"><a href="#二、mysql的系统架构" class="headerlink" title="二、mysql的系统架构"></a>二、mysql的系统架构</h2><h3 id="1、-数据库和数据库实例"><a href="#1、-数据库和数据库实例" class="headerlink" title="#1、 数据库和数据库实例"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_1%E3%80%81-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E4%BE%8B">#</a>1、 数据库和数据库实例</h3><p>在MySQL的学习研究中，存在两个非常容易混淆的概念，即<code>数据库</code>和<code>数据库实例</code>。在MySQL中，数据库和数据库实例定义如下：</p>
+<ul>
+<li>数据库：存储数据的；</li>
+<li>数据库实例：操作数据库的。</li>
+</ul>
+<p>如上定义很清楚了，数据库是用来存储数据的，数据库实例是用来操作数据的，从操作系统的角度，数据库实例表现为一个进程，对应多个线程，</p>
+<p>在非集群数据库架构中，数据库与数据库实例存在一 一对应关系，在数据库集群中，可能存在多个数据库实例操作一个数据库情况，即多对一关系。</p>
+<h3 id="2、MySQL架构"><a href="#2、MySQL架构" class="headerlink" title="#2、MySQL架构"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_2%E3%80%81mysql%E6%9E%B6%E6%9E%84">#</a>2、MySQL架构</h3><p>复杂的架构是为了更好的工作，架构中的每一个角色都可以高效的单独处理一类事件，举个例子。</p>
+<p>你去拜访你朋友当然朋友自己迎接你即可。</p>
+<p>但是你要拜访市长，可能就要门卫处做身份认证、传达室负责接通电话确认可以、市长办公室负责接待、你可能需要排队等候、你的事情如果办公室就能解决可能就不用见市长了，最后轮到你了，你才能见上市长。</p>
+<p>对于MySQL来说，虽然经历了多个版本迭代（MySQL5.5,MySQL 5.6,MySQL 5.7,MySQL 8）,但每次的迭代，都是基于MySQL</p>
+<p>基架的，MySQL基架大致包括如下几大模块组件：</p>
+<p><strong>（1）MySQL向外提供的交互接口（Connectors）</strong></p>
+<p>Connectors组件，是MySQL向外提供的交互组件，如java,.net,php等语言可以通过该组件来操作SQL语句，实现与SQL的交互。</p>
+<p><strong>（2）管理服务组件和工具组件(Management Service &amp; Utilities)</strong></p>
+<p>提供对MySQL的集成管理，如备份(Backup),恢复(Recovery),安全管理(Security)等</p>
+<p><strong>（3）连接池组件(Connection Pool)</strong></p>
+<p>负责监听对客户端向MySQL Server端的各种请求，接收请求，转发请求到目标模块。每个成功连接MySQL Server的客户请求都会被</p>
+<p>创建或分配一个线程，该线程负责客户端与MySQL Server端的通信，接收客户端发送的命令，传递服务端的结果信息等。</p>
+<p><strong>（4）SQL接口组件(SQL Interface)</strong></p>
+<p>接收用户SQL命令，如DML,DDL和存储过程等，并将最终结果返回给用户。</p>
+<p><strong>（5）查询分析器组件(Parser)</strong></p>
+<p>首先分析SQL命令语法的合法性，并尝试将SQL命令分解成数据结构，若分解失败，则提示SQL语句不合理。</p>
+<p><strong>（6）优化器组件（Optimizer）</strong></p>
+<p>对SQL命令按照标准流程进行优化分析。</p>
+<p><strong>（7）缓存主件（Caches &amp; Buffers）</strong></p>
+<p>缓存和缓冲组件</p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201208160336839.6d0236a8.png" alt="image-20201208160336839"></p>
+<p><img src="https://www.ydlclass.com/doc21xnv/assets/image-20201208160226331.a43090d0.png" alt="image-20201208160226331"></p>
+<p><strong>（8）MySQL存储引擎</strong></p>
+<blockquote>
+<p>什么是MySQL存储引擎</p>
+</blockquote>
+<p> MySQL属于关系型数据库，而关系型数据库的存储是以表的形式进行的，对于表的创建，数据的存储，检索，更新等都是由MySQL</p>
+<p>存储引擎完成的，这也是MySQL存储引擎在MySQL中扮演的重要角色。</p>
+<p> 研究过SQL Server和Oracle的读者可能很清楚，这两种数据库的存储引擎只有一个，而MySQL的存储引擎种类比较多，如MyISAM存储引擎，InnoDB存储引擎和Memory存储引擎.</p>
+<p> MySQL之所以有多种存储引擎，是因为MySQL的开源性决定的。MySQL存储引擎，从种类上来说，大致可归结为官方存储引擎和第三方存储引起。MySQL的开源性，允许第三方基于MySQL骨架，开发适合自己业务需求的存储引擎。</p>
+<blockquote>
+<p>MySQL存储引擎作用</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MySQL存储引擎在MySQL中扮演重要角色，其作比较重要作用，大致归结为如下两方面：</span><br></pre></td></tr></table></figure>
+
+<p> 作用一：管理表创建，数据检索，索引创建等</p>
+<p> 作用二：满足自定义存储引擎开发。</p>
+<blockquote>
+<p>MySQL引擎种类</p>
+</blockquote>
+<p> 不同种类的存储引擎，在存储表时的存储引擎表机制也有所不同，从MySQL存储引擎种类上来说，可以分为官方存储引擎和第三方存储引擎。</p>
+<p> 比较常用的存储引擎包括InnoDB存储引擎，MyISAM存储引擎和Momery存储引擎。</p>
+<p>（九）物理文件（File System）</p>
+<p>实际存储<code>MySQL 数据库文件</code>和一些<code>日志文件</code>等的系统。</p>
+<h2 id="三、mysql的存储引擎"><a href="#三、mysql的存储引擎" class="headerlink" title="三、mysql的存储引擎"></a>三、mysql的存储引擎</h2><blockquote>
+<p>能看懂多少看多少，以后会一点点了解</p>
+</blockquote>
+<h3 id="1、MySQL常用存储引擎及特点"><a href="#1、MySQL常用存储引擎及特点" class="headerlink" title="#1、MySQL常用存储引擎及特点"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_1%E3%80%81mysql%E5%B8%B8%E7%94%A8%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%8F%8A%E7%89%B9%E7%82%B9">#</a>1、MySQL常用存储引擎及特点</h3><h4 id="（1）、InnoDB存储引擎"><a href="#（1）、InnoDB存储引擎" class="headerlink" title="#（1）、InnoDB存储引擎"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_1-%E3%80%81innodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E">#</a>（1）、InnoDB存储引擎</h4><p>从MySQL5.5版本之后，MySQL的默认内置存储引擎已经是InnoDB了，他的主要特点有：</p>
+<p>（1）支持事务。默认的事务隔离级别为可重复度，通过MVCC（并发版本控制）来实现的。 （2）使用的锁粒度为行级锁，可以支持更高的并发； （3）支持外键； （4）在InnoDB中存在着缓冲管理，通过缓冲池，将索引和数据全部缓存起来，加快查询的速度； （5）对于InnoDB类型的表，其数据的物理组织形式是聚簇表。所有的数据按照主键来组织。数据和索引放在一块，都位于B+数的叶子节点上；</p>
+<h4 id="（2）、MyISAM存储引擎"><a href="#（2）、MyISAM存储引擎" class="headerlink" title="#（2）、MyISAM存储引擎"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_2-%E3%80%81myisam%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E">#</a>（2）、MyISAM存储引擎</h4><p>在5.5版本之前，MyISAM是MySQL的默认存储引擎，该存储引擎并发性差，不支持事务，所以使用场景比较少，主要特点为：</p>
+<p>（1）不支持事务； （2）不支持外键，如果强行增加外键，不会提示错误，只是外键不其作用； （3）对数据的查询缓存只会缓存索引，不会像InnoDB一样缓存数据，而且是利用操作系统本身的缓存； （4）默认的锁粒度为表级锁，所以并发度很差，加锁快，锁冲突较少，所以不太容易发生死锁； （5）支持全文索引（MySQL5.6之后，InnoDB存储引擎也对全文索引做了支持），但是MySQL的全文索引基本不会使用，对于全文索引，现在有其他成熟的解决方案，比如：ElasticSearch，Solr，Sphinx等。 （6）数据库所在主机如果宕机，MyISAM的数据文件容易损坏，而且难恢复；</p>
+<h3 id="2、两种引擎的对比"><a href="#2、两种引擎的对比" class="headerlink" title="#2、两种引擎的对比"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_2%E3%80%81%E4%B8%A4%E7%A7%8D%E5%BC%95%E6%93%8E%E7%9A%84%E5%AF%B9%E6%AF%94">#</a>2、两种引擎的对比</h3><p>1、由于锁粒度的不同，InnoDB比MyISAM支持更高的并发； 2、InnoDB为行级锁，MyISAM为表级锁，所以InnoDB相对于MyISAM来说，更容易发生死锁，锁冲突的概率更大，而且上锁的开销也更大，因为需要为每一行加锁； 3、在备份容灾上，InnoDB支持在线热备，有很成熟的在线热备解决方案； 4、查询性能上，MyISAM的查询效率高于InnoDB，因为InnoDB在查询过程中，是需要维护数据缓存，而且查询过程是先定位到行所在的数据块，然后在从数据块中定位到要查找的行；而MyISAM可以直接定位到数据所在的内存地址，可以直接找到数据； 5、SELECT COUNT(*)语句，如果行数在千万级别以上，MyISAM可以快速查出，而InnoDB查询的特别慢，因为MyISAM将行数单独存储了，而InnoDB需要逐行去统计行数；所以如果使用InnoDB，而且需要查询行数，则需要对行数进行特殊处理，如：离线查询并缓存； 6、MyISAM的表结构文件包括：.frm(表结构定义),.MYI(索引),.MYD(数据)；而InnoDB的表数据文件为:.ibd和.frm(表结构定义)；</p>
+<h3 id="3、选择合适的存储引擎"><a href="#3、选择合适的存储引擎" class="headerlink" title="#3、选择合适的存储引擎"></a><a target="_blank" rel="noopener" href="https://www.ydlclass.com/doc21xnv/database/dir/#_3%E3%80%81%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E">#</a>3、选择合适的存储引擎</h3><p>1、使用场景是否需要事务支持； 2、是否需要支持高并发，InnoDB的并发度远高于MyISAM； 3、是否需要支持外键； 4、高效缓冲数据，InnoDB对数据和索引都做了缓冲，而MyISAM只缓冲了索引； 5、索引，不同存储引擎的索引并不太一样；</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/MySQL%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84-ydlclass/">https://manamn.space/2022/05/03/MySQL%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84-ydlclass/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhvrhhimj21hc0xc1kx.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/MySQL%E7%B4%A2%E5%BC%95-ydlclass/"><img class="prev-cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g4li04y56rj21hc0xc4qp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL索引-ydlclass</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E9%97%A8-ydlclass/"><img class="next-cover" src="https://tva2.sinaimg.cn/large/9bd9b167ly1g2qjwrhebmj21hc0u07da.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL数据库入门-ydlclass</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/27/MySQL%20(%E4%B8%80)%20%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/" title="第01章数据库概述-shk"><img class="cover" src="https://static.likepoems.com/2020/09/19/a7a2cf48f2f45bd0fa07c6dc8073df346.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="title">第01章数据库概述-shk</div></div></a></div><div><a href="/2022/05/03/MySQL%E4%BA%8B%E5%8A%A1-ydlclass/" title="MySQL事务-ydlclass"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167ly1fwshe0rnjqj21hc0u0npd.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL事务-ydlclass</div></div></a></div><div><a href="/2022/05/03/MySQL%E4%BC%98%E5%8C%96/" title="MySQL优化"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1g2qk3vv0gvj21hc0u0nab.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL优化</div></div></a></div><div><a href="/2022/05/03/MySQL-%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98/" title="MySQL 高级主题"><img class="cover" src="https://tva3.sinaimg.cn/large/9bd9b167gy1g4lhoqy40xj21hc0xc7ts.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL 高级主题</div></div></a></div><div><a href="/2022/05/03/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0-ydlclass/" title="MySQL存储过程与函数-ydlclass"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1fwsgdypprdj21hc0u0b29.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL存储过程与函数-ydlclass</div></div></a></div><div><a href="/2022/05/03/MySQL-%E5%85%A5%E9%97%A8%E5%A4%A7%E5%85%A8/" title="MySQL 入门大全"><img class="cover" src="https://tva1.sinaimg.cn/large/0072Vf1pgy1foxk3hgxp3j31hc0u04di.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">MySQL 入门大全</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">MySQL目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BA%86%E8%A7%A3mysql%E7%9A%84%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">一、了解mysql的安装目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81windows%E4%B8%AD%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、windows中的目录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%95%B4%E4%BD%93%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">（1）整体的目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">（2）数据文件目录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81linux%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、linux中的文件目录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89bin"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">（1）bin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">（2）配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89pid%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">（3）pid文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">（4）数据库文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%99%84%E5%BD%95%EF%BC%9A%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、附录：常用配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81mysql%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.4.</span> <span class="toc-text">4、mysql修改配置的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81mysql%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">二、mysql的系统架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、 数据库和数据库实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81MySQL%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、MySQL架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81mysql%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">1.3.</span> <span class="toc-text">三、mysql的存储引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81MySQL%E5%B8%B8%E7%94%A8%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%8F%8A%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.1.</span> <span class="toc-text">1、MySQL常用存储引擎及特点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E3%80%81InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">（1）、InnoDB存储引擎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E3%80%81MyISAM%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">（2）、MyISAM存储引擎</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%B8%A4%E7%A7%8D%E5%BC%95%E6%93%8E%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">1.3.2.</span> <span class="toc-text">2、两种引擎的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">1.3.3.</span> <span class="toc-text">3、选择合适的存储引擎</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

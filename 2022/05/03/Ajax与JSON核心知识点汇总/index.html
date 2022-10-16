@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Ajax与JSON核心知识点汇总 | 爱笑的Gao的个人博客</title><meta name="keywords" content="JavaWeb,Ajax,JSON"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="给初学者的建议 对于Ajax技术，初学者总是会觉得它比较难，完全独立着很难迅速的写出来，造成这种问题的原因有两个：一是对ajax中方法内的各个参数代表什么意思理解不清楚，二是写的少。学到这里时可以多尝试几种状况，以自己的方式摸索每个参数到底可以起到什么作用。另外可以学一段新知识后有时间可以经常复习，多敲下。对于JSON，最重要的还是要明白JSON到底包括哪些格式。这点是JSON中的重中之重，毕竟在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax与JSON核心知识点汇总">
+<meta property="og:url" content="https://manamn.space/2022/05/03/Ajax%E4%B8%8EJSON%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="给初学者的建议 对于Ajax技术，初学者总是会觉得它比较难，完全独立着很难迅速的写出来，造成这种问题的原因有两个：一是对ajax中方法内的各个参数代表什么意思理解不清楚，二是写的少。学到这里时可以多尝试几种状况，以自己的方式摸索每个参数到底可以起到什么作用。另外可以学一段新知识后有时间可以经常复习，多敲下。对于JSON，最重要的还是要明白JSON到底包括哪些格式。这点是JSON中的重中之重，毕竟在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(834).jpg">
+<meta property="article:published_time" content="2022-05-03T03:44:57.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:35.999Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Ajax">
+<meta property="article:tag" content="JSON">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(834).jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/Ajax%E4%B8%8EJSON%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ajax与JSON核心知识点汇总',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(834).jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Ajax与JSON核心知识点汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T03:44:57.000Z" title="发表于 2022-05-03 11:44:57">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:35.999Z" title="更新于 2022-05-06 11:52:35">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JavaWeb/">JavaWeb</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Ajax与JSON核心知识点汇总"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="给初学者的建议"><a href="#给初学者的建议" class="headerlink" title="给初学者的建议"></a>给初学者的建议</h3><blockquote>
+<p>对于Ajax技术，初学者总是会觉得它比较难，完全独立着很难迅速的写出来，造成这种问题的原因有两个：一是对ajax中方法内的各个参数代表什么意思理解不清楚，二是写的少。学到这里时可以多尝试几种状况，以自己的方式摸索每个参数到底可以起到什么作用。另外可以学一段新知识后有时间可以经常复习，多敲下。对于JSON，最重要的还是要明白JSON到底包括哪些格式。这点是JSON中的重中之重，毕竟在工作中，有很多时候，自己写的代码是要按照JSON格式的要求来实现的。</p>
+</blockquote>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><ul>
+<li>JSON建构于两种结构：<ul>
+<li>“名称&#x2F;值” 对的集合。</li>
+<li>值的有序列表。在大部分语言中，它被理解为数组。</li>
+</ul>
+</li>
+<li>JSON对象<ul>
+<li>对象是一个无序的“ ‘名称&#x2F;值’ ”对集合。一个对象以”{“ 开始，”}”结束。每个“名称” 后跟 一个“:” ; “ ‘名称&#x2F;值’ ”对之间使用”,”分隔</li>
+<li>例如：<code> &#123;string:value,string:value,string:value,...&#125;</code> 。</li>
+</ul>
+</li>
+<li>JSON数组<ul>
+<li>数组是值的有序集合。一个数组以”[“ 开始，”]” 结束。值之间使用”,”分隔。</li>
+<li>值可以是双引号括起来的字符串、数值、true、false、null、对象或者数组。这些结构可以嵌套。</li>
+<li>例如：<code> [1,2,3,4]</code> 、 <code> [&quot;aa&quot;,&quot;cc&quot;,&quot;bb&quot;]</code> 、<code> [true,&quot;tt&quot;,8,&quot;bb&quot;]</code> 、<code>[&#123;&quot;username&quot;:&quot;zs&quot;,&quot;password&quot;:123&#125;,&#123;&quot;username&quot;:&quot;ls&quot;&#125;]</code> 。</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：初学者最容易出现的问题：认为JSON数组只有</strong><code>[&#123;&quot;username&quot;:&quot;zs&quot;,&quot;password&quot;:123&#125;,&#123;&quot;username&quot;:&quot;ls&quot;&#125;]</code>  <strong>一种状况,一定要注意这点，中括号中不止有对象，还有其他很多种状况的。</strong></p>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><h3 id="常用格式"><a href="#常用格式" class="headerlink" title="常用格式"></a>常用格式</h3><blockquote>
+<p>“[]”中的参数代表该参数可写可不写。</p>
+</blockquote>
+<h4 id="get-url-data-fn-type"><a href="#get-url-data-fn-type" class="headerlink" title="$.get(url,[data],[fn],[type])"></a>$.get(url,[data],[fn],[type])</h4><ul>
+<li><p>参数解释(来自jQuery的api文档)</p>
+<ul>
+<li>url:待载入页面的URL地址</li>
+<li>data:待发送Key&#x2F;value参数</li>
+<li>callback:载入成功时回调函数</li>
+<li>type：返回内容格式，xml，html，script, json, text, _default</li>
+</ul>
+</li>
+<li><p>以GET携带着请求数据发出请求，再按照type规定的类型对服务器传回的数据进行转换，若转换失败则不会进入回调函数。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/servlet&quot;</span>,<span class="string">&quot;username=zs&amp;age=23&quot;</span>,<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;,<span class="string">&quot;JSON&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意事项：url,data,fn,type的顺序是固定的，必须在正确的位置填入正确的参数。</p>
+</li>
+<li><p>其他：还有一个方法叫做<code>$.getJSON(url,[data],[callback])</code> 就等效于当$.get的type为JSON时的情况。</p>
+</li>
+</ul>
+<h4 id="post-url-data-callback-type"><a href="#post-url-data-callback-type" class="headerlink" title="$.post(url,data,callback,type)"></a>$.post(url,data,callback,type)</h4><ul>
+<li><p>参数解释</p>
+<ul>
+<li>url:发送请求地址</li>
+<li>data:待发送Key&#x2F;value参数</li>
+<li>callback:发送成功时回调函数</li>
+<li>type:返回内容格式，xml，html,script,json,text,_default</li>
+</ul>
+</li>
+<li><p>以POST携带着请求数据发出请求，再按照type规定的类型对服务器传回的数据进行转换，若转换失败则不会进入回调函数。</p>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/servlet1&quot;</span>,<span class="string">&quot;username=zs&amp;age=23&quot;</span>,<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">&#125;,<span class="string">&quot;JSON&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意事项：url,data,fn,type的顺序是固定的，必须在正确的位置填入正确的参数。</p>
+</li>
+</ul>
+<h4 id="ajax-url-settings"><a href="#ajax-url-settings" class="headerlink" title="$.ajax(url,[settings])"></a>$.ajax(url,[settings])</h4><ul>
+<li><p>参数解释</p>
+<ul>
+<li><p>url：一个包含发送请求的URL字符串</p>
+</li>
+<li><p>settings:AJAX请求设置。所有选项都是可选的(下面只列举常用属性，全部属性请查看API文档)</p>
+<ul>
+<li>data：发送到服务的数据。将自动转换为请求字符串格式。</li>
+<li>dataType:预期服务器返回的数据类型。如果不指定，jQuery将自动根据HTTP包MIME信息来智能判断，比如XML MIME类型就被识别为XML。</li>
+<li>success(data,textStatus,jqXHR)：请求成功后的回调函数。</li>
+<li>type：(默认：“GET”)请求方式(”POST”或”GET”)，默认为”GET”，注意：其他HTTP请求方法，如PUT和DELETE也可以使用，但仅部分浏览器支持</li>
+<li>async：(默认：true)默认设置下，所有请求均为异步请求，如果需要发送同步请求，请将此选项设置为false。注意，同步请求将锁住浏览器，用户其他操作必须等待请求完成后才可以执行。</li>
+</ul>
+</li>
+<li><p>示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">	<span class="attr">url</span>:<span class="string">&quot;/servlet1&quot;</span>,</span><br><span class="line">	<span class="attr">type</span>:<span class="string">&quot;GET&quot;</span>(或者<span class="string">&quot;POST&quot;</span>),</span><br><span class="line">	<span class="attr">data</span>:<span class="string">&quot;name=aa&amp;age=23&quot;</span>,</span><br><span class="line">	<span class="attr">dataType</span>:<span class="string">&quot;JSON&quot;</span>,  (或不写，默认<span class="string">&quot;text&quot;</span>)</span><br><span class="line">	<span class="attr">success</span>:<span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：ajax中，在此处，url，type，data等等他们是无序的，可以任意调换他们的位置。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="难点理解"><a href="#难点理解" class="headerlink" title="难点理解"></a>难点理解</h3><h4 id="ajax异步代码执行的流程"><a href="#ajax异步代码执行的流程" class="headerlink" title="ajax异步代码执行的流程"></a>ajax异步代码执行的流程</h4><blockquote>
+<p>执行流程中最难理解的两个点我觉得无外乎就是异步体现在哪里、回调函数如何理解了，这两点直到我到了黑马之后才真正的理解清楚，之前工作的时候也仅仅知道如何去用，但是始终对它不理解。</p>
+</blockquote>
+<ul>
+<li><p>请看如下代码，分析浏览器弹窗最后弹出的数据是什么</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">--test.json文件内容</span><br><span class="line">&#123;</span><br><span class="line">  &quot;username&quot;:&quot;zs&quot;,</span><br><span class="line">  &quot;password&quot;:123</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--ajax_test.html文件内容</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Ajax异步与同步测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../jquery-1.11.3.js&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        $(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> a = <span class="string">&quot;aaa&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">            $.<span class="title function_">ajax</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">              	<span class="attr">url</span>:<span class="string">&#x27;test.json&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">dataType</span>:<span class="string">&#x27;JSON&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">type</span>:<span class="string">&#x27;GET&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">async</span>:<span class="literal">true</span>,<span class="comment">//异步执行，当为false时，同步执行</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">success</span>:<span class="keyword">function</span> (<span class="params">data</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                    a = data.<span class="property">username</span>;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">          <span class="title function_">alert</span>(a);</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码分析，程序流从上往下走，走到js代码后执行文档加载事件，加载文档，文档加载完毕后进入事件函数中，执行js代码，首先给变量a赋初始值<code>&quot;aaa&quot;</code> ，接着执行<code>$.ajax() </code> 方法，根据ajax中定义的参数发送请求，<strong>注意，关键点来了：</strong> 发出请求时，会根据参数async的对应参数决定下面的程序走向，当为true也就是异步执行时，<strong>程序在发出请求后不管服务器有没有给浏览器返回数据就接着执行下面的代码</strong> ，体现在本程序中也就是不管程序有没有走success回调函数都会接着执行$.ajax()函数下面的代码，又因为程序从发出一个请求到服务器做出反应的时间较慢，所以通常都是当js代码全部执行完毕后才接收到服务器响应，然后进入成功的回调函数(success)，这一步又该如何理解呢？浏览器向服务器发出请求，服务器接收到请求后通过response.getWriter().write()的方式向浏览器写回数据，若响应成功就会进入success回调函数中，按照dataType指定的类型，封装到回调函数的data参数中，若返回的数据不符合dataType指定的类型，将无法封装到data参数中(例如dataType指定类型为’JSON’，若返回的数据格式不符合要求就无法进入成功的回调函数)。因此，在默认异步(async:true)的情况下，上面的程序会先执行alert(a)，之后才走成功的回调函数，因此浏览器弹窗中a的值应该仍然为”aaa”.</p>
+</li>
+<li><p>如果我将上面代码中的async:true改为async:false，又会出现什么状况呢？ 更改之后就等于是同步执行了，程序走到ajax后，向服务器发出请求，然后程序会停在这里知道服务器响应回来，接着走成功的回调函数，ajax代码块中的逻辑完全执行完毕后才会接着往下走，因为在成功的回调函数中对a重新赋值为”zs”，因此当浏览器弹窗的时候a的值也会对应着变为zs。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/Ajax%E4%B8%8EJSON%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">https://manamn.space/2022/05/03/Ajax%E4%B8%8EJSON%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JavaWeb/">JavaWeb</a><a class="post-meta__tags" href="/tags/Ajax/">Ajax</a><a class="post-meta__tags" href="/tags/JSON/">JSON</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(834).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/DBUtils%E4%B8%8EBeanUtils%E4%BB%A5%E5%8F%8AGson%E5%B7%A5%E5%85%B7%E7%B1%BB/"><img class="prev-cover" src="https://tva3.sinaimg.cn/large/9bd9b167gy1fwrt9cq7adj21hc0u0ncl.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">DBUtils与BeanUtils以及Gson工具类</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9B%91%E5%90%AC%E5%99%A8%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"><img class="next-cover" src="https://tva4.sinaimg.cn/large/9bd9b167ly1fwsfq07o6ej21hc0u01kx.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">过滤器监听器核心知识点汇总</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/03/CSS-%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7/" title="CSS--常用属性"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1g2qjyn7fdxj21hc0u0gva.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">CSS--常用属性</div></div></a></div><div><a href="/2022/05/03/CSS%E2%80%94%E2%80%94%E9%80%89%E6%8B%A9%E5%99%A8%E5%8F%8A%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/" title="CSS——选择器及三大特性"><img class="cover" src="https://tva2.sinaimg.cn/large/9bd9b167gy1g2qkreqd9dj21hc0u01kx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">CSS——选择器及三大特性</div></div></a></div><div><a href="/2022/05/03/Cookie%E5%92%8CSession%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/" title="Cookie和Session的区别与联系"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(618).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Cookie和Session的区别与联系</div></div></a></div><div><a href="/2022/05/03/DBUtils%E4%B8%8EBeanUtils%E4%BB%A5%E5%8F%8AGson%E5%B7%A5%E5%85%B7%E7%B1%BB/" title="DBUtils与BeanUtils以及Gson工具类"><img class="cover" src="https://tva3.sinaimg.cn/large/9bd9b167gy1fwrt9cq7adj21hc0u0ncl.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">DBUtils与BeanUtils以及Gson工具类</div></div></a></div><div><a href="/2022/05/03/HTTP%E5%8D%8F%E8%AE%AE%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/" title="HTTP协议核心知识点汇总"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1g4li6md32vj21hc0xcb29.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">HTTP协议核心知识点汇总</div></div></a></div><div><a href="/2022/05/27/HTTP&Tomcat&Servlet/" title="hm-HTTP&amp;Tomcat&amp;Servlet"><img class="cover" src="https://static.likepoems.com/2020/09/19/d33c3a6fc0b5d2384827e8e32ec71f4b3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="title">hm-HTTP&amp;Tomcat&amp;Servlet</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E5%88%9D%E5%AD%A6%E8%80%85%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">给初学者的建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON"><span class="toc-number"></span> <span class="toc-text">JSON</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ajax"><span class="toc-number"></span> <span class="toc-text">Ajax</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">常用格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#get-url-data-fn-type"><span class="toc-number">1.1.</span> <span class="toc-text">$.get(url,[data],[fn],[type])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#post-url-data-callback-type"><span class="toc-number">1.2.</span> <span class="toc-text">$.post(url,data,callback,type)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ajax-url-settings"><span class="toc-number">1.3.</span> <span class="toc-text">$.ajax(url,[settings])</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%BE%E7%82%B9%E7%90%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">难点理解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ajax%E5%BC%82%E6%AD%A5%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">ajax异步代码执行的流程</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

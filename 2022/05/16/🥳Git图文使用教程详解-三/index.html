@@ -1,0 +1,352 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>🥳Git图文使用教程详解(三) | 爱笑的Gao的个人博客</title><meta name="keywords" content="笔记,Git"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="🥳Git图文使用教程详解(三)✍、Git图文使用教程说明 Git 版本： 2.31.0.windows.1 IDEA版本：2021.1 主要记录 git 的常用命令、IDEA 集成 git、git与GitHub、IDEA 集成 GitHub、Gitee等(详细图文步骤记录) 配套视频参考：【尚硅谷】5h打通Git全套教程     ❤️Git图文使用教程详解 地址    ❤️Git图文使用教程详解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🥳Git图文使用教程详解(三)">
+<meta property="og:url" content="https://manamn.space/2022/05/16/%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%B8%89/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="🥳Git图文使用教程详解(三)✍、Git图文使用教程说明 Git 版本： 2.31.0.windows.1 IDEA版本：2021.1 主要记录 git 的常用命令、IDEA 集成 git、git与GitHub、IDEA 集成 GitHub、Gitee等(详细图文步骤记录) 配套视频参考：【尚硅谷】5h打通Git全套教程     ❤️Git图文使用教程详解 地址    ❤️Git图文使用教程详解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/005FzdTdgy1geetguvkulj31hc0u0aqz.jpg">
+<meta property="article:published_time" content="2022-05-16T02:56:46.000Z">
+<meta property="article:modified_time" content="2022-05-17T01:11:56.988Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/005FzdTdgy1geetguvkulj31hc0u0aqz.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/16/%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%B8%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '🥳Git图文使用教程详解(三)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-17 09:11:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva1.sinaimg.cn/large/005FzdTdgy1geetguvkulj31hc0u0aqz.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">🥳Git图文使用教程详解(三)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-16T02:56:46.000Z" title="发表于 2022-05-16 10:56:46">2022-05-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-17T01:11:56.988Z" title="更新于 2022-05-17 09:11:56">2022-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Git/">Git</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="🥳Git图文使用教程详解(三)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="🥳Git图文使用教程详解-三"><a href="#🥳Git图文使用教程详解-三" class="headerlink" title="🥳Git图文使用教程详解(三)"></a>🥳Git图文使用教程详解(三)</h1><h2 id="✍、Git图文使用教程说明"><a href="#✍、Git图文使用教程说明" class="headerlink" title="✍、Git图文使用教程说明"></a>✍、Git图文使用教程说明</h2><ul>
+<li>Git 版本： 2.31.0.windows.1</li>
+<li>IDEA版本：2021.1</li>
+<li>主要记录 git 的常用命令、IDEA 集成 git、git与GitHub、IDEA 集成 GitHub、Gitee等(详细图文步骤记录)</li>
+<li>配套视频参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vy4y1s7k6?from=search&seid=12466209700058370854&spm_id_from=333.337.0.0">【尚硅谷】5h打通Git全套教程</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>❤️Git图文使用教程详解</strong></th>
+<th><strong>地址</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>❤️Git图文使用教程详解(一)</td>
+<td>#</td>
+</tr>
+<tr>
+<td>❤️Git图文使用教程详解(二)</td>
+<td>#</td>
+</tr>
+<tr>
+<td>❤️Git图文使用教程详解(三)</td>
+<td>#</td>
+</tr>
+</tbody></table>
+<h2 id="🐬一、IDEA集成Git"><a href="#🐬一、IDEA集成Git" class="headerlink" title="🐬一、IDEA集成Git"></a>🐬一、IDEA集成Git</h2><h3 id="🥕1-1、配置Git忽略文件"><a href="#🥕1-1、配置Git忽略文件" class="headerlink" title="🥕1.1、配置Git忽略文件"></a>🥕1.1、配置Git忽略文件</h3><p>我们的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Eclipse&spm=1001.2101.3001.7020">Eclipse</a> 、IDEA都会生成一些无关文件，如图</p>
+<p><strong>1）Eclipse特定文件</strong> </p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514200140774.png" alt="image-20220514200140774" style="zoom:67%;" />
+
+<p>**2）IDEA特定文件 **</p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514200211619.png" alt="image-20220514200211619" style="zoom:67%;" />
+
+<p><strong>3）Maven工程的target目录</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514200237955.png" alt="image-20220514200237955" style="zoom:67%;" />
+
+<blockquote>
+<p>问题1:为什么要忽略他们？</p>
+</blockquote>
+<p> <code>答</code>：<strong>与项目的实际功能无关，不参与服务器上部署运行。把它们忽略掉能够屏蔽IDE工具之间的差异。</strong> </p>
+<blockquote>
+<p>问题2：怎么忽略？ </p>
+</blockquote>
+<p><code>1）</code><strong>创建忽略规则文件xxxx.ignore（前缀名随便起，建议是git.ignore） 这个文件的存放位置原则上在哪里都</strong></p>
+<p><strong>可以，为了便于让~&#x2F;.gitconfig文件引用，建议也放在用户家目录下 git.ignore文件模版内容如下：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Compiled class file</span><br><span class="line"> *.class</span><br><span class="line"># Log file </span><br><span class="line">*.log  </span><br><span class="line"># BlueJ files </span><br><span class="line">*.ctxt  </span><br><span class="line"># Mobile Tools for Java (J2ME)</span><br><span class="line"> .mtj.tmp/ </span><br><span class="line"># Package Files # </span><br><span class="line">*.jar </span><br><span class="line">*.war </span><br><span class="line">*.nar </span><br><span class="line">*.ear </span><br><span class="line">*.zip </span><br><span class="line">*.tar.gz </span><br><span class="line">*.rar  </span><br><span class="line"># virtual machine crash logs, see </span><br><span class="line">http://www.java.com/en/download/help/error_hotspot.xml </span><br><span class="line">hs_err_pid* </span><br><span class="line"></span><br><span class="line"> .classpath </span><br><span class="line">.project </span><br><span class="line">.settings </span><br><span class="line">target </span><br><span class="line">.idea </span><br><span class="line">*.iml </span><br></pre></td></tr></table></figure>
+
+<p><code>2）</code><strong>在.gitconfig文件中引用忽略配置文件（此文件在Windows的家目录中）</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[user]  </span><br><span class="line">	name = Layne  </span><br><span class="line">	email = Layne@atguigu.com </span><br><span class="line">[core]  </span><br><span class="line">	excludesfile = C:/Users/asus/git.ignore </span><br><span class="line">注意：这里要使用“正斜线（/）”，不要使用“反斜线（\）” </span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514200710077.png" alt="image-20220514200710077" style="zoom:67%;" />
+
+<p><code>3)</code> <strong>在</strong>IDEA中定位</p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514200810259.png" alt="image-20220514200810259" style="zoom:67%;" />
+
+<h3 id="🌶️1-2、IDEA初始化本地库"><a href="#🌶️1-2、IDEA初始化本地库" class="headerlink" title="🌶️1.2、IDEA初始化本地库"></a>🌶️1.2、IDEA初始化本地库</h3><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514200918919.png" alt="image-20220514200918919" style="zoom:80%;" />
+
+
+
+<p><strong>默认创建的 git 仓库就是我们打开的项目所在的目录，我们添加了 git 仓库之后</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514200944743.png" alt="image-20220514200944743" style="zoom:80%;" />
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514201012987.png" alt="image-20220514201012987" style="zoom:80%;" />
+
+
+
+<p><strong>添加到暂存区就变为了绿色，我们可以写些代码，然后将 project 添加到暂存区</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514214847213.png" alt="image-20220514214847213" style="zoom:67%;" />
+
+
+
+<p><strong>我们添加到暂存区，再接着进行提交到本地库</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514214951685.png" alt="image-20220514214951685" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215020089.png" alt="image-20220514215020089"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514214951685.png" alt="image-20220514214951685" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215020089.png" alt="image-20220514215020089"></p>
+<h3 id="🍬1-3、切换版本"><a href="#🍬1-3、切换版本" class="headerlink" title="🍬1.3、切换版本"></a>🍬1.3、切换版本</h3><p><strong>我们修改 GitTest 中的代码，再次提交到本地库</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215115434.png" alt="image-20220514215115434" style="zoom:67%;" />
+
+<p><strong>在IDEA的左下角，点击 Git，然后点击 Log查看版本，右键选择要切换的版本，然后在菜单里点击 Checkout Revision</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215148370.png" alt="image-20220514215148370" style="zoom:67%;" />
+
+
+
+<h3 id="👀1-4、创建分支"><a href="#👀1-4、创建分支" class="headerlink" title="👀1.4、创建分支"></a>👀1.4、创建分支</h3><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215304515.png" alt="image-20220514215304515" style="zoom:67%;" />
+
+<p><strong>在弹出的Git Branches框里 点击 New Branch按钮。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215329232.png" alt="image-20220514215329232" style="zoom:67%;" />
+
+<p><strong>填写分支名称</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215357971.png" alt="image-20220514215357971" style="zoom:67%;" />
+
+<p><strong>然后再 IDEA的右下角看到 hot-fix，说明分支创建成功，并且当前已经切换成 hot-fix分</strong><br><strong>支</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215420819.png" alt="image-20220514215420819" style="zoom:67%;" />
+
+
+
+<h3 id="👁️1-5、切换分支"><a href="#👁️1-5、切换分支" class="headerlink" title="👁️1.5、切换分支"></a>👁️1.5、切换分支</h3><p><strong>在IDEA窗口的右下角，切换到 master分支 。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215817532.png" alt="image-20220514215817532" style="zoom:67%;" />
+
+
+
+<h3 id="🥖1-6、合并分支"><a href="#🥖1-6、合并分支" class="headerlink" title="🥖1.6、合并分支"></a>🥖1.6、合并分支</h3><p><strong>在IDEA窗口的右下角，将 hot-fix分支合并到当前 master分支。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215902804.png" alt="image-20220514215902804" style="zoom:67%;" />
+
+<p>如果代码没有冲突，分支直接合并成功，分支合并成功以后，代码自动提交，无需手动提交本地库</p>
+<h3 id="🐸1-7、合并分支冲突"><a href="#🐸1-7、合并分支冲突" class="headerlink" title="🐸1.7、合并分支冲突"></a>🐸1.7、合并分支冲突</h3><p><strong>如图所示，如果master分支和 hot-fix分支都修改了代码，在合并分支的时候就会发生冲突。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215947593.png" alt="image-20220514215947593" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220010923.png" alt="image-20220514220010923"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514215947593.png" alt="image-20220514215947593" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220010923.png" alt="image-20220514220010923"></p>
+<p><strong>我们现在站在master分支上合并 hot-fix分支，就会发生代码冲突。</strong></p>
+<p><strong>点击 Conflicts框里的 Merge按钮，进行手动合并代码。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220039135.png" alt="image-20220514220039135" style="zoom:67%;" />
+
+<p><strong>手动合并完代码以后，点击右下角的 Apply按钮。代码冲突解决，自动提交本地库。</strong></p>
+<h2 id="🐬二、IDEA集成Github"><a href="#🐬二、IDEA集成Github" class="headerlink" title="🐬二、IDEA集成Github"></a>🐬二、IDEA集成Github</h2><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220145080.png" alt="image-20220514220145080" style="zoom:67%;" />
+
+<p><strong>Token在哪呢？我们在 Github 点击 Settings -&gt; Develop Settings</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220228309.png" alt="image-20220514220228309" style="zoom:67%;" />
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220254689.png" alt="image-20220514220254689" style="zoom:67%;" />
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220326147.png" alt="image-20220514220326147" style="zoom:67%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220354052.png" alt="image-20220514220354052" style="zoom:67%;" />
+
+
+
+<h3 id="🍷2-1、分享项目到Github"><a href="#🍷2-1、分享项目到Github" class="headerlink" title="🍷2.1、分享项目到Github"></a>🍷2.1、分享项目到Github</h3><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/Snipaste_2022-05-14_22-04-26.png" style="zoom:67%;" />
+
+<p><strong>这其实就是创建远程库，名字，是否私有，描述等</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220513822.png" alt="image-20220514220513822" style="zoom:67%;" />
+
+
+
+<h3 id="☕2-2、push推送本地库到远程库"><a href="#☕2-2、push推送本地库到远程库" class="headerlink" title="☕2.2、push推送本地库到远程库"></a>☕2.2、push推送本地库到远程库</h3><p><strong>右键点击项目，可以将当前分支的内容 push 到 GitHub的远程仓库中 。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220552495.png" alt="image-20220514220552495" style="zoom:67%;" />
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220619448.png" alt="image-20220514220619448" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220646386.png" alt="image-20220514220646386"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220619448.png" alt="image-20220514220619448" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220646386.png" alt="image-20220514220646386"></p>
+<h3 id="🐞2-3、pull拉取远程库到本地库"><a href="#🐞2-3、pull拉取远程库到本地库" class="headerlink" title="🐞2.3、pull拉取远程库到本地库"></a>🐞2.3、pull拉取远程库到本地库</h3><blockquote>
+<p>注意：push是将本地库代码推送到远程库，如果本地库代码跟远程库代码版本不一致，push的操作是会</p>
+<p>被拒绝的。也就是说， 要想 push成功，一定要保证本地 库的版本要比远程库的版本高！ 因此一个成熟的</p>
+<p>程序员在动手改本地代码之前，一定会先检查下远程库跟本地代码的区别！如果本地的代码版本已经落</p>
+<p>后，切记要先 pull拉取一下远程库的代码，将本地代码更新到最新以后，然后再修改，提交，推送！</p>
+</blockquote>
+<p><strong>右键点击项目，可以将远程仓库的内容pull到本地仓库 。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220752543.png" alt="image-20220514220752543" style="zoom:67%;" />
+
+
+
+<p><strong>注意：pull是拉取远端仓库代码到本地，如果远程库代码和本地库代码不一致，会自动合并，如果自动合并</strong></p>
+<p><strong>失败，还会涉及到手动解决冲突的问题。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220831563.png" alt="image-20220514220831563" style="zoom:67%;" />
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514220855512.png" alt="image-20220514220855512" style="zoom:67%;" />
+
+
+
+<h2 id="🍦三、IDEA集成Gitee"><a href="#🍦三、IDEA集成Gitee" class="headerlink" title="🍦三、IDEA集成Gitee"></a>🍦三、IDEA集成Gitee</h2><h3 id="🌂3-1、IDEA安装码云插件"><a href="#🌂3-1、IDEA安装码云插件" class="headerlink" title="🌂3.1、IDEA安装码云插件"></a>🌂3.1、IDEA安装码云插件</h3><p><strong>Idea 默认不带码云插件，我们第一步要安装 Gitee插件。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221024531.png" alt="image-20220514221024531" style="zoom:67%;" />
+
+
+
+<p><strong>安装完成重启 IDEA 即可</strong></p>
+<p><strong>Idea连接码云和连接 GitHub几乎一样，首先在 Idea里面创建一个工程，初始化 git工程，然后将代码添加到暂存区，提交到本地库。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221051195.png" alt="image-20220514221051195" style="zoom:67%;" />
+
+
+
+<h3 id="🧿3-2、分享项目到Gitee"><a href="#🧿3-2、分享项目到Gitee" class="headerlink" title="🧿3.2、分享项目到Gitee"></a>🧿3.2、分享项目到Gitee</h3><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221215513.png" alt="image-20220514221215513" style="zoom:67%;" />
+
+<h3 id="🌀3-2、push推送到码云远程库"><a href="#🌀3-2、push推送到码云远程库" class="headerlink" title="🌀3.2、push推送到码云远程库"></a>🌀3.2、push推送到码云远程库</h3><p><strong>当然我们也可以自己在码云Gitee上创建远程库，然后获取到远程库的 HTTPS&#x2F;SSH 链接，将我们的代码 push 即可</strong></p>
+<p><strong>自定义远程库链接： Define remote，给远程库链接定义个 name，然后再 URL里面填入码云远程库的 HTTPS链接即可，码云服务器在国内，用 HTTPS 链接即可，没必要用 SSH 免密链接</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221337470.png" alt="image-20220514221337470" style="zoom:67%;" />
+
+<h3 id="⛱️3-3、pull拉取远程库到本地库"><a href="#⛱️3-3、pull拉取远程库到本地库" class="headerlink" title="⛱️3.3、pull拉取远程库到本地库"></a>⛱️3.3、pull拉取远程库到本地库</h3><p><strong>我们在远程库修改代码，然后使用本地库 pull 拉取远程库的代码</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221407125.png" alt="image-20220514221407125" style="zoom:67%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220515122432694.png" alt="image-20220515122432694" style="zoom:67%;" />
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221451527.png" alt="image-20220514221451527" style="zoom:67%;" />
+
+
+
+<h3 id="🔭3-4、clone克隆远程库到本地库"><a href="#🔭3-4、clone克隆远程库到本地库" class="headerlink" title="🔭3.4、clone克隆远程库到本地库"></a>🔭3.4、clone克隆远程库到本地库</h3><p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221528224.png" alt="image-20220514221528224" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221550382.png" alt="image-20220514221550382"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221528224.png" alt="image-20220514221528224" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514221550382.png" alt="image-20220514221550382"></p>
+<h2 id="🪒四、码云复制Github项目"><a href="#🪒四、码云复制Github项目" class="headerlink" title="🪒四、码云复制Github项目"></a>🪒四、码云复制Github项目</h2><p>码云提供了直接复制 GitHub 项目的功能，方便我们做项目的迁移和下载 。</p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514222422776.png" alt="image-20220514222422776" style="zoom:67%;" />
+
+<p><strong>如果GitHub项目更新了以后，在码云项目端可以手动重新同步，进行更新！</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/gaoziman/bed/img/image-20220514225212684.png" alt="image-20220514225212684" style="zoom:67%;" />
+
+
+
+<p><strong>Git的教程就到这里完结啦！！！撒花撒花撒花！！！！</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/16/%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%B8%89/">https://manamn.space/2022/05/16/%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%B8%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="post_share"><div class="social-share" data-image="https://tva1.sinaimg.cn/large/005FzdTdgy1geetguvkulj31hc0u0aqz.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/22/hm-Spring%E7%AC%AC%E4%B8%80%E5%A4%A9/"><img class="prev-cover" src="https://tva1.sinaimg.cn/large/0072Vf1pgy1foxk6pmjkjj31kw0w0b0v.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hm-Spring第一天</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/16/%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%BA%8C/"><img class="next-cover" src="https://tva4.sinaimg.cn/large/0072Vf1pgy1foxk3jkoywj31hc0u0tr3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">🥳Git图文使用教程详解(二)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/16/%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%B8%80/" title="🥳Git图文使用教程详解(一)"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167gy1fwrh90hcb2j21hc0xcq8k.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">🥳Git图文使用教程详解(一)</div></div></a></div><div><a href="/2022/05/16/%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%BA%8C/" title="🥳Git图文使用教程详解(二)"><img class="cover" src="https://tva4.sinaimg.cn/large/0072Vf1pgy1foxk3jkoywj31hc0u0tr3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">🥳Git图文使用教程详解(二)</div></div></a></div><div><a href="/2022/05/16/01-JVM%E4%B8%8EJava%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" title="01-JVM与Java体系结构"><img class="cover" src="https://static.likepoems.com/2020/09/19/b63265085d5bbbb07a56c2ffd4f2b4810.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">01-JVM与Java体系结构</div></div></a></div><div><a href="/2022/05/16/02-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%AD%90%E7%B3%BB%E7%BB%9F/" title="02-类加载子系统"><img class="cover" src="https://static.likepoems.com/2020/09/19/afb73ab75cbc2c2b1e4be43bceb501d47.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">02-类加载子系统</div></div></a></div><div><a href="/2022/05/16/01-%E6%A6%82%E8%BF%B0%E7%AF%87-02-JVM%E7%9B%91%E6%8E%A7%E5%8F%8A%E8%AF%8A%E6%96%AD%E5%B7%A5%E5%85%B7-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AF%87/" title="01-概述篇-02-JVM监控及诊断工具-命令行篇"><img class="cover" src="https://static.likepoems.com/2020/09/19/808c3fde4d543f46d7652348e2afadeec.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">01-概述篇-02-JVM监控及诊断工具-命令行篇</div></div></a></div><div><a href="/2022/05/16/03-JVM%E7%9B%91%E6%8E%A7%E5%8F%8A%E8%AF%8A%E6%96%AD%E5%B7%A5%E5%85%B7-GUI%E7%AF%87/" title="03-JVM监控及诊断工具-GUI篇"><img class="cover" src="https://static.likepoems.com/2020/09/19/7d6d37aa1b5e667157737117a38f14f85.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">03-JVM监控及诊断工具-GUI篇</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%A5%B3Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3-%E4%B8%89"><span class="toc-number">1.</span> <span class="toc-text">🥳Git图文使用教程详解(三)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%8D%E3%80%81Git%E5%9B%BE%E6%96%87%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">✍、Git图文使用教程说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%AC%E4%B8%80%E3%80%81IDEA%E9%9B%86%E6%88%90Git"><span class="toc-number">1.2.</span> <span class="toc-text">🐬一、IDEA集成Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A5%951-1%E3%80%81%E9%85%8D%E7%BD%AEGit%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">🥕1.1、配置Git忽略文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8C%B6%EF%B8%8F1-2%E3%80%81IDEA%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AC%E5%9C%B0%E5%BA%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">🌶️1.2、IDEA初始化本地库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8D%AC1-3%E3%80%81%E5%88%87%E6%8D%A2%E7%89%88%E6%9C%AC"><span class="toc-number">1.2.3.</span> <span class="toc-text">🍬1.3、切换版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%91%801-4%E3%80%81%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-number">1.2.4.</span> <span class="toc-text">👀1.4、创建分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%91%81%EF%B8%8F1-5%E3%80%81%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-number">1.2.5.</span> <span class="toc-text">👁️1.5、切换分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A5%961-6%E3%80%81%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-number">1.2.6.</span> <span class="toc-text">🥖1.6、合并分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B81-7%E3%80%81%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF%E5%86%B2%E7%AA%81"><span class="toc-number">1.2.7.</span> <span class="toc-text">🐸1.7、合并分支冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%AC%E4%BA%8C%E3%80%81IDEA%E9%9B%86%E6%88%90Github"><span class="toc-number">1.3.</span> <span class="toc-text">🐬二、IDEA集成Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8D%B72-1%E3%80%81%E5%88%86%E4%BA%AB%E9%A1%B9%E7%9B%AE%E5%88%B0Github"><span class="toc-number">1.3.1.</span> <span class="toc-text">🍷2.1、分享项目到Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%98%952-2%E3%80%81push%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E5%BA%93%E5%88%B0%E8%BF%9C%E7%A8%8B%E5%BA%93"><span class="toc-number">1.3.2.</span> <span class="toc-text">☕2.2、push推送本地库到远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%9E2-3%E3%80%81pull%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%BA%93%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%BA%93"><span class="toc-number">1.3.3.</span> <span class="toc-text">🐞2.3、pull拉取远程库到本地库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8D%A6%E4%B8%89%E3%80%81IDEA%E9%9B%86%E6%88%90Gitee"><span class="toc-number">1.4.</span> <span class="toc-text">🍦三、IDEA集成Gitee</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8C%823-1%E3%80%81IDEA%E5%AE%89%E8%A3%85%E7%A0%81%E4%BA%91%E6%8F%92%E4%BB%B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">🌂3.1、IDEA安装码云插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%BF3-2%E3%80%81%E5%88%86%E4%BA%AB%E9%A1%B9%E7%9B%AE%E5%88%B0Gitee"><span class="toc-number">1.4.2.</span> <span class="toc-text">🧿3.2、分享项目到Gitee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8C%803-2%E3%80%81push%E6%8E%A8%E9%80%81%E5%88%B0%E7%A0%81%E4%BA%91%E8%BF%9C%E7%A8%8B%E5%BA%93"><span class="toc-number">1.4.3.</span> <span class="toc-text">🌀3.2、push推送到码云远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9B%B1%EF%B8%8F3-3%E3%80%81pull%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%BA%93%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%BA%93"><span class="toc-number">1.4.4.</span> <span class="toc-text">⛱️3.3、pull拉取远程库到本地库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%AD3-4%E3%80%81clone%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E5%BA%93%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%BA%93"><span class="toc-number">1.4.5.</span> <span class="toc-text">🔭3.4、clone克隆远程库到本地库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%AA%92%E5%9B%9B%E3%80%81%E7%A0%81%E4%BA%91%E5%A4%8D%E5%88%B6Github%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.5.</span> <span class="toc-text">🪒四、码云复制Github项目</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

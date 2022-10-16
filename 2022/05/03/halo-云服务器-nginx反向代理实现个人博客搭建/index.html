@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>halo+云服务器+nginx反向代理实现个人博客搭建 | 爱笑的Gao的个人博客</title><meta name="keywords" content="博客💻,Halo"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="halo+云服务器+nginx反向代理实现个人博客搭建1.云服务器选择这里直接选用 阿里云云服务器 ECS突发性能型 t6 别家的基本都一样，选用配置差不多的就行。 https:&#x2F;&#x2F;developer.aliyun.com&#x2F;plan&#x2F;grow-up （这里因为已经买过了，所以是724，第一次买应该是90+） 这里的地域可以购买离自己进一点的（访问起来会快一点），如果服务器在大陆内，最后进行域名绑定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="halo+云服务器+nginx反向代理实现个人博客搭建">
+<meta property="og:url" content="https://manamn.space/2022/05/03/halo-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="halo+云服务器+nginx反向代理实现个人博客搭建1.云服务器选择这里直接选用 阿里云云服务器 ECS突发性能型 t6 别家的基本都一样，选用配置差不多的就行。 https:&#x2F;&#x2F;developer.aliyun.com&#x2F;plan&#x2F;grow-up （这里因为已经买过了，所以是724，第一次买应该是90+） 这里的地域可以购买离自己进一点的（访问起来会快一点），如果服务器在大陆内，最后进行域名绑定">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/9bd9b167gy1fwrsvx0of1j21hc0u044w.jpg">
+<meta property="article:published_time" content="2022-05-03T09:06:45.000Z">
+<meta property="article:modified_time" content="2022-05-12T15:41:03.451Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="博客💻">
+<meta property="article:tag" content="Halo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva3.sinaimg.cn/large/9bd9b167gy1fwrsvx0of1j21hc0u044w.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://manamn.space/2022/05/03/halo-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'halo+云服务器+nginx反向代理实现个人博客搭建',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-12 23:41:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva3.sinaimg.cn/large/9bd9b167gy1fwrsvx0of1j21hc0u044w.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">爱笑的Gao的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-zhuye"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-yuedu"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link faa-float animated-hover"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/photos"><i class="fa-fw iconfont icon-xiangji1"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo faa-float animated-hover"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">halo+云服务器+nginx反向代理实现个人博客搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T09:06:45.000Z" title="发表于 2022-05-03 17:06:45">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-12T15:41:03.451Z" title="更新于 2022-05-12 23:41:03">2022-05-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8D%9A%E5%AE%A2%F0%9F%92%BB/">博客💻</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="halo+云服务器+nginx反向代理实现个人博客搭建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="halo-云服务器-nginx反向代理实现个人博客搭建"><a href="#halo-云服务器-nginx反向代理实现个人博客搭建" class="headerlink" title="halo+云服务器+nginx反向代理实现个人博客搭建"></a>halo+云服务器+nginx反向代理实现个人博客搭建</h1><h2 id="1-云服务器选择"><a href="#1-云服务器选择" class="headerlink" title="1.云服务器选择"></a>1.云服务器选择</h2><p>这里直接选用 阿里云云服务器 ECS突发性能型 t6 别家的基本都一样，选用配置差不多的就行。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/plan/grow-up">https://developer.aliyun.com/plan/grow-up</a></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B4%AD%E4%B9%B0.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B4%AD%E4%B9%B0.png" alt="1-服务器购买"></a><br>（这里因为已经买过了，所以是724，第一次买应该是90+）</p>
+<p>这里的地域可以购买离自己进一点的（访问起来会快一点），如果服务器在大陆内，最后进行域名绑定的时候需要进行备案，选用在香港的服务器则不用。</p>
+<p>操作系统选用CentOS。</p>
+<p>其他的默认就好了。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B4%AD%E4%B9%B0%E8%AE%A2%E5%8D%95.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B4%AD%E4%B9%B0%E8%AE%A2%E5%8D%95.png" alt="2-服务器购买订单"></a></p>
+<p>进行订单的下单。</p>
+<p>在这一步下单完成后，我们还没有对我们的服务器设定密码。</p>
+<p>进去阿里云个人的ECS控制台。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/3-ECS%E5%AE%9E%E4%BE%8B.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/3-ECS%E5%AE%9E%E4%BE%8B.png" alt="3-ECS实例"></a></p>
+<p>点击实例</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/4-ECS%E5%AE%9E%E4%BE%8B%E5%9C%B0%E5%8C%BA%E9%80%89%E6%8B%A9.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/4-ECS%E5%AE%9E%E4%BE%8B%E5%9C%B0%E5%8C%BA%E9%80%89%E6%8B%A9.png" alt="4-ECS实例地区选择"></a></p>
+<p>选择自己购买服务器时选择服务器所在的地区。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/5-ECS%E5%AE%9E%E4%BE%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%86%E7%A0%81.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/5-ECS%E5%AE%9E%E4%BE%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%86%E7%A0%81.png" alt="5-ECS实例初始化密码"></a></p>
+<p>这时候我们就可以看到我们购买的服务器的信息。</p>
+<p>点击管理-&gt;进入到ECS实例的详情，点击重置实例密码。然后我们修改密码。<br><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/6-ECS%E9%87%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B%E5%AF%86%E7%A0%81.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/6-ECS%E9%87%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B%E5%AF%86%E7%A0%81.png" alt="6-ECS重置实例密码"></a></p>
+<p><strong>这里我们的用户名root和实例密码都必须记住，最好截图保存下来，下面使用远程管理工具访问云服务器的时候会用到。</strong></p>
+<p>然后我们点击左侧菜单栏上的安全组，进入到安全组列表，点击右侧配置规则。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/7-%E5%AE%89%E5%85%A8%E7%BB%84%E5%88%97%E8%A1%A8.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/7-%E5%AE%89%E5%85%A8%E7%BB%84%E5%88%97%E8%A1%A8.png" alt="7-安全组列表"></a></p>
+<p>然后选择入方向，点击手动添加，在新的规则中输入一下内容。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/8-ECS%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/8-ECS%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3.png" alt="8-ECS开放端口"></a></p>
+<p>点击保存，然后重复进行这一步走，以此在端口范围中填入8888&#x2F;8888，443&#x2F;443，80&#x2F;80这三个，授权对象处都填写0.0.0.0&#x2F;0。</p>
+<p>最终结果如下：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/9-ECS%E5%AE%89%E5%85%A8%E7%BB%84%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/9-ECS%E5%AE%89%E5%85%A8%E7%BB%84%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C.png" alt="9-ECS安全组最终结果"></a></p>
+<p>这里8090端口为halo默认端口，8888为宝塔面板默认端口，443为SSL端口，80为网站默认端口。</p>
+<h2 id="2-服务器连接-halo安装"><a href="#2-服务器连接-halo安装" class="headerlink" title="2.服务器连接+halo安装"></a>2.服务器连接+halo安装</h2><h3 id="A-服务器连接"><a href="#A-服务器连接" class="headerlink" title="A.服务器连接"></a>A.服务器连接</h3><p>下面我们使用远程连接工具，对我们的云服务器进行连接。</p>
+<p>市面上常见的ssh工具有很多，可以自行搜索下载，用哪个都一样。</p>
+<p>（eg. Xshell7 puTTy等等）</p>
+<p>这里以Xshell7 为例</p>
+<p>我们在服务器实例管理页面，复制我们准备好的服务器的<strong>公网</strong>ip。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/10-ECS%E5%AE%9E%E4%BE%8B%E5%85%AC%E7%BD%91ip.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/10-ECS%E5%AE%9E%E4%BE%8B%E5%85%AC%E7%BD%91ip.png" alt="10-ECS实例公网ip"></a></p>
+<p>然后打开 ssh工具新建会话。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/11-SSH%E6%96%B0%E5%BB%BA%E4%BC%9A%E8%AF%9D.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/11-SSH%E6%96%B0%E5%BB%BA%E4%BC%9A%E8%AF%9D.png" alt="11-SSH新建会话"></a></p>
+<p>在主机&#x2F;host这一栏中复制我们服务器的公网ip，其他不用变，点击确定进行连接。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/12-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%90%8D%E8%BE%93%E5%85%A5.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/12-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%90%8D%E8%BE%93%E5%85%A5.png" alt="12-服务器用户名输入"></a></p>
+<p>在用户名一栏中输入root。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/13-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/13-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5.png" alt="13-服务器密码输入"></a></p>
+<p>然后在密码处输入我们在阿里云自己设置的服务器密码。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/14-Xshell%E7%99%BB%E9%99%86%E6%88%90%E5%8A%9F.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/14-Xshell%E7%99%BB%E9%99%86%E6%88%90%E5%8A%9F.png" alt="14-Xshell登陆成功"></a></p>
+<p>如果登陆成功，则可以在console看到以上画面。</p>
+<h3 id="B-halo安装"><a href="#B-halo安装" class="headerlink" title="B.halo安装"></a>B.halo安装</h3><p>接下来我们进行halo的安装。</p>
+<p>halo的安装教程可以在官方文档进行查看—-<a target="_blank" rel="noopener" href="https://docs.halo.run/install/linux%E3%80%82">https://docs.halo.run/install/linux。</a></p>
+<p>这里依照官方文档，进行安装的指导。只需要一步一步粘贴文档中的代码即可。</p>
+<p>1.首先我们对系统进行一下升级。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y update</span><br></pre></td></tr></table></figure>
+
+<p>然后我们会看到一下内容，不用管，等他升级完成，会在末尾出现complete！字样。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/15-%E6%9C%8D%E5%8A%A1%E5%99%A8yum%E5%8D%87%E7%BA%A7.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/15-%E6%9C%8D%E5%8A%A1%E5%99%A8yum%E5%8D%87%E7%BA%A7.png" alt="15-服务器yum升级"></a></p>
+<p>2.等yum升级完成后，我们进行java环境的安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install java-11-openjdk -y</span><br></pre></td></tr></table></figure>
+
+<p>复制以上代码，回车安装java运行环境。中途会询问是否安装，回复y即可。</p>
+<p>安装成功后，会显示success等字样。</p>
+<p>完成后我们检查一下java版本，输入一下代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<p>如果出现一下类似内容，则成功。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/16-%E6%9C%8D%E5%8A%A1%E5%99%A8java%E5%AE%89%E8%A3%85.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/16-%E6%9C%8D%E5%8A%A1%E5%99%A8java%E5%AE%89%E8%A3%85.png" alt="16-服务器java安装"></a></p>
+<p>3.接下来我们正式进行halo的安装。</p>
+<p>这一步可以完全按照halo官方文档的指导来进行。</p>
+<p>这里只对一些容易出问题的地方进行解释。</p>
+<p>a.在官方文档中的安装第六点-编辑配置文件中。这一步一般来说使用默认即可，不需要进行改动。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/17-%E5%AE%89%E8%A3%85%E7%AC%AC6%E7%82%B9%E8%AE%B2%E8%A7%A3.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/17-%E5%AE%89%E8%A3%85%E7%AC%AC6%E7%82%B9%E8%AE%B2%E8%A7%A3.png" alt="17-安装第6点讲解"></a></p>
+<p>打开配置文件后，可以看到以下内容：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/18-application%E9%85%8D%E7%BD%AE.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/18-application%E9%85%8D%E7%BD%AE.png" alt="18-application配置"></a></p>
+<p>这里不做任何改动，直接退出即可，在该页面直接输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
+
+<p>即可退出。</p>
+<p>b.在官方文档中的安装第八点中，成功启动halo后，输入<code>ctrl+c</code>即可退出运行。</p>
+<p>c.在官方文档中的作为服务运行第四点中-修改配置</p>
+<p>进入vim编辑模式后，点击键盘上的<code>i</code>进入插入模式，即可修改配置文件，点击键盘上的<code>ESC</code>即可退出插入模式。</p>
+<p>如果有完全按照官方教程来进行halo的安装，那么Halo 运行包的绝对路径为 <code>/home/halo/app/halo.jar</code>，同时我们使用一个叫<code>halo</code>的用户来安装，那么最终配置文件将被修改为一下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Halo Service</span><br><span class="line">Documentation=https://halo.run</span><br><span class="line">After=network-online.target</span><br><span class="line">Wants=network-online.target</span><br><span class="line"> </span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=halo</span><br><span class="line">ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar /home/halo/app/halo.jar</span><br><span class="line">ExecStop=/bin/kill -s QUIT $MAINPID</span><br><span class="line">Restart=always</span><br><span class="line">StandOutput=syslog</span><br><span class="line"> </span><br><span class="line">StandError=inherit</span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>修改完成后，按下<code>ESC</code>退出插入模式，输入<code>:wq</code>退出配置文件。</p>
+<p>继续安装官方文档进行，即可完成halo的全部安装。</p>
+<p><strong>当全部完成时，我们可以通过ip:端口的方式来访问我们的网站。这里也非常建议使用这种方式来测试配置文件是否出现问题。</strong></p>
+<h2 id="3-nginx反向代理"><a href="#3-nginx反向代理" class="headerlink" title="3.nginx反向代理"></a>3.nginx反向代理</h2><p>1.域名解析</p>
+<p>这里我们还是用阿里云购买的域名为例</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/19-%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/19-%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png" alt="19-域名DNS解析"></a></p>
+<p>将我们已经购买的域名解析到我们的服务器上，图中的记录值就是我们的服务器的外网ip地址。</p>
+<p>我们解析完成后，可以在cmd中ping我们的域名，如果ping通则说明解析成功。刚解析完会有一定的延迟，过一会应该能ping通。</p>
+<p>1.宝塔面板安装</p>
+<p>这里nginx的反向代理我们通过宝塔面板来安装，我们使用<code>cd ~</code>返回到root用的根目录下。</p>
+<p>这里直接复制宝塔面板的下载安装命令，即可安装宝塔面板。</p>
+<p>Centos：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh</span><br></pre></td></tr></table></figure>
+
+<p>不过的Linux系统安装命令不同，可以到<a target="_blank" rel="noopener" href="https://www.bt.cn/bbs/thread-19376-1-1.html">宝塔面板的官方文档</a>中查看。</p>
+<p>安装完成后，我们看我们的console上出现了一下内容：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/20-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E8%AE%BF%E9%97%AE%E5%9C%B0%E5%9D%80%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/20-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E8%AE%BF%E9%97%AE%E5%9C%B0%E5%9D%80%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81.png" alt="20-宝塔面板访问地址账号密码"></a></p>
+<p>这个是我们服务器宝塔面板的访问地址，账号和密码。</p>
+<p>这里建立截图把这些保存下来，如果忘记了可以在SSH中输入<code>bt default</code>重新查看。</p>
+<p>2.宝塔面板nginx安装配置。</p>
+<p>我们复制外网面板地址到浏览器中打开，输入对应的username和password即可进入我们服务器的宝塔面板中。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/21-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%A6%96%E9%A1%B5.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/21-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%A6%96%E9%A1%B5.png" alt="21-宝塔面板首页"></a></p>
+<p>首次进入宝塔面板会有软件的推荐安装，这个我们直接关掉，我们只需要后面从软件商城中自行安装nginx就好了。</p>
+<p>我们首先点击左侧菜单栏的安全。点开后我们可以看到防火墙。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/22-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%98%B2%E7%81%AB%E5%A2%99.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/22-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%98%B2%E7%81%AB%E5%A2%99.png" alt="22-宝塔面板防火墙"></a></p>
+<p>我们在防火墙中依次放行上面我们在阿里云服务器中已经放行过的端口。</p>
+<p><em><strong>注：这里8090端口没有默认的放行，所以安装好宝塔面板后，如果没有再次去放行则，不能通过ip：端口的方式去访问我们的博客。</strong></em></p>
+<p>然后我们在左侧菜单栏中选择软件商店-&gt;搜索nginx-&gt;选择快速安装-&gt;等待安装完毕。</p>
+<p>等待nginx安装完毕后，我们点击左侧网站-&gt;点击添加站点。添加我们的站点。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/23-%E7%AB%99%E7%82%B9%E6%B7%BB%E5%8A%A0.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/23-%E7%AB%99%E7%82%B9%E6%B7%BB%E5%8A%A0.png" alt="23-站点添加"></a></p>
+<p>这里域名填写我们解析好的主域名（即我们在阿里云购买的域名，例如我购买的域名为yusart.xyz，那么我直接填写yusart.xyz，前面不需要填写其他的）</p>
+<p>其他的东西不用动，点击提交。</p>
+<p>这时我们的网站管理中就会多出我们刚才添加的站点，我们选择该站点点击设置。可以看到下面得到界面。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/24-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/24-%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png" alt="24-宝塔面板域名管理"></a></p>
+<p>我们进去可以看到在域名管理中已经有一个我们的主域名了，然后我们在上方的方框中添加一个www开头的一级域名即可。添加完成后效果如上。</p>
+<p>然后我们点击配置文件，开始进行nginx的配置。</p>
+<p>这里的配置我们也是按照官方文档的说明来进行。</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.halo.run/install/bt-panel">https://docs.halo.run/install/bt-panel</a></p>
+<p>1.首先在根节点下添加以下代码（根节点与Server节点并列，添加根节点即在Server外添加）</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> halo &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8090</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里8090为halo默认端口，如果前面有改过端口号，则改为修改过的端口号。</p>
+<p>添加完毕后配置文件如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> halo &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8090</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>2.在55行左右找到名为 <code>location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</code>的<br>子节点</p>
+<p>将一下代码插入到该子节点中</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_pass</span> http://halo;</span><br></pre></td></tr></table></figure>
+
+<p>最终效果见下方总览。</p>
+<p>3.在63行左右找到名为<code>location ~ .*\.(js|css)?$</code>的子节点<br>将一下代码插入到该子节点中</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">proxy_pass</span> http://halo;</span><br></pre></td></tr></table></figure>
+
+<p>最终效果见下方总览。</p>
+<p>4.将一下内容插入到第69行后面。（即在Server内添加一个名为<code>location /</code>的子节点，与上述两个节点并列）</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="section">location</span> / &#123;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> HOST <span class="variable">$host</span>;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"><span class="attribute">proxy_pass</span> http://halo;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终配置文件如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> halo &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">127.0.0.1:8090</span>;</span><br><span class="line">&#125;//添加</span><br><span class="line"><span class="section">server</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line">	</span><br><span class="line">	...</span><br><span class="line">	</span><br><span class="line">    <span class="section">location</span> <span class="regexp">~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://halo;//添加</span><br><span class="line">        <span class="attribute">expires</span>      <span class="number">30d</span>;</span><br><span class="line">        <span class="attribute">error_log</span> /dev/null;</span><br><span class="line">        <span class="attribute">access_log</span> <span class="literal">off</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="section">location</span> <span class="regexp">~ .*\.(js|css)?$</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://halo;//添加</span><br><span class="line">        <span class="attribute">expires</span>      <span class="number">12h</span>;</span><br><span class="line">        <span class="attribute">error_log</span> /dev/null;</span><br><span class="line">        <span class="attribute">access_log</span> <span class="literal">off</span>; </span><br><span class="line">    &#125;</span><br><span class="line">   <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> HOST <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://halo;</span><br><span class="line">    &#125;//添加</span><br><span class="line">&#125;//注意最后的大括号</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>注意在78行(最下方一行，不一定是78)还有一个反大括号。</strong></em></p>
+<p>点击保存，这时我们就配置完成了，等待一段时间的延迟后，我们就可以通过我们的域名访问我们的博客了。如果不能访问可以尝试通过宝塔面板重启nginx。</p>
+<p><em><strong>注：如果我们访问我们的博客，出现css没有的情况有可能是在我们的博客后台-&gt;系统-&gt;博客设置中的博客地址没有相应的修改成我们的域名。可以修改为<a target="_blank" rel="noopener" href="http://+域名的格式/">http:&#x2F;&#x2F;+域名的格式</a></strong></em></p>
+<p>3.SSL认证</p>
+<p>当我们可以通过域名访问我们的博客后，我们可以为我们的博客添加SSL。</p>
+<p>在宝塔面板-&gt;域名管理-&gt;配置文件下方我们可以看到SSL。我们可以使用宝塔SSL或者Let&#96;s Encrypt（这里建议使用Lets Encrypt，使用宝塔SSL会比较慢）其中的一种。点击申请即可。<em><strong>申请成功后一点要打开右上角的强制HTTPS。</strong></em></p>
+<p><em><strong>注：如果我们访问我们的博客，出现css没有的情况有可能是在我们的博客后台-&gt;系统-&gt;博客设置中的博客地址没有相应的修改成我们的域名。可以修改为<a target="_blank" rel="noopener" href="https://+域名的格式/">https:&#x2F;&#x2F;+域名的格式</a></strong></em></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/25-SSL%E8%AE%A4%E8%AF%81.png"><img src="https://cdn.jsdelivr.net/gh/Daseinlux/Blog_image/blog_1_2021_3_21/25-SSL%E8%AE%A4%E8%AF%81.png" alt="25-SSL认证"></a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/halo-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">https://manamn.space/2022/05/03/halo-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2%F0%9F%92%BB/">博客💻</a><a class="post-meta__tags" href="/tags/Halo/">Halo</a></div><div class="post_share"><div class="social-share" data-image="https://tva3.sinaimg.cn/large/9bd9b167gy1fwrsvx0of1j21hc0u044w.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/Java%E6%9E%9A%E4%B8%BE%E7%B1%BB/"><img class="prev-cover" src="https://tva1.sinaimg.cn/large/005BYqpggy1fwrcwwzy86j31hc0u0aqn.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java枚举类</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/%E5%A4%A7%E4%BD%AC%E8%BF%9B%E9%98%B6%E6%96%87%E7%AB%A0/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/seovx-com-2d%20%20(216).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">大佬进阶文章</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/03/Halo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="Halo博客搭建"><img class="cover" src="https://tva4.sinaimg.cn/large/9bd9b167gy1fwsfm78a0gj21hc0u0u0t.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Halo博客搭建</div></div></a></div><div><a href="/2022/05/03/Hexo-next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" title="Hexo-next主题添加搜索功能"><img class="cover" src="https://tva2.sinaimg.cn/large/9bd9b167ly1fwsflh1018j21hc0u0u06.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">Hexo-next主题添加搜索功能</div></div></a></div><div><a href="/2022/05/03/%E5%85%B3%E4%BA%8EHexo%E5%8D%9A%E5%AE%A2/" title="关于Hexo博客"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(630).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">关于Hexo博客</div></div></a></div><div><a href="/2022/05/03/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%A3%E8%AF%BB/" title="关于博客的解读"><img class="cover" src="https://tva3.sinaimg.cn/large/9bd9b167ly1fwsfzfmb51j21hc0u04qp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">关于博客的解读</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">104</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#halo-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">halo+云服务器+nginx反向代理实现个人博客搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%89%E6%8B%A9"><span class="toc-number">1.1.</span> <span class="toc-text">1.云服务器选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5-halo%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">2.服务器连接+halo安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text">A.服务器连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-halo%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.2.</span> <span class="toc-text">B.halo安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">3.nginx反向代理</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/10/16/Map-HashSet-HashMap-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="无题">无题</a><time datetime="2022-10-16T03:58:41.832Z" title="发表于 2022-10-16 11:58:41">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第17章 Java8新特性"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC17%E7%AB%A0-Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="第17章 Java8新特性">第17章 Java8新特性</a><time datetime="2022-07-28T05:08:53.000Z" title="发表于 2022-07-28 13:08:53">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第16章 反射（Reflect）"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC16%E7%AB%A0-%E5%8F%8D%E5%B0%84%EF%BC%88Reflect%EF%BC%89/" title="第16章 反射（Reflect）">第16章 反射（Reflect）</a><time datetime="2022-07-28T05:08:38.000Z" title="发表于 2022-07-28 13:08:38">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第15章 网络编程"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC15%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="第15章 网络编程">第15章 网络编程</a><time datetime="2022-07-28T05:08:24.000Z" title="发表于 2022-07-28 13:08:24">2022-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第14章 File类与IO流"/></a><div class="content"><a class="title" href="/2022/07/28/%E7%AC%AC14%E7%AB%A0-File%E7%B1%BB%E4%B8%8EIO%E6%B5%81/" title="第14章 File类与IO流">第14章 File类与IO流</a><time datetime="2022-07-28T05:08:10.000Z" title="发表于 2022-07-28 13:08:10">2022-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
