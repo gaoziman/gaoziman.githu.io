@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>DHCP 协议 | 爱笑的Gao的个人博客</title><meta name="keywords" content="计算机网络"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DHCP 协议 哈喽小伙伴们大家好啊,本篇文章我们来聊一聊 DHCP 协议。在聊之前，先想象一个场景。 你现在站在地铁上或者坐在办公室中，你的手机也好，电脑也好都有一个 IP 地址，假如这个 IP 地址是你动输入的，你需要写下面这些东西 ……  电脑配置这些还好，直接咔咔咔的配置完了，如果你用的是手机，那么你需要点到 IP 地址，输入 IP 地址，点到子网掩码，输入子网掩码，点到默认路由，输入路由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DHCP 协议">
+<meta property="og:url" content="https://manamn.space/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DHCP-%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="DHCP 协议 哈喽小伙伴们大家好啊,本篇文章我们来聊一聊 DHCP 协议。在聊之前，先想象一个场景。 你现在站在地铁上或者坐在办公室中，你的手机也好，电脑也好都有一个 IP 地址，假如这个 IP 地址是你动输入的，你需要写下面这些东西 ……  电脑配置这些还好，直接咔咔咔的配置完了，如果你用的是手机，那么你需要点到 IP 地址，输入 IP 地址，点到子网掩码，输入子网掩码，点到默认路由，输入路由">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/9bd9b167gy1g4lhrucdlkj21hc0xcqu1.jpg">
+<meta property="article:published_time" content="2022-05-03T08:45:59.000Z">
+<meta property="article:modified_time" content="2022-05-06T03:52:36.033Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/9bd9b167gy1g4lhrucdlkj21hc0xcqu1.jpg"><link rel="shortcut icon" href="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?"><link rel="canonical" href="https://manamn.space/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DHCP-%E5%8D%8F%E8%AE%AE/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DHCP 协议',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-05-06 11:52:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script data-pjax src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><link rel="stylesheet" href="/js/title.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jayhrn/fontawesome-pro/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/remixicon@2.5.0/fonts/remixicon.css"><script src="https://at.alicdn.com/t/c/font_3570527_dthoqrrv2tv.css"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.1.6/lib/clock.min.css" /><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/css/runtime/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">142</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/artitalk/"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 闲言碎语</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/fcircle/"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangji1"></use></svg><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva1.sinaimg.cn/large/9bd9b167gy1g4lhrucdlkj21hc0xcqu1.jpg')"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span>JAYHRN</span></a></span><span id="page_name"><a id="page-name-text" title="回到顶部" onclick="btf.scrollToDest(0,500)"><span>爱笑的Gao的个人博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/artitalk/"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 闲言碎语</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/fcircle/"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangji1"></use></svg><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于我</span></a></div></div></div><div id="hotkey"><div id="search-button"><a class="site-page social-icon search" title="搜索"><i class="ri-search-eye-line"></i></a></div><div id="randompost-button"><a class="site-page" title="随机文章" onclick="toRandomPost()"><i class="ri-subway-fill"></i></a></div><div id="mode-button"><a class="site-page" title="浅色和深色模式转换" onclick="switchDarkMode()"><i class="ri-sun-fill"></i></a></div><div id="top-button"><a class="site-page" title="回到顶部" onclick="btf.scrollToDest(0,500)"><i class="ri-plane-fill"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">DHCP 协议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-03T08:45:59.000Z" title="发表于 2022-05-03 16:45:59">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T03:52:36.033Z" title="更新于 2022-05-06 11:52:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="DHCP 协议"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="DHCP-协议"><a href="#DHCP-协议" class="headerlink" title="DHCP 协议"></a>DHCP 协议</h1><p><img src="https://s3.ax1x.com/2021/03/09/61oaQS.png" alt=""></p>
+<p>哈喽小伙伴们大家好啊,本篇文章我们来聊一聊 DHCP 协议。在聊之前，先想象一个场景。</p>
+<p>你现在站在地铁上或者坐在办公室中，你的手机也好，电脑也好都有一个 <code>IP 地址</code>，<strong>假如这个 IP 地址是你动输入的</strong>，你需要写下面这些东西 ……</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61oiqJ.png" alt=""></p>
+<p>电脑配置这些还好，直接咔咔咔的配置完了，如果你用的是手机，那么你需要点到 IP 地址，输入 IP 地址，点到子网掩码，输入子网掩码，点到默认路由，输入路由，点到 DNS 服务器，输入 DNS 服务器 …… 这玩意这么麻烦啊，恰好你刚配置完，领导叫你开会，得嘞，刚配置好的地址白瞎了。换了一个环境，需要重新配置 IP 地址，于是你把上面的步骤再重复了一遍，这时候散会了，然后你炸了。。。。。。</p>
+<blockquote>
+<p>我们还省去了你有可能配置错误的时候。</p>
+</blockquote>
+<p>上面这段描述最让人恼火的就是你需要手动配置 IP 地址，woc，为啥不能设置成自动配置 IP 地址呢？谁说不能的，能！那就是用 <code>DHCP</code>， 这也是我们下面要聊的内容。</p>
+<h2 id="认识-DHCP"><a href="#认识-DHCP" class="headerlink" title="认识 DHCP"></a>认识 DHCP</h2><p><code>DHCP</code> 的全称是 <code>Dynamic Host Configuration Protocol</code> 动态主机配置协议。使用 DHCP 就能实现自动设置 IP 地址、统一管理 IP 地址分配。也就是不管你是在开会还是在工位干活，都省去了手动配置 IP 地址这一步繁琐的操作，同时 DHCP 也大大减少了可能由于你手动分配 IP 地址导致错误的几率。</p>
+<p>DHCP 与 IP 密切相关，它是 IP 网络上所使用的协议。如果你想要使用 DHCP 提供服务的话，那么在整条通信链路上就需要 <code>DHCP 服务器</code>的存在，连接到网络的设备使用 DHCP 协议从 DHCP 服务器请求 IP 地址。DHCP 服务器会为设备分配一个唯一的 IP 地址。</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61okZ9.png" alt=""></p>
+<blockquote>
+<p>除了 IP 地址外，DHCP 服务器还会把子网掩码，默认路由，DNS 服务器告诉你。</p>
+</blockquote>
+<h3 id="DHCP-服务器"><a href="#DHCP-服务器" class="headerlink" title="DHCP 服务器"></a>DHCP 服务器</h3><p>现在，你不需要手动配置 IP 地址，也不再需要管理 IP 地址了，管理权已经移交给了 DHCP 服务器，DHCP 服务器会维护 IP 地址池，在网络上启动时会将地址租借给启用 DHCP 的客户端。</p>
+<p>由于 IP 地址是<strong>动态的(临时分配)</strong>而不是<strong>静态的(永久分配)</strong>，因此不再使用的 IP 地址会自动返回 IP 地址池中进行重新分配。</p>
+<blockquote>
+<p>那么 DHCP 服务器由谁维护呢？</p>
+</blockquote>
+<p>网络管理员负责建立 DHCP 服务器，并以租约的形式向启用 DHCP 的客户端提供地址配置，啊，既然不需要我管理，那就很舒服了～</p>
+<p>好了，现在你能舒舒服服的开发了，你用 postman 配了一条 192.168.1.4/x/x 的接口进行请求，请求能够顺利进行，但是过了一段时间后，你发现 192.168.1.4/x/x 这个接口请求不通了，这是为啥呢？然后你用 <code>ipconfig</code> 查询了一下自己的 IP 地址，发现 IP 地址变成了 192.168.1.7，怎么我用着用着 IP 地址还改了？DHCP 是个垃圾，破玩意！！@#¥%¥%……¥%</p>
+<p>其实，这也是一个 DHCP 服务器的一个功能，DHCP 服务器通常为每个客户端分配一个<strong>唯一的动态 IP 地址</strong>，当该 IP 地址的<strong>客户端租约到期</strong>时，该地址就会更改。</p>
+<p>唯一意思说的就是，如果你手动设置了一个静态 IP，同时 DHCP 服务器分配了一个动态 IP，这个动态 IP 和静态 IP 一样，那么必然会有一个客户端无法上网。</p>
+<blockquote>
+<p>我就遇到过这种情况，我使用虚拟机配置的静态 IP 是192.168.1.8，手机使用 DHCP 也同样配置了 192.168.1.8 的 IP 地址，此时我的虚拟机还没有接入网络，当我接入网络时，我怎样也连不上虚拟机了，一查才发现 IP 地址冲突了 ……</p>
+</blockquote>
+<p>虽然 DHCP 服务器能提供 IP 地址，但是他怎么知道哪些 IP 地址空闲，哪些 IP 地址正在使用呢？</p>
+<p>实际上，这些信息都配置在了<code>数据库</code>中，下面我们就来一起看一下 DHCP 服务器维护了哪些信息。</p>
+<ul>
+<li>网络上所有有效的 TCP/IP 配置参数</li>
+</ul>
+<p>这些参数主要包括<strong>主机名（Host name）、DHCP 客户端（DHCP client）、域名（Domain name）、IP 地址IP address）、网关（Netmask）、广播地址（Broadcast address）、默认路由（default rooter）</strong>。</p>
+<ul>
+<li>有效的 IP 地址和排除的 IP 地址，保存在 IP 地址池中等待分配给客户端</li>
+<li>为某些特定的 DHCP 客户端保留的地址，这些地址是静态 IP，这样可以将单个 IP 地址一致地分配给单个DHCP 客户端</li>
+</ul>
+<p>好了，现在你知道 DHCP 服务器都需要保存哪些信息了，并且看过上面的内容，你应该知道一个 DHCP 的组件有哪些了，下面我们就来聊一聊 DHCP 中都有哪些组件，这些组件缺一不可。</p>
+<h3 id="DHCP-的组件"><a href="#DHCP-的组件" class="headerlink" title="DHCP 的组件"></a>DHCP 的组件</h3><p>使用 DHCP 时，了解所有的组件很重要，下面我为你列出了一些 DHCP 的组件和它们的作用都是什么。</p>
+<ul>
+<li><code>DHCP Server</code>，DHCP 服务器，这个大家肯定都知道，因为我们上面就一直在探讨 DHCP 服务器的内容，使用 DHCP ，是一定要有 DHCP 服务器的，要不然谁给你提供服务呢？</li>
+<li><code>DHCP Client</code>，DHCP 客户端，这个大家应该也知道，毕竟只有一个服务端不行啊，没有客户端你为谁服务啊？DHCP 的客户端可以是<strong>计算机、移动设备或者其他需要连接到网络的任何设备，默认情况下，大多数配置为接收 DHCP 信息</strong>。</li>
+<li><code>Ip address pool</code>: 你得有 IP 地址池啊，虽然说你 DHCP 提供服务，但是你也得有工具啊，没有工具玩儿啥？IP 地址池是 DHCP 客户端可用的地址范围，这个地址范围通常由最低 -&gt; 最高顺序发送。</li>
+<li><code>Subnet</code>：这个组件是子网，IP 网络可以划分一段一段的子网，子网更有助于网络管理。</li>
+<li><code>Lease</code>：租期，这个表示的就是 IP 地址续约的期限，同时也代表了客户端保留 IP 地址信息的时间长度，一般租约到期时，客户端必须续约。</li>
+<li><code>DHCP relay</code>：DHCP 中继器，这个一般比较难想到，DHCP 中继器一般是路由器或者主机。DHCP 中继器通常应对 DHCP 服务器和 DHCP 客户端不再同一个网断的情况，如果 DHCP 服务器和 DHCP 客户端在同一个网段下，那么客户端可以正确的获得动态分配的 IP 地址；如果不在的话，就需要使用 DHCP 中继器进行中继代理。</li>
+</ul>
+<p>现在 DHCP 的组件你了解后，下面我就要和你聊聊 DHCP 的工作机制了。</p>
+<h2 id="DHCP-工作机制"><a href="#DHCP-工作机制" class="headerlink" title="DHCP 工作机制"></a>DHCP 工作机制</h2><p>在聊 DHCP 工作机制前，先来看一下 DHCP 的报文消息</p>
+<h3 id="DHCP-报文"><a href="#DHCP-报文" class="headerlink" title="DHCP 报文"></a>DHCP 报文</h3><p>DHCP 报文共有一下几种：</p>
+<ul>
+<li><strong>DHCP DISCOVER</strong> ：客户端开始 DHCP 过程发送的包，是 DHCP 协议的开始</li>
+<li><strong>DHCP OFFER</strong> ：服务器接收到 DHCPDISCOVER 之后做出的响应，它包括了给予客户端的 IP 租约过期时间、服务器的识别符以及其他信息</li>
+<li><strong>DHCP REQUEST</strong> ：客户端对于服务器发出的 DHCPOFFER 所做出的响应。在续约租期的时候同样会使用。</li>
+<li><strong>DHCP ACK</strong> ：服务器在接收到客户端发来的 DHCPREQUEST 之后发出的成功确认的报文。在建立连接的时候，客户端在接收到这个报文之后才会确认分配给它的 IP 和其他信息可以被允许使用。</li>
+<li><strong>DHCP NAK</strong> ：DHCPACK 的相反的报文，表示服务器拒绝了客户端的请求。</li>
+<li><strong>DHCP RELEASE</strong> ：一般出现在客户端关机、下线等状况。这个报文将会使 DHCP 服务器释放发出此报文的客户端的 IP 地址</li>
+<li><strong>DHCP INFORM</strong> ：客户端发出的向服务器请求一些信息的报文</li>
+<li><strong>DHCP DECLINE</strong> :当客户端发现服务器分配的 IP 地址无法使用（如 IP 地址冲突时），将发出此报文，通知服务器禁止使用该 IP 地址。</li>
+</ul>
+<p>DHCP 的工作机制比较简单，无非就是客户端向服务器租借 IP ，服务器提供 IP 给客户端的这个过程呗。嗯，你很聪明，大致是这样的，不过有一些细节需要注意下，下面我通过两张图来和你聊一下。</p>
+<p>关于从 DHCP 中获取 IP 地址的流程，主要分为两个阶段。</p>
+<p>第一个阶段是 DHCP 查找包的阶段</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61oAaR.png" alt=""></p>
+<p>查找包的阶段主要分为两步：第一步是 DHCP 发现包，第二步是 DHCP 提供包。</p>
+<p>DHCP 客户端在通信链路上发起<code>广播</code>，看看链路上有没有能提供 DHCP 包的服务器，然后通信链路上的各个节点会检查自己是否能够提供 DHCP 包，这时 DHCP 服务器说它能够提供 DHCP 包，然后 DHCP 就发出一个 DHCP 包沿着通信链路返回给 DHCP 客户端。</p>
+<p>第二个阶段是 DHCP 的请求阶段。</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61oPr4.png" alt=""></p>
+<p>DHCP 的请求包也分为两步：第一步是 DHCP 请求包，第二步是 DHCP 确认包。</p>
+<p>DHCP 客户端在通信链路上发起 DHCP 请求包，请求包主要是告诉 DHCP 服务器，它想要用上一步提供的网络设置，然后 DHCP 服务器向 DHCP 客户端发送确认包，表示允许 DHCP 客户端使用第二步发送的网络设置。</p>
+<p>至此，DHCP 的网络设置就结束了，然后通信链路上的主机之间就可以进行 TCP/IP 通信了。</p>
+<p>当不需要 IP 地址时，可以发送 <code>DHCP 解除包(DHCP RELEASE)</code>进行解除。另外，DHCP 的设置中通常会有一个租期时间的设定，DHCP 客户端在这个时限内可以发送 DHCP 请求包通知想要延长这个期限。</p>
+<h3 id="DHCP-状态机"><a href="#DHCP-状态机" class="headerlink" title="DHCP 状态机"></a>DHCP 状态机</h3><p>我们上面知道 DHCP 会发送几种请求包，我们知道，动作肯定伴随着状态的更改，DHCP 也是一样的，在 DHCP 发送/接收各种包的时候，其状态也在发生相应的改变。DHCP 协议可以在客户端和服务器上运行状态机。状态决定了协议接下来要处理的消息类型。</p>
+<p>状态之间的转换（箭头）是由于接收和发送消息或者计时器到期才发生的转换。下面是 DHCP 的状态轮转图。</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61oCMF.png" alt=""></p>
+<p>客户端在开始时没有消息，此时处于 <code>INIT</code> 状态，然后客户端会在通信链路上发起一个广播 <code>DHCP DISCOVER</code>。</p>
+<p>在 <code>Selecting</code> 选择状态下，客户端会收集 DHCPOFFER 消息，直到确定要使用的地址和服务器为止。</p>
+<p>一旦 DHCP 客户端做好选择后，它就会发送 DHCPREQUEST 消息并进入 <code>Requesting 状态</code>，在这个状态下它很可能收到并不需要的 ACK 响应，如果这个状态下没有找到合适的地址的话，那么客户端就会发送<code>DHCPDECLINE</code> 并恢复为 INIT 状态，但是这种发生的概率比较小。</p>
+<p>在处于 Requesting 状态下的客户端很可能接受发送过来的 DHCPACK 消息，获取超时时间 <code>T1</code> 和 <code>T2</code>，然后进入 <code>Bound</code> 绑定状态，在这个状态下可以使用地址直到地址过期。</p>
+<p>在第一个计时器 T1 到期时，客户端会进入 <code>renewing</code> 续订状态，并重新尝试建立租约时间，如果收到新的 ACK 消息就表示续订成功，然后就恢复为 Bound 状态。</p>
+<p>如果没有收到 ACK 那么 T2 会最终过期进入 <code>Rebinding</code> 状态，进入这个状态的客户端会重新尝试获取地址，如果最终的租约到期，那么客户端必须放弃租约地址，并且如果没有其他地址或网络连接要使用，客户端将断开连接。</p>
+<h3 id="DHCP-冲突"><a href="#DHCP-冲突" class="headerlink" title="DHCP 冲突"></a>DHCP 冲突</h3><p>现在我们讨论一下 DHCP 冲突的问题，DHCP 冲突其实就是 IP <code>重了</code>，当一个子网中两个或者更多主机配置了相同的 IP 地址时，就会发生 IP 冲突的现象。发生这种情况可能导致的后果是两个冲突的主机混在一起，一台主机可能接收了另一台主机的数据包。</p>
+<blockquote>
+<p>那么造成这种情况的原因是啥呢？</p>
+</blockquote>
+<p>造成这种情况的原因有很多，这里我列举两个可能出现的情况：</p>
+<ul>
+<li><p>第一种情况是一台主机配置了静态 IP 地址，这台主机联网后，其 IP 地址不会在 DHCP 服务器中，然后另外一个主机入网，DHCP 服务器给这台主机自动分配了相同的 IP 地址，这两个地址就产生了 IP 冲突。</p>
+</li>
+<li><p>第二种情况是，客户端从 DHCP 服务器获得了 IP 地址，然后这台主机下线了，随着租约到期，DHCP 会将这个 IP 地址又分配给了其他主机，等到这个主机重新上线后，由于某种原因，计算机无法访问 DHCP 服务器，这种情况下会造成 IP 冲突。</p>
+</li>
+</ul>
+<p>当检测到 IP 冲突时，通常 Windows 系统和 Mac 系统会弹出 IP 冲突的弹窗。</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61oEI1.png" alt=""></p>
+<h2 id="DHCP-中继代理"><a href="#DHCP-中继代理" class="headerlink" title="DHCP 中继代理"></a>DHCP 中继代理</h2><p>常规家庭网络（土豪除外）中大多数都只有一个<code>以太网</code>，也就是 LAN 网段，一个 DHCP 服务器完全可以满足 LAN 中的客户机使用。但是，在更复杂的网络中，比如企业或者学校，一台 DHCP 服务器显然就无法满足了。因此，这种情况下，往往需要 DHCP 的统一管理，具体实现方式可以通过 <code>DHCP 中继代理</code> 来转发 DHCP 流量，如下图所示。</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61oZPx.png" alt=""></p>
+<p>如上图所示，存在两个网段 A 和网段 B，DHCP 客户机和 DHCP 服务器不在一个网段内，所以我们在通信链路上架设了一个中继代理，DHCP 客户机通过访问中继代理以达到访问 DHCP 服务器的目的。</p>
+<p>使用这种方式，我们不再需要在每个网段都设置一个 DHCP 服务器，只需要在每个网段架设一个中继代理即可。它可以设置 DHCP 服务器的 IP 地址，从而可以在 DHCP 服务器上为每个网段注册 IP 地址的分配范围。</p>
+<p>DHCP 客户端会向 DHCP 中继代理发送 DHCP 请求包，而 DHCP 中继代理在收到这个广播包之后再以单播的形式发送给 DHCP 服务器。服务器收到该包以后再向 DHCP 中继代理返回应答，并由 DHCP 中继代理将此包发送给 DHCP 客户端。</p>
+<h2 id="DHCP-认证"><a href="#DHCP-认证" class="headerlink" title="DHCP 认证"></a>DHCP 认证</h2><p><strong>我们总是假想所有情况都能够顺利进行，害怕出问题，这也许意味着我永远只是个初级程序员吧</strong>。我们上面探讨的 DHCP 服务器都是合理的、合法的，但是互联网是一把双刃剑，不是所有人都是合法公民。如果假设了一个未经授权的 DHCP 服务器怎么办？它很可能会对网络造成影响。</p>
+<p>为了避免这些问题，在 [RFC3118] 中指定了一种认证 DHCP 消息的方法。 它定义了一个 DHCP 选项，即Authentication 选项，如下所示</p>
+<p><img src="https://s3.ax1x.com/2021/03/09/61oeG6.png" alt=""></p>
+<p>认证选项的主要目的就是<strong>确定 DHCP 消息是否来自一个授权的发送方</strong>。</p>
+<p>身份验证的代码（code）属性值是 90，而长度（Length）给出了选项中的字节数（不包括代码和长度字段的字节）。如果协议（Protocol）和算法（Algorithm）属性被设置为 0 ，则<code>认证信息</code>字段将保存一个简单的共享配置的 token，token 大家开发应该都接触过把，就是一条认证信息。只要配置令牌在客户端和服务器上匹配，这条消息就会被接受。</p>
+<p>我们上面聊到的只是其中的一种，还有一种更安全的方法是涉及所谓的<code>延迟身份认证</code>，如果协议和算法都被设置为 1，就表示使用了延迟身份认证。在这种情况下，客户端的 DHCPDISCOVER 消息或 DHCPINFORM 消息包括身份验证选项，并且服务器以其 DHCPOFFER 或 DHCPACK 消息中包含的身份验证信息进行响应。这个认证信息中包括一个<code>消息认证码</code>，它提供对发送方的认证和消息的完整性校验。RDM 表示中继检测，中继检测包括一个单项递增的值，只要经过一个代理中继，那么这个中继检测的值就会 + 1。</p>
+<p>虽然 DHCP 认证能够确保安全性，但是它没有被广泛使用，原因有两点：</p>
+<ul>
+<li>首先，该方法要求在 DHCP 服务器和每个需要身份验证的客户端之间分配共享密钥。</li>
+<li>其次，在 DHCP 已经被广泛使用之后，才指定了 Authentication 选项。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章我和你探讨了计算机网络中一个比较容易忽视的概念，为什么说他容易忽视呢？因为我们平常开发过程中基本上不会管 IP 地址的配置的，也就是环境搭建的时候会用到一些，但是要系统学习计算机网络的话，DHCP 的重要性不可忽视，DHCP 包括工作机制、DHCP 报文消息，DHCP 状态机、DHCP 认证这些都是需要你了解并掌握的。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DHCP-%E5%8D%8F%E8%AE%AE/">https://manamn.space/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DHCP-%E5%8D%8F%E8%AE%AE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://tva1.sinaimg.cn/large/9bd9b167gy1g4lhrucdlkj21hc0xcqu1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(806).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络的数据链路层</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DNS-%E5%8D%8F%E8%AE%AE/"><img class="next-cover" src="https://tva2.sinaimg.cn/large/9bd9b167gy1fwrt93q40fj21hc0u0h1c.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">DNS 协议</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/DNS-%E5%8D%8F%E8%AE%AE/" title="DNS 协议"><img class="cover" src="https://tva2.sinaimg.cn/large/9bd9b167gy1fwrt93q40fj21hc0u0h1c.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">DNS 协议</div></div></a></div><div><a href="/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE/" title="TCP 传输控制协议"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/seovx-com-2d%20%20(46).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">TCP 传输控制协议</div></div></a></div><div><a href="/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-TCP-IP-%E5%9F%BA%E7%A1%80/" title="计算机网络 TCP&#x2F;IP 基础"><img class="cover" src="https://cdn.jsdelivr.net/gh/520ck/cdnseovx/1/I/l/1/I/l/seovx-com-2018%20(185).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">计算机网络 TCP&#x2F;IP 基础</div></div></a></div><div><a href="/2022/07/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTP%E5%8D%8F%E8%AE%AE-%E5%92%8C-HTTPS-1/" title="计算机网络 --- HTTP协议 和 HTTPS"><img class="cover" src="https://raw.githubusercontent.com/LanYunDev/image_Bed/main/elaina/84964845_p0.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-18</div><div class="title">计算机网络 --- HTTP协议 和 HTTPS</div></div></a></div><div><a href="/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" title="计算机网络核心概念"><img class="cover" src="https://tva3.sinaimg.cn/large/005BYqpggy1fwrf16epe4j31hc0u01kx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">计算机网络核心概念</div></div></a></div><div><a href="/2022/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="计算机网络基础知识"><img class="cover" src="https://tva1.sinaimg.cn/large/9bd9b167ly1fwri1pxjwfj21hc0u0wux.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-03</div><div class="title">计算机网络基础知识</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">142</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/gaoziman" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-gitHub"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=2942894660@qq.com" target="_blank" title="Email"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/692044806?spm_id_from=333.1007.0.0" target="_blank" title="BiliBili"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg></a><a class="social-icon faa-parent animated-hover" href="tencent://Message/?Uin=2942894660&amp;amp;websiteName=local.edu.com:8888=&amp;amp;Menu=yes" target="_blank" title="QQ"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-QQ1"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DHCP-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">DHCP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86-DHCP"><span class="toc-number">1.1.</span> <span class="toc-text">认识 DHCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DHCP-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">DHCP 服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DHCP-%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">DHCP 的组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DHCP-%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">DHCP 工作机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DHCP-%E6%8A%A5%E6%96%87"><span class="toc-number">1.2.1.</span> <span class="toc-text">DHCP 报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DHCP-%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">1.2.2.</span> <span class="toc-text">DHCP 状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DHCP-%E5%86%B2%E7%AA%81"><span class="toc-number">1.2.3.</span> <span class="toc-text">DHCP 冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DHCP-%E4%B8%AD%E7%BB%A7%E4%BB%A3%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">DHCP 中继代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DHCP-%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.</span> <span class="toc-text">DHCP 认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/Web%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8AServlet%E5%85%A5%E9%97%A8/" title="Web环境搭建以及Servlet入门"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web环境搭建以及Servlet入门"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/Web%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8AServlet%E5%85%A5%E9%97%A8/" title="Web环境搭建以及Servlet入门">Web环境搭建以及Servlet入门</a><time datetime="2022-10-16T15:01:07.000Z" title="发表于 2022-10-16 23:01:07">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82JSP/" title="一文学懂JSP"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文学懂JSP"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82JSP/" title="一文学懂JSP">一文学懂JSP</a><time datetime="2022-10-16T15:00:49.000Z" title="发表于 2022-10-16 23:00:49">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82Cookie%E4%B8%8ESession%E7%9A%84%E5%8C%BA%E5%88%AB/" title="一文学懂Cookie与Session的区别"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文学懂Cookie与Session的区别"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82Cookie%E4%B8%8ESession%E7%9A%84%E5%8C%BA%E5%88%AB/" title="一文学懂Cookie与Session的区别">一文学懂Cookie与Session的区别</a><time datetime="2022-10-16T15:00:28.000Z" title="发表于 2022-10-16 23:00:28">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" title="一文学懂过滤器和监听器"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文学懂过滤器和监听器"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" title="一文学懂过滤器和监听器">一文学懂过滤器和监听器</a><time datetime="2022-10-16T15:00:12.000Z" title="发表于 2022-10-16 23:00:12">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%E8%BD%AC%E5%8F%91%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/" title="一文了解转发与重定向"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文了解转发与重定向"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%E8%BD%AC%E5%8F%91%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/" title="一文了解转发与重定向">一文了解转发与重定向</a><time datetime="2022-10-16T14:59:54.000Z" title="发表于 2022-10-16 22:59:54">2022-10-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><script async src="/js/diytitle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.1.6/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'cc4dba1920f64df682729ef4ef354b39';
+  var gaud_map_key = '70e933385078238662fb7abb292fa83f';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.6534116,27.96920845';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.1.6/lib/clock.min.js"></script><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover1.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/随笔⌚/&quot;);" href="javascript:void(0);">随笔⌚</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">大学学习史</span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover2.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/转载/&quot;);" href="javascript:void(0);">转载</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">前端成长历程</span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover3.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM上篇/&quot;);" href="javascript:void(0);">JVM上篇</a><span class="categoryBar-list-count">12</span><span class="categoryBar-list-descr">生活欢乐多</span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover4.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM下篇/&quot;);" href="javascript:void(0);">JVM下篇</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover5.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JavaSE/&quot;);" href="javascript:void(0);">JavaSE</a><span class="categoryBar-list-count">19</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover6.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM中篇/&quot;);" href="javascript:void(0);">JVM中篇</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MySQL-shk/&quot;);" href="javascript:void(0);">MySQL-shk</a><span class="categoryBar-list-count">11</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java自学笔记/&quot;);" href="javascript:void(0);">Java自学笔记</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/C语言/&quot;);" href="javascript:void(0);">C语言</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/学习路线/&quot;);" href="javascript:void(0);">学习路线</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/教程/&quot;);" href="javascript:void(0);">教程</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/文档/&quot;);" href="javascript:void(0);">文档</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/重学Java基础/&quot;);" href="javascript:void(0);">重学Java基础</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java/&quot;);" href="javascript:void(0);">Java</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java知识点/&quot;);" href="javascript:void(0);">Java知识点</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Thymeleaf/&quot;);" href="javascript:void(0);">Thymeleaf</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MyBatis/&quot;);" href="javascript:void(0);">MyBatis</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/多线程/&quot;);" href="javascript:void(0);">多线程</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java-Basic/&quot;);" href="javascript:void(0);">Java-Basic</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/计算机组成原理/&quot;);" href="javascript:void(0);">计算机组成原理</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/计算机网络/&quot;);" href="javascript:void(0);">计算机网络</a><span class="categoryBar-list-count">12</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/HTTP/&quot;);" href="javascript:void(0);">HTTP</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/设计模式/&quot;);" href="javascript:void(0);">设计模式</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MySQL/&quot;);" href="javascript:void(0);">MySQL</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Web网页技术/&quot;);" href="javascript:void(0);">Web网页技术</a><span class="categoryBar-list-count">9</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.2.2" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index" style="margin-inline:5px" data-title="本站已在湘进行备案" title=""><img src="https://img.shields.io/badge/湘ICP备-2022004213号-e1d492?style=flat&amp;logo=data:image/png;base64,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" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/js/runtime/runtime.min.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item swiper_container_card" style="height: auto;width: 100%"><div id="random"><div id="random-banner"><canvas id="peoplecanvas"></canvas></div><a id="random-hover" style="width:100%;height:auto;" href="javascript:toRandomPost()" rel="external nofollow noreferrer" one-link-mark="yes"><i class="fa fa-paper-plane" style="margin-left:10px"></i><div style="margin-left:10px">随便逛逛<i class="fa-solid fa-arrow-right" style="margin-left:10px"></i></div></a></div><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://tx2.a.yximgs.com/udata/music/music_f307a39407e74b1ab48f8409b8b0c3210.jpg" alt="" onerror="this.src=https://cdn.cbd.int/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-05-16</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt="">2021最新版java学习路线</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://tx2.a.yximgs.com/udata/music/music_f307a39407e74b1ab48f8409b8b0c3210.jpg" alt="" onerror="this.src=https://cdn.cbd.int/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-05-03</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt="">随机图api</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/js/swiper.min.js"></script><script defer data-pjax src="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiper_init.js"></script><script data-pjax src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/gsap/3.9.1/gsap.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/people.min.js"></script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '30');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('article-sort-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__slideInRight');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow_init.js"></script><script async src="/js/ali_font.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

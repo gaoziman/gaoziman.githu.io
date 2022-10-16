@@ -1,0 +1,865 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>一文学懂过滤器和监听器 | 爱笑的Gao的个人博客</title><meta name="keywords" content="百里半Java培训,Web网页技术"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一文学懂过滤器和监听器 🏠个人主页：不会写代码的满满🧑个人简介：大家好，我是满满，一个想要与大家共同进步的男人😉😉目前状况🎉：开学即将大三，目标就是半年内找到一份实习工作👏👏💕欢迎大家：这里是CSDN，我总结知识的地方，欢迎来到我的博客，我亲爱的大佬😘  正文开始  —————  第一章  什么是Filter1.1 Filter简介 Filter的中文意思是过滤器。顾名思义，过滤">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一文学懂过滤器和监听器">
+<meta property="og:url" content="https://manamn.space/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="一文学懂过滤器和监听器 🏠个人主页：不会写代码的满满🧑个人简介：大家好，我是满满，一个想要与大家共同进步的男人😉😉目前状况🎉：开学即将大三，目标就是半年内找到一份实习工作👏👏💕欢迎大家：这里是CSDN，我总结知识的地方，欢迎来到我的博客，我亲爱的大佬😘  正文开始  —————  第一章  什么是Filter1.1 Filter简介 Filter的中文意思是过滤器。顾名思义，过滤">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457">
+<meta property="article:published_time" content="2022-10-16T15:00:12.000Z">
+<meta property="article:modified_time" content="2022-10-16T15:05:02.582Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="百里半Java培训">
+<meta property="article:tag" content="Web网页技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457"><link rel="shortcut icon" href="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?"><link rel="canonical" href="https://manamn.space/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一文学懂过滤器和监听器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-10-16 23:05:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script data-pjax src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><link rel="stylesheet" href="/js/title.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jayhrn/fontawesome-pro/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/remixicon@2.5.0/fonts/remixicon.css"><script src="https://at.alicdn.com/t/c/font_3570527_dthoqrrv2tv.css"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.1.6/lib/clock.min.css" /><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/css/runtime/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">142</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/artitalk/"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 闲言碎语</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/fcircle/"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangji1"></use></svg><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457')"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span>JAYHRN</span></a></span><span id="page_name"><a id="page-name-text" title="回到顶部" onclick="btf.scrollToDest(0,500)"><span>爱笑的Gao的个人博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/artitalk/"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 闲言碎语</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/fcircle/"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangji1"></use></svg><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于我</span></a></div></div></div><div id="hotkey"><div id="search-button"><a class="site-page social-icon search" title="搜索"><i class="ri-search-eye-line"></i></a></div><div id="randompost-button"><a class="site-page" title="随机文章" onclick="toRandomPost()"><i class="ri-subway-fill"></i></a></div><div id="mode-button"><a class="site-page" title="浅色和深色模式转换" onclick="switchDarkMode()"><i class="ri-sun-fill"></i></a></div><div id="top-button"><a class="site-page" title="回到顶部" onclick="btf.scrollToDest(0,500)"><i class="ri-plane-fill"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">一文学懂过滤器和监听器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-16T15:00:12.000Z" title="发表于 2022-10-16 23:00:12">2022-10-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-16T15:05:02.582Z" title="更新于 2022-10-16 23:05:02">2022-10-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/">Web网页技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="一文学懂过滤器和监听器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一文学懂过滤器和监听器"><a href="#一文学懂过滤器和监听器" class="headerlink" title="一文学懂过滤器和监听器"></a>一文学懂过滤器和监听器</h1><blockquote>
+<p>🏠个人主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_58608526?spm=1019.2139.3001.5343">不会写代码的满满</a><br>🧑个人简介：大家好，我是满满，一个想要与大家共同进步的男人😉😉<br>目前状况🎉：开学即将大三，目标就是半年内找到一份实习工作👏👏<br>💕欢迎大家：这里是CSDN，我总结知识的地方，欢迎来到我的博客，我亲爱的大佬😘</p>
+</blockquote>
+<p><strong>正文开始</strong>  —————</p>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/Filter&amp;Listener.png" alt=""></p>
+<h1 id="第一章-什么是Filter"><a href="#第一章-什么是Filter" class="headerlink" title="第一章  什么是Filter"></a>第一章  什么是Filter</h1><h2 id="1-1-Filter简介"><a href="#1-1-Filter简介" class="headerlink" title="1.1 Filter简介"></a>1.1 Filter简介</h2><blockquote>
+<p>Filter的中文意思是过滤器。顾名思义，过滤器就是在浏览器和目标资源之间起到一个过滤与资源拦截的作用。例如：水净化器，可以看成是生活中的一个过滤器，他可以将污水中的杂质过滤，从而使进入的污水变成净水。</p>
+</blockquote>
+<ul>
+<li>对于WEB应用来说，过滤器是一个驻留在服务器中的WEB组件，他可以截取客户端和WEB资源之间的请求和响应信息。<ul>
+<li>WEB资源可能包括 Servlet、JSP、HTML页面等。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558767049205.png" alt="1558767049205"></p>
+<ul>
+<li><p>当服务器收到资源请求之后，会首先将请求给顾虑器处理，程序员可以在过滤器中对请求信息进行读取修改等操作，然后将请求信息再发送给目标资源。目标资源作出响应后，服务器会再次将响应转交给过滤器，在过滤器中同样可以对响应信息做一些操作，<code>然后再将响应发送给服务器</code>。</p>
+</li>
+<li><p>在一个WEB应用中可以部署多个过滤器，多个过滤器就组成了一个过滤器链，请求和响应必须在经过多个过滤器后才能到达目标；</p>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558774993622.png" alt="1558774993622"></p>
+</li>
+<li><p>过滤器不是必须将请求传送到下一个过滤器（或WEB资源），也可以自己来处理请求，发送响应。</p>
+</li>
+<li><p>当配置<code>多个Filter</code> 的时候就有一个执行顺序的问题，实际执行顺序是按照在web.xml文件中servlet-mapping的顺序决定的，如果顺序越靠前越先被调用。</p>
+</li>
+</ul>
+<h2 id="1-2-总结"><a href="#1-2-总结" class="headerlink" title="1.2 总结"></a>1.2 总结</h2><ul>
+<li>Filter是一个接口。</li>
+<li>Filter是Java Web三大组件之一。（JavaWeb三大组件分别是：Servlet小程序、Filter过滤器、Listener监听器）</li>
+<li>Filter是服务器专门用来过滤请求，拦截请求的。</li>
+<li>Filter的常见作用 ： <ul>
+<li>检查用的的访问权限。</li>
+<li>设置响应编码，解决乱码问题。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-主要API"><a href="#1-3-主要API" class="headerlink" title="1.3 主要API"></a>1.3 主要API</h2><h4 id="1-3-1-Filter接口"><a href="#1-3-1-Filter接口" class="headerlink" title="1.3.1 Filter接口"></a>1.3.1 Filter接口</h4><ul>
+<li><p>编写Filter 需要实现Filter接口，我们来看一下Filter接口的主要方法：</p>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558775226983.png" alt="1558775226983"></p>
+<ul>
+<li><code>init()方法用于初始化Filter</code></li>
+<li><code>doFilter()作用和service()方法类似，是过滤请求和响应的主要方法。</code></li>
+<li><code>destroy()用于在Filter对象被销毁前做一些收尾工作。如：释放资源等。</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-2-FilterConfig接口"><a href="#1-3-2-FilterConfig接口" class="headerlink" title="1.3.2 FilterConfig接口"></a>1.3.2 FilterConfig接口</h4><p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558775582961.png" alt="1558775582961"></p>
+<ul>
+<li>FilterConfig对象在服务器调用init()方法时传递进来。<ul>
+<li><code>getFilterName() 获取Filter的名字</code></li>
+<li><code>getServletContext() 获取ServletContext对象（即application）</code></li>
+<li><code>getInitParameter() 获取Filter的初始化参数</code></li>
+<li><code>getInitParameterNames() 获取所有初始化参数的名字</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-3-FilterChain接口"><a href="#1-3-3-FilterChain接口" class="headerlink" title="1.3.3 FilterChain接口"></a>1.3.3 FilterChain接口</h4><p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558775624400.png" alt="1558775624400"></p>
+<ul>
+<li>FilterChain对象是在doFilter()方法被调用时作为参数传递进来的。<ul>
+<li>doFilter()方法用于调用Filter链上的下一个过滤器，如果当前过滤器为最后一个过滤器则将请求发送到目标资源。</li>
+</ul>
+</li>
+</ul>
+<h1 id="第二章-Filter初体验"><a href="#第二章-Filter初体验" class="headerlink" title="第二章  Filter初体验"></a>第二章  Filter初体验</h1><h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><p>现在在Web目录下有一个目录admin。这个目录是管理员操作的目录。这个目录里有 jsp文件，有html文件，还有图片资源文件。现在我们要让这些资源都在用户登录才能被访问。那么我们要怎么实现这样的需求。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>前面我们讲过Session。有同学可能会想，我们可以在用户登录之后把用户的信息保存在Session域对象中。然后在 jsp页面里通过Session域对象获取用户的信息。如果用户信息存在，说明用户已登录。否则就重定向到登录页面。这个方案可行。可是html页面呢? html页面是没有Session域对象的。</p>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><p>这就需要我们使用Filter过滤器来进行请求的拦截。然后判断Session域对象中是否包含用户的信息。</p>
+<p>现在我们以admin目录下user.jsp为例进行讲解。</p>
+<p>1、首先，我们需要创建一个类来实现Filter接口，用来检查Session中是否包含用户信息。</p>
+<p>2、实现Filter中的doFilter方法</p>
+<p>3、然后到web.xml文件中去配置Filter的过滤信息。</p>
+<p>4、然后重启服务器访问测试</p>
+<p><strong>操作步骤1：Filter1的类代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.manman.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Filter1</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Filter初始化方法</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Filter的过滤方法</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span></span><br><span class="line">			<span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">		<span class="comment">// 强转</span></span><br><span class="line">		<span class="type">HttpServletRequest</span> <span class="variable">httpRequest</span> <span class="operator">=</span> (HttpServletRequest) request;</span><br><span class="line">		<span class="type">HttpServletResponse</span> <span class="variable">httpResponse</span> <span class="operator">=</span> (HttpServletResponse) response;</span><br><span class="line">		<span class="comment">// 获取用户登录信息</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> (String) httpRequest.getSession().getAttribute(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span> (username != <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="comment">// 过滤器中，只要允许用户访问资源，一定要调用chain.doFilter方法，否则用户永远访问不到资源</span></span><br><span class="line">			chain.doFilter(request, response);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 如果用户未登录。返回登录页面</span></span><br><span class="line">			httpResponse.sendRedirect(httpRequest.getContextPath() + <span class="string">&quot;/login.jsp&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Filter销毁的方法</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>操作步骤2：web.xml文件中的Filter配置</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置Filter1 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 给Filter1起一个名字 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>Filter1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 是哪一个Filter类，即全类名 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.atmanman.filter.Filter1<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- Filter的名字 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>Filter1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- Filter1的过滤地址</span></span><br><span class="line"><span class="comment">		表示过滤http://127.0.0.1:8080/day17/admin/user.jsp</span></span><br><span class="line"><span class="comment">	--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/admin/user.jsp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>除此之外在filter-mapping还有一个子标签dispatcher，该标签用来指定需要Filter处理的请求类型，该标签可以配置四个值：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 用户直接访问资源时，会调用Filter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dispatcher</span>&gt;</span>REQUEST<span class="tag">&lt;/<span class="name">dispatcher</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过转发访问时，会调用Filter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dispatcher</span>&gt;</span>FORWARD<span class="tag">&lt;/<span class="name">dispatcher</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过动态包含获取时，会调用Filter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dispatcher</span>&gt;</span>INCLUDE<span class="tag">&lt;/<span class="name">dispatcher</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 当通过异常处理访问页面时，会调用Filter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dispatcher</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">dispatcher</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这四种情况可以设置一个，也可以同时设置多个，如果不设置那么默认为REQUEST。</li>
+</ul>
+</li>
+</ul>
+<h1 id="第三章-Filter的生命周期"><a href="#第三章-Filter的生命周期" class="headerlink" title="第三章  Filter的生命周期"></a>第三章  Filter的生命周期</h1><p><strong>Servlet的生命周期</strong></p>
+<ol>
+<li>先执行构造方法</li>
+<li>执行init方法做初始化操作</li>
+<li>执行service方法</li>
+<li>销毁的时候调用destory方法</li>
+</ol>
+<p><strong>Filter生命周期：</strong></p>
+<ol>
+<li>先执行Filter的构造方法</li>
+<li>然后执行Filter的init()方法，对象创建后，马上就被调用，对Filter做一些初始化操作</li>
+<li>执行Filter的doFilter()方法，每次访问目标资源，只要匹配过滤的地址，就会调用。</li>
+<li>执行Filter的destroy()方法，服务器停止时调用，用来释放资源。</li>
+</ol>
+<p><strong>Filter的生命周期和生命周期方法</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>生命周期阶段</th>
+<th>执行时机</th>
+<th>生命周期方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建对象</td>
+<td>Web应用启动时</td>
+<td>init方法，通常在该方法中做初始化工作</td>
+</tr>
+<tr>
+<td>拦截请求</td>
+<td>接收到匹配的请求</td>
+<td>doFilter方法，通常在该方法中执行拦截过滤</td>
+</tr>
+<tr>
+<td>销毁</td>
+<td>Web应用卸载前</td>
+<td>destroy方法，通常在该方法中执行资源释放</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="第四章-FilterConfig类"><a href="#第四章-FilterConfig类" class="headerlink" title="第四章 FilterConfig类"></a>第四章 FilterConfig类</h1><ul>
+<li><p>作用：FilterConfig类和ServletConfig类是一样的。可以获取Filter在web.xml文件中的配置信息，做初始化之用。</p>
+</li>
+<li><p>我们可以在web.xml文件中给Filter添加初始化参数。然后在init初始化方法中使用FilterConfig类获取到初始化的参数。</p>
+</li>
+<li><p>FilterConfig类，一般有三个作用：</p>
+<ul>
+<li>获取Filter在web.xml文件中配置的名称</li>
+</ul>
+</li>
+<li>获取Filter在web.xml文件中配置的初始化参数<ul>
+<li>通过FilterConfig类获取ServletContext对象实例</li>
+</ul>
+</li>
+</ul>
+<p><strong>第一步：修改Filter2在web.xml中的配置信息</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置Filter2 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 给Filter2起一个名字 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>Filter2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 是哪一个Filter类 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.manman.filter.Filter2<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 配置初始化参数 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 初始化参数的名称 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>username<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 初始化参数的值 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>第二步：修改Filter2中init方法的代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Filter初始化方法</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;Filter2 init 方法被调用。初始化……&quot;</span>);</span><br><span class="line">		<span class="comment">// 获取Filter的名称</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">filterName</span> <span class="operator">=</span> filterConfig.getFilterName();</span><br><span class="line">		System.out.println(<span class="string">&quot;Filter name ==&gt;&gt;&gt; &quot;</span> + filterName);</span><br><span class="line">		<span class="comment">// 获取初始化参数。username的值</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> filterConfig.getInitParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;username ==&gt;&gt; &quot;</span> + username);</span><br><span class="line">		<span class="comment">// 获取ServletContext的对象实例 </span></span><br><span class="line">		<span class="type">ServletContext</span> <span class="variable">ctx</span> <span class="operator">=</span> filterConfig.getServletContext();</span><br><span class="line">		System.out.println(ctx);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第三步：重启Tomcat服务器，控制台打印如下：</strong></p>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558764469028.png" alt="1558764469028"></p>
+<h1 id="第5章-FilterChain过滤器链（重点）"><a href="#第5章-FilterChain过滤器链（重点）" class="headerlink" title="第5章 FilterChain过滤器链（重点）"></a>第5章 FilterChain过滤器链（重点）</h1><ul>
+<li><p>FilterChain是整个Filter过滤器的调用者。Filter与Filter之间的传递，或者Filter与请求资源之间的传递都靠FilterChain.doFilter方法。</p>
+</li>
+<li><p>一般Filter.doFilter中的代码分为三段：</p>
+<ul>
+<li>第一段是FilterChain.doFilter之前的代码。一般用来做请求的拦截，检查用户访问的权限，访问日记的记录。参数编码的设置等等操作。</li>
+</ul>
+</li>
+<li><p>第二段是FilterChain.doFilter方法。此方法可以将代码的执行传递到下一个Filter中。或者是传递到用户最终访问的资源中。</p>
+<ul>
+<li>第三段是FilterChain.doFilter之后的代码。主要用过做一些日志操作。我们很少会在第三段中做太多复杂的操作。</li>
+</ul>
+</li>
+<li><p>在每一个Filter类的doFilter方法中，一定要调用chain.doFilter方法，除非你想要阻止用户继续往下面访问。否则一定要调用FilterChain的doFilter方法。</p>
+</li>
+</ul>
+<p><strong>5.1 图解：多个Filter过滤器的代码流转</strong></p>
+<p> <img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558764647060.png" alt="1558764647060"></p>
+<p><strong>5.2 现在我们添加两个Filter类，对同一个资源进行过滤</strong></p>
+<p>第一个Filter类ChainFilter1 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.manman.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ChainFilter1</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span></span><br><span class="line">			<span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;资源访问前---ChainFilter1 -- 开始执行&quot;</span>);</span><br><span class="line">		<span class="comment">// 转发下一个Filter或者请求的资源</span></span><br><span class="line">		chain.doFilter(request, response);</span><br><span class="line">		System.out.println(<span class="string">&quot;资源访问后---ChainFilter1 -- 执行结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二个Filter类ChainFilter2 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.manman.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ChainFilter2</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span></span><br><span class="line">			<span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;资源访问前---ChainFilter2 -- 开始执行&quot;</span>);</span><br><span class="line">		<span class="comment">// 转发下一个Filter或者请求的资源</span></span><br><span class="line">		chain.doFilter(request, response);</span><br><span class="line">		System.out.println(<span class="string">&quot;资源访问后---ChainFilter2 -- 执行结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>5.3 在web.xml文件中的配置如下：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>ChainFilter1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.manman.filter.ChainFilter1<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>ChainFilter1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/chainFilter.jsp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>ChainFilter2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.manman.filter.ChainFilter2<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>ChainFilter2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/chainFilter.jsp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>5.4 WebContent/chainFilter.jsp文件的内容如下：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;pragma&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;cache-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		&lt;%</span><br><span class="line">			System.out.println(&quot;这是请求资源的代码&quot;);</span><br><span class="line">		%&gt;</span><br><span class="line">		这是ChainFilter.jsp</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>5.5 打开浏览器输入<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/day17/chainFilter.jsp回车访问：">http://127.0.0.1:8080/day17/chainFilter.jsp回车访问：</a></strong></p>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558764839164.png" alt="1558764839164"></p>
+<blockquote>
+<p><strong>千万要注意：</strong>在Filter类的doFilter方法中，除非你要拦截请求的资源，否则一定要调用FilterChain参数的doFilter方法让代码的执行传递到下一个Filter或访问的资源中。</p>
+</blockquote>
+<h1 id="第6章-Filter的拦截路径（目标资源的配置）"><a href="#第6章-Filter的拦截路径（目标资源的配置）" class="headerlink" title="第6章 Filter的拦截路径（目标资源的配置）"></a>第6章 Filter的拦截路径（目标资源的配置）</h1><ul>
+<li><p>Filter的目标资源指的是需要调用Filter来进行过滤处理的资源，例如上文我们配置的/index.html就是我们的目标资源，当我们访问项目根目录下的index.html时就会调用HelloFilter来进行过滤。</p>
+</li>
+<li><p>目标资源的配置方式主要有以下两大种：</p>
+<ul>
+<li><p>第一种：通过filter-mapping的url-pattern来配置（与Servlet的url-pattern的规则相同）</p>
+<ul>
+<li><p><strong>精确匹配：/路径/资源名</strong></p>
+<p>比如：/index.html、/hello/index.jsp 、 /client/LoginServlet 等，只要在请求地址完全一样时才会调用Filter</p>
+</li>
+<li><p><strong>目录匹配：/路径名/*</strong></p>
+<p>比如1：/abc/ <strong>表示可以拦截abc目录下的所有资源，甚至是abc目录下的其他目录</strong>。其中：/* 表示访问 当前工程下所有资源</p>
+<p>比如2：/* 表示只要访问项目根目录下的资源就会调用Filter</p>
+</li>
+<li><p><strong>后缀名匹配：*.后缀名</strong></p>
+<p>比如：*.jsp 表示拦截所有后缀为jsp文件资源</p>
+</li>
+</ul>
+</li>
+<li><p>第二种：通过 <strong>filter-mapping</strong> 中的 <strong>servlet-name</strong> 来指定要过滤的Servlet</p>
+</li>
+<li><p>如：以下是一个项目中的web.xml配置文件，在项目中有一个Filter加做HelloFilter，一个Servlet叫做HelloServlet。在Filter的filter-mapping中增加了一个servlet-name标签，将该标签的值设置成Servlet的名字，在访问Servlet时就会调用该过滤器过滤请求。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>HelloFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.manman.web.filter.HelloFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>HelloFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.manman.web.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/HelloServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>针对于第一种情况：</p>
+<p>精确匹配前面 ，我们已经演示过了。</p>
+<p>下面我们以目录匹配为示例展示代码。大家可以在此基础上修改web.xml文件中的<url-pattern>标签来测试自己想要的路径。</p>
+<p><strong>1. Filter的代码如下</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.manman.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FilterPath</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(FilterConfig filterConfig)</span> <span class="keyword">throws</span> ServletException &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span></span><br><span class="line">			<span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;filter path 执行了&quot;</span>);</span><br><span class="line">		<span class="comment">// 将代码执行传递到下一个Filter或者是请求资源</span></span><br><span class="line">		chain.doFilter(request, response);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. web.xml文件中的配置内容：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>FilterPath<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.manman.filter.FilterPath<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>FilterPath<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/admin/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="第7章-HttpFilter"><a href="#第7章-HttpFilter" class="headerlink" title="第7章 HttpFilter"></a>第7章 HttpFilter</h1><ul>
+<li><p>回想Servlet中学习，我们发现：实现Servlet接口，不如继承HttpServlet应用方便。所以，我们想到需要继承HttpFilter。</p>
+</li>
+<li><p>如果tomcat类库没有提供HttpFilter,就需要我们自己设计一个HttpFilter。</p>
+<ul>
+<li><p>类比最终创建Servlet的方式，我们发现设计HttpFilter大体分为以下几个步骤：</p>
+<ol>
+<li><p>提供 getFilterConfig() 和 getServletContext()</p>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558775624401.png" alt="1558764839164"></p>
+</li>
+<li><p>将doFilter()重载并抽象化处理</p>
+</li>
+<li><p>原有doFilter()方法需要将参数转换类型后，调用重载doFilter()方法</p>
+<p><img src="https://gaoziman.oss-cn-hangzhou.aliyuncs.com/img/1558775624402.png" alt="1558764839164"></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="第八章-监听器（了解即可）"><a href="#第八章-监听器（了解即可）" class="headerlink" title="第八章 监听器（了解即可）"></a>第八章 监听器（了解即可）</h1><h2 id="2-1-监听器的简介"><a href="#2-1-监听器的简介" class="headerlink" title="2.1 监听器的简介"></a>2.1 监听器的简介</h2><h3 id="2-1-1-监听器的概念"><a href="#2-1-1-监听器的概念" class="headerlink" title="2.1.1 监听器的概念"></a>2.1.1 监听器的概念</h3><p>监听器：专门用于对其他对象身上发生的事件或状态改变进行监听和相应处理的对象，当被监视的对象发生情况时，立即采取相应的行动。<br><span style="color:blue;font-weight:bold;">Servlet监听器</span>：Servlet规范中定义的一种特殊类，它用于监听Web应用程序中的ServletContext，HttpSession 和HttpServletRequest等域对象的创建与销毁事件，以及监听这些域对象中的属性发生修改的事件。</p>
+<h3 id="2-1-2-Servlet监听器的分类-了解"><a href="#2-1-2-Servlet监听器的分类-了解" class="headerlink" title="2.1.2 Servlet监听器的分类(了解)"></a>2.1.2 Servlet监听器的分类(了解)</h3><h4 id="①-ServletContextListener"><a href="#①-ServletContextListener" class="headerlink" title="① ServletContextListener"></a>① ServletContextListener</h4><p>作用：监听ServletContext对象的创建与销毁</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contextInitialized(ServletContextEvent sce)</td>
+<td>ServletContext创建时调用</td>
+</tr>
+<tr>
+<td>contextDestroyed(ServletContextEvent sce)</td>
+<td>ServletContext销毁时调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>ServletContextEvent对象代表从ServletContext对象身上捕获到的事件，通过这个事件对象我们可以获取到ServletContext对象。</p>
+<h6 id="②-HttpSessionListener"><a href="#②-HttpSessionListener" class="headerlink" title="② HttpSessionListener"></a>② HttpSessionListener</h6><p>作用：监听HttpSession对象的创建与销毁</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sessionCreated(HttpSessionEvent hse)</td>
+<td>HttpSession对象创建时调用</td>
+</tr>
+<tr>
+<td>sessionDestroyed(HttpSessionEvent hse)</td>
+<td>HttpSession对象销毁时调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>HttpSessionEvent对象代表从HttpSession对象身上捕获到的事件，通过这个事件对象我们可以获取到触发事件的HttpSession对象。</p>
+<h6 id="③-ServletRequestListener"><a href="#③-ServletRequestListener" class="headerlink" title="③ ServletRequestListener"></a>③ ServletRequestListener</h6><p>作用：监听ServletRequest对象的创建与销毁</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>requestInitialized(ServletRequestEvent sre)</td>
+<td>ServletRequest对象创建时调用</td>
+</tr>
+<tr>
+<td>requestDestroyed(ServletRequestEvent sre)</td>
+<td>ServletRequest对象销毁时调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>ServletRequestEvent对象代表从HttpServletRequest对象身上捕获到的事件，通过这个事件对象我们可以获取到触发事件的HttpServletRequest对象。另外还有一个方法可以获取到当前Web应用的ServletContext对象。</p>
+<h6 id="④-ServletContextAttributeListener"><a href="#④-ServletContextAttributeListener" class="headerlink" title="④ ServletContextAttributeListener"></a>④ ServletContextAttributeListener</h6><p>作用：监听ServletContext中属性的添加、移除和修改</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attributeAdded(ServletContextAttributeEvent scab)</td>
+<td>向ServletContext中添加属性时调用</td>
+</tr>
+<tr>
+<td>attributeRemoved(ServletContextAttributeEvent scab)</td>
+<td>从ServletContext中移除属性时调用</td>
+</tr>
+<tr>
+<td>attributeReplaced(ServletContextAttributeEvent scab)</td>
+<td>当ServletContext中的属性被修改时调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>ServletContextAttributeEvent对象代表属性变化事件，它包含的方法如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getName()</td>
+<td>获取修改或添加的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取被修改或添加的属性值</td>
+</tr>
+<tr>
+<td>getServletContext()</td>
+<td>获取ServletContext对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="⑤-HttpSessionAttributeListener"><a href="#⑤-HttpSessionAttributeListener" class="headerlink" title="⑤ HttpSessionAttributeListener"></a>⑤ HttpSessionAttributeListener</h6><p>作用：监听HttpSession中属性的添加、移除和修改</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attributeAdded(HttpSessionBindingEvent se)</td>
+<td>向HttpSession中添加属性时调用</td>
+</tr>
+<tr>
+<td>attributeRemoved(HttpSessionBindingEvent se)</td>
+<td>从HttpSession中移除属性时调用</td>
+</tr>
+<tr>
+<td>attributeReplaced(HttpSessionBindingEvent se)</td>
+<td>当HttpSession中的属性被修改时调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>HttpSessionBindingEvent对象代表属性变化事件，它包含的方法如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getName()</td>
+<td>获取修改或添加的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取被修改或添加的属性值</td>
+</tr>
+<tr>
+<td>getSession()</td>
+<td>获取触发事件的HttpSession对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="⑥-ServletRequestAttributeListener"><a href="#⑥-ServletRequestAttributeListener" class="headerlink" title="⑥ ServletRequestAttributeListener"></a>⑥ ServletRequestAttributeListener</h6><p>作用：监听ServletRequest中属性的添加、移除和修改</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attributeAdded(ServletRequestAttributeEvent srae)</td>
+<td>向ServletRequest中添加属性时调用</td>
+</tr>
+<tr>
+<td>attributeRemoved(ServletRequestAttributeEvent srae)</td>
+<td>从ServletRequest中移除属性时调用</td>
+</tr>
+<tr>
+<td>attributeReplaced(ServletRequestAttributeEvent srae)</td>
+<td>当ServletRequest中的属性被修改时调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>ServletRequestAttributeEvent对象代表属性变化事件，它包含的方法如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getName()</td>
+<td>获取修改或添加的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取被修改或添加的属性值</td>
+</tr>
+<tr>
+<td>getServletRequest ()</td>
+<td>获取触发事件的ServletRequest对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 id="⑦-HttpSessionBindingListener"><a href="#⑦-HttpSessionBindingListener" class="headerlink" title="⑦ HttpSessionBindingListener"></a>⑦ HttpSessionBindingListener</h6><p>作用：监听某个对象在Session域中的创建与移除</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>valueBound(HttpSessionBindingEvent event)</td>
+<td>该类的实例被放到Session域中时调用</td>
+</tr>
+<tr>
+<td>valueUnbound(HttpSessionBindingEvent event)</td>
+<td>该类的实例从Session中移除时调用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>HttpSessionBindingEvent对象代表属性变化事件，它包含的方法如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getName()</td>
+<td>获取当前事件涉及的属性名</td>
+</tr>
+<tr>
+<td>getValue()</td>
+<td>获取当前事件涉及的属性值</td>
+</tr>
+<tr>
+<td>getSession()</td>
+<td>获取触发事件的HttpSession对象</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="2-2-ServletContextListener的使用"><a href="#2-2-ServletContextListener的使用" class="headerlink" title="2.2 ServletContextListener的使用"></a>2.2 ServletContextListener的使用</h4><h5 id="2-2-1-作用"><a href="#2-2-1-作用" class="headerlink" title="2.2.1 作用"></a>2.2.1 作用</h5><p>ServletContextListener是监听ServletContext对象的创建和销毁的，因为ServletContext对象是在服务器启动的时候创建、在服务器关闭的时候销毁，所以ServletContextListener也可以监听服务器的启动和关闭</p>
+<h5 id="2-2-2-使用场景"><a href="#2-2-2-使用场景" class="headerlink" title="2.2.2 使用场景"></a>2.2.2 使用场景</h5><p>将来学习SpringMVC的时候，会用到一个ContextLoaderListener，这个监听器就实现了ServletContextListener接口，表示对ServletContext对象本身的生命周期进行监控。</p>
+<h5 id="2-2-3-代码实现"><a href="#2-2-3-代码实现" class="headerlink" title="2.2.3 代码实现"></a>2.2.3 代码实现</h5><h6 id="①-创建监听器类"><a href="#①-创建监听器类" class="headerlink" title="① 创建监听器类"></a>① 创建监听器类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.manman.listener;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextEvent;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContextListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 包名:com.manman.listener</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> chenxin</span></span><br><span class="line"><span class="comment"> * 日期2021-06-19  10:26</span></span><br><span class="line"><span class="comment"> * 编写监听器的步骤:</span></span><br><span class="line"><span class="comment"> * 1. 写一个类实现对应的：Listener的接口(我们这里使用的是ServletContextListener),并且实现它里面的方法</span></span><br><span class="line"><span class="comment"> *    1.1 contextInitialized()这个方法在ServletContext对象被创建出来的时候执行，也就是说在服务器启动的时候执行</span></span><br><span class="line"><span class="comment"> *    1.2 contextDestroyed()这个方法会在ServletContext对象被销毁的时候执行，也就是说在服务器关闭的时候执行</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 2. 在web.xml中注册(配置)监听器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ContextLoaderListener</span> <span class="keyword">implements</span> <span class="title class_">ServletContextListener</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在服务器启动的时候，模拟创建SpringMVC的核心容器...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;在服务器启动的时候，模拟销毁SpringMVC的核心容器...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="②-注册监听器"><a href="#②-注册监听器" class="headerlink" title="② 注册监听器"></a>② 注册监听器</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>com.manman.listener.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/">https://manamn.space/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/">百里半Java培训</a><a class="post-meta__tags" href="/tags/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/">Web网页技术</a></div><div class="post_share"><div class="social-share" data-image="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%E8%BD%AC%E5%8F%91%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/"><img class="prev-cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">一文了解转发与重定向</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82Cookie%E4%B8%8ESession%E7%9A%84%E5%8C%BA%E5%88%AB/"><img class="next-cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">一文学懂Cookie与Session的区别</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/Get%E8%AF%B7%E6%B1%82%E5%92%8CPost%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB/" title="Get请求和Post请求的区别"><img class="cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-16</div><div class="title">Get请求和Post请求的区别</div></div></a></div><div><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/Web%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8AServlet%E5%85%A5%E9%97%A8/" title="Web环境搭建以及Servlet入门"><img class="cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-16</div><div class="title">Web环境搭建以及Servlet入门</div></div></a></div><div><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/JS%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%A7%E5%85%A8/" title="JS常用正则表达式大全"><img class="cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-16</div><div class="title">JS常用正则表达式大全</div></div></a></div><div><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82Cookie%E4%B8%8ESession%E7%9A%84%E5%8C%BA%E5%88%AB/" title="一文学懂Cookie与Session的区别"><img class="cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-16</div><div class="title">一文学懂Cookie与Session的区别</div></div></a></div><div><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82JSP/" title="一文学懂JSP"><img class="cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-16</div><div class="title">一文学懂JSP</div></div></a></div><div><a href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E5%88%9D%E5%A7%8BServletContext/" title="初始ServletContext"><img class="cover" src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1660653715457" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-16</div><div class="title">初始ServletContext</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">142</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/gaoziman" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-gitHub"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=2942894660@qq.com" target="_blank" title="Email"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/692044806?spm_id_from=333.1007.0.0" target="_blank" title="BiliBili"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg></a><a class="social-icon faa-parent animated-hover" href="tencent://Message/?Uin=2942894660&amp;amp;websiteName=local.edu.com:8888=&amp;amp;Menu=yes" target="_blank" title="QQ"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-QQ1"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">一文学懂过滤器和监听器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E4%BB%80%E4%B9%88%E6%98%AFFilter"><span class="toc-number">2.</span> <span class="toc-text">第一章  什么是Filter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Filter%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 Filter简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E4%B8%BB%E8%A6%81API"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 主要API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-Filter%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">1.3.1 Filter接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-FilterConfig%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.3.0.2.</span> <span class="toc-text">1.3.2 FilterConfig接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-FilterChain%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.3.0.3.</span> <span class="toc-text">1.3.3 FilterChain接口</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-Filter%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-number">3.</span> <span class="toc-text">第二章  Filter初体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A"><span class="toc-number">3.0.1.</span> <span class="toc-text">需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="toc-number">3.0.2.</span> <span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="toc-number">3.0.3.</span> <span class="toc-text">解决方案：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-Filter%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">4.</span> <span class="toc-text">第三章  Filter的生命周期</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-FilterConfig%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">第四章 FilterConfig类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-FilterChain%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">第5章 FilterChain过滤器链（重点）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-Filter%E7%9A%84%E6%8B%A6%E6%88%AA%E8%B7%AF%E5%BE%84%EF%BC%88%E7%9B%AE%E6%A0%87%E8%B5%84%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">第6章 Filter的拦截路径（目标资源的配置）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-HttpFilter"><span class="toc-number">8.</span> <span class="toc-text">第7章 HttpFilter</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E7%9B%91%E5%90%AC%E5%99%A8%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">第八章 监听器（了解即可）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%9B%91%E5%90%AC%E5%99%A8%E7%9A%84%E7%AE%80%E4%BB%8B"><span class="toc-number">9.1.</span> <span class="toc-text">2.1 监听器的简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E7%9B%91%E5%90%AC%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">9.1.1.</span> <span class="toc-text">2.1.1 监听器的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-Servlet%E7%9B%91%E5%90%AC%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB-%E4%BA%86%E8%A7%A3"><span class="toc-number">9.1.2.</span> <span class="toc-text">2.1.2 Servlet监听器的分类(了解)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0-ServletContextListener"><span class="toc-number">9.1.2.1.</span> <span class="toc-text">① ServletContextListener</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A1-HttpSessionListener"><span class="toc-number">9.1.2.1.0.1.</span> <span class="toc-text">② HttpSessionListener</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A2-ServletRequestListener"><span class="toc-number">9.1.2.1.0.2.</span> <span class="toc-text">③ ServletRequestListener</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A3-ServletContextAttributeListener"><span class="toc-number">9.1.2.1.0.3.</span> <span class="toc-text">④ ServletContextAttributeListener</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A4-HttpSessionAttributeListener"><span class="toc-number">9.1.2.1.0.4.</span> <span class="toc-text">⑤ HttpSessionAttributeListener</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A5-ServletRequestAttributeListener"><span class="toc-number">9.1.2.1.0.5.</span> <span class="toc-text">⑥ ServletRequestAttributeListener</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A6-HttpSessionBindingListener"><span class="toc-number">9.1.2.1.0.6.</span> <span class="toc-text">⑦ HttpSessionBindingListener</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-ServletContextListener%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">9.1.2.2.</span> <span class="toc-text">2.2 ServletContextListener的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1-%E4%BD%9C%E7%94%A8"><span class="toc-number">9.1.2.2.1.</span> <span class="toc-text">2.2.1 作用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">9.1.2.2.2.</span> <span class="toc-text">2.2.2 使用场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">9.1.2.2.3.</span> <span class="toc-text">2.2.3 代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A0-%E5%88%9B%E5%BB%BA%E7%9B%91%E5%90%AC%E5%99%A8%E7%B1%BB"><span class="toc-number">9.1.2.2.3.1.</span> <span class="toc-text">① 创建监听器类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E2%91%A1-%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">9.1.2.2.3.2.</span> <span class="toc-text">② 注册监听器</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/Web%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8AServlet%E5%85%A5%E9%97%A8/" title="Web环境搭建以及Servlet入门"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web环境搭建以及Servlet入门"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/Web%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8AServlet%E5%85%A5%E9%97%A8/" title="Web环境搭建以及Servlet入门">Web环境搭建以及Servlet入门</a><time datetime="2022-10-16T15:01:07.000Z" title="发表于 2022-10-16 23:01:07">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82JSP/" title="一文学懂JSP"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文学懂JSP"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82JSP/" title="一文学懂JSP">一文学懂JSP</a><time datetime="2022-10-16T15:00:49.000Z" title="发表于 2022-10-16 23:00:49">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82Cookie%E4%B8%8ESession%E7%9A%84%E5%8C%BA%E5%88%AB/" title="一文学懂Cookie与Session的区别"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文学懂Cookie与Session的区别"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82Cookie%E4%B8%8ESession%E7%9A%84%E5%8C%BA%E5%88%AB/" title="一文学懂Cookie与Session的区别">一文学懂Cookie与Session的区别</a><time datetime="2022-10-16T15:00:28.000Z" title="发表于 2022-10-16 23:00:28">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" title="一文学懂过滤器和监听器"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文学懂过滤器和监听器"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E5%AD%A6%E6%87%82%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" title="一文学懂过滤器和监听器">一文学懂过滤器和监听器</a><time datetime="2022-10-16T15:00:12.000Z" title="发表于 2022-10-16 23:00:12">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%E8%BD%AC%E5%8F%91%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/" title="一文了解转发与重定向"><img src="https://ik.imagekit.io/nicexl/img/d7b219eca0a1dcc8b4d961cf96d3db876bb9b560_nmIj68YVP.gif?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1660653715457" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文了解转发与重定向"/></a><div class="content"><a class="title" href="/2022/10/16/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/Web%E7%BD%91%E9%A1%B5%E6%8A%80%E6%9C%AF/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%E8%BD%AC%E5%8F%91%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/" title="一文了解转发与重定向">一文了解转发与重定向</a><time datetime="2022-10-16T14:59:54.000Z" title="发表于 2022-10-16 22:59:54">2022-10-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Gao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><script async src="/js/diytitle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.1.6/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'cc4dba1920f64df682729ef4ef354b39';
+  var gaud_map_key = '70e933385078238662fb7abb292fa83f';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.6534116,27.96920845';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.1.6/lib/clock.min.js"></script><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover1.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/随笔⌚/&quot;);" href="javascript:void(0);">随笔⌚</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">大学学习史</span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover2.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/转载/&quot;);" href="javascript:void(0);">转载</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">前端成长历程</span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover3.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM上篇/&quot;);" href="javascript:void(0);">JVM上篇</a><span class="categoryBar-list-count">12</span><span class="categoryBar-list-descr">生活欢乐多</span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover4.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM下篇/&quot;);" href="javascript:void(0);">JVM下篇</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover5.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JavaSE/&quot;);" href="javascript:void(0);">JavaSE</a><span class="categoryBar-list-count">19</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://cdn.cbd.int/akilar-candyassets@1.0.36/image/cover6.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM中篇/&quot;);" href="javascript:void(0);">JVM中篇</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MySQL-shk/&quot;);" href="javascript:void(0);">MySQL-shk</a><span class="categoryBar-list-count">11</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java自学笔记/&quot;);" href="javascript:void(0);">Java自学笔记</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/C语言/&quot;);" href="javascript:void(0);">C语言</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/学习路线/&quot;);" href="javascript:void(0);">学习路线</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/教程/&quot;);" href="javascript:void(0);">教程</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/文档/&quot;);" href="javascript:void(0);">文档</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/重学Java基础/&quot;);" href="javascript:void(0);">重学Java基础</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java/&quot;);" href="javascript:void(0);">Java</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java知识点/&quot;);" href="javascript:void(0);">Java知识点</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Thymeleaf/&quot;);" href="javascript:void(0);">Thymeleaf</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MyBatis/&quot;);" href="javascript:void(0);">MyBatis</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/多线程/&quot;);" href="javascript:void(0);">多线程</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java-Basic/&quot;);" href="javascript:void(0);">Java-Basic</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/计算机组成原理/&quot;);" href="javascript:void(0);">计算机组成原理</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/计算机网络/&quot;);" href="javascript:void(0);">计算机网络</a><span class="categoryBar-list-count">12</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/HTTP/&quot;);" href="javascript:void(0);">HTTP</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/设计模式/&quot;);" href="javascript:void(0);">设计模式</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MySQL/&quot;);" href="javascript:void(0);">MySQL</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Web网页技术/&quot;);" href="javascript:void(0);">Web网页技术</a><span class="categoryBar-list-count">9</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.2.2" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index" style="margin-inline:5px" data-title="本站已在湘进行备案" title=""><img src="https://img.shields.io/badge/湘ICP备-2022004213号-e1d492?style=flat&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+nhxg7wAACNlJREFUSInF1mmMVeUdx/Hv2e+5+519mJWBYQZkGxZZxLKJqBXGoLS1iXWrmihotFXaJiTWWlsbl6q1aetWd5u0VkKjNG4YEJSlOCibDLMwM8x679z9nnPP1jcVJUxf+7z6J8+LT37/Z4VvaQhfFS8+sBXbctCDGrVTKlBUH4mxAbI9Hfj0IJLsp6paJ5/tmn20N/D0wKDRMq9F/c3M2U1/V0vDfWMFh+tv/Ig1zYPMabDImPJ52OaXO87W580KggCiiOsJOJ6I3wcNFaaeNKxrt72f2fLGu4FpJ/sDQABRzD22fH7/Yze069vGc6mrDLNIJCDik10sxz2by3VdPM87xzkP9jwPTZFRVI1YUJKH+oy7n3tbvv/P2wW/UQxRWe6w4ZJRptYLHDoCuz8v5cP92XbI762O+h6UVWHnUFbPpU0fEb2A60mMJ7MUi9b/b7UgKhiZMaIxm8YLplLMDPz8hl/EH+rs8TNlUpFf32uyZJGLPDwCiTGUyTWodTN49eUCdz2YwXb9NNcObp1X98WDoufynzMVCEKGn27ayPTWBi5ad8P5iQUkJEnFLjqM9Z+hrVX0vfDe6K2dPRWsW2bwyp9EUifSJB84gdxrkR0eRgv1o/3I4fbbprJ6scqamzVO9pffec1S5ZWY2Nfz5qEy/FqOC2Y3s3j53HMSi18VRjFPwSwg+1RfVbl115vvJrsfej7UGIsYPPGgQ7JXoO+Xx5B3dHEomyJ9x1qiQozkr95h5937aFnVyouPlgJK+Ss7Fxz64OTSxSX+LHYxT2IsRW5kbGI4oHcR0jqoqTjV9se3I7/f8rS/ClS23GxSXhph6L5d9Akm7qqZhHWBQGUJ+CWGFzcg7e7m6D3/ZuW1Ea5YKdA3EojuONi813TqNi+YPYOKUhXDtCeGL26/hakLLiEcdsaHRkRAoLRc4fJrmhnekyF0apgZowWSwwkaa+rw3f8WA1GZZsPP5JEChX8dhZTN6iU6kAcs5s+dHd183SJ0VVKL57pfw6YdRQw23aeWTns47DPTALWlRTR7kMLew6hGgYqUhWXYFFUdPZ6lUBahLA8hVcOftckfi7No7VRAAQqsX1dybfvG1qwriM9mM5mJ4e4jO5Cc01dPqixbr8tWGBQUL4vjGigEEShi+xUmZ2RiR/sJ1pbS8NkgZrKAGw0TsgQsQyFaF/nfYTGprAlMFysbA1pI3mhkR6snhGsaymYGvPyFEb9IdbUE2AzFFTwpRqCtBY0wmdER+hZW4j63gcJj38V+/ErSUZXsYBfjIZHIRW0c2Z8BskCAqN+CbBJBFnyyKjR+Ez57nBxLqpfMUeSISElMBFz6x2Q6OxzWrYjyxWVzEewioU3LCS5vQY6nMUrLwNaxXvoQ59IloFSx54PPAZtQLExVZZDxsVE8J4dn6v4JYatgbSjk0owPw7RGH2ADMo88Z7L20ip8f7gC7fAo0q4+0rt7kEQDvaghVZbiPHUHcyeXcfLjT3jmpR7AYsnSScya3UR8bARVMck7Y/cB75/X6rDf3Fg2dw2jKZm5dXGm1LuAzO5DCo9v6aT0ibco5kzOvLOP+NGTFJtDpPYeZKijk/Rn3QxsfZV7txwhX7ABiZUXBsGvIvguQApNQQva9RMmTvZ2dpVUls+tX/UD7GN/Y8Ws05w6rQF+9vyzg1vZjbvMRJhXiRSU8DpTFFe0QE8S6SfPkOkZoktrB2oAhZWrwljxOPmchiSMYOWNoxNuruFU5vWeXdsojiUon345113dBBQBmTYlTimgdB8nfPo4WjaNFgN9OMEkJ02dnadVt5ki54Esqy+bzKJltVhSPbI3iN2zCyMTeXNCuG7Omm2Zok7PR2+R7jvD8ouruHhmCrB5jVZeYxLdrTP4sr4Vtd9g4MA4qc4c+6cu5NPamfw4P59t2WrA4YdXKkASf7SFivo6PDdEPmf1fRM++zp1bH/0r4I1dD1ODtOWaW4IsvPjL7nqXhloQiSPwjjgMYkMASyGEBkjhISCQwkwzve/18AbT+pk8pVY4UacQi9y+gyZ0eRAw4qHa89LXEx1LXMSPfhDJYRb59BtlLKg2WPT2l6qYl1svtGkrLYckyA1S+t5+2ATm37WCui0LSynsckDNH5zTxAchbQtkx08hDHYiW6NgC0enHBzEZ102UDH8QORdEckjEzZrNWkRydzyx17uGnDXqbUnGZ6dRPjSY91q2TqwjFuvTxLo5Zn5Qo/pumRSFcTLQtybEhGE0fQrDhhJ0VvH2lTnnHPhGtsmWan469apERjI2MH3qN7+7MEfH6ql29CbV7PvsMG32k6yU2XDhEKyZw66eJaRdrXR7CzCcqUNC3zwgymPJRCH4KRRLINimpL14A5Y4GDeOqbsPRVcfuN7Xj44pav/hFfrNT2kr2rsqf2Ibp5pEA14ZIImUyW3t5REkkTXRGQ/DGGhtLginhqCWknQDE5hKf5UFSF9Lj020Q2ul5V1AR2hr+8vuP8Vlc2zMPRxoSjnx7XBC14sDoydahSGq7KdO/HFyrBchxCVfX4fDKp4T7SCQejYODZLrYgIqgKFsNIgQqEYob8mW6yiUyb7Z64LVK/+B85xznnJ3AWzqTzuIX46mr5wLs+UUTyIriBCjRNxguHMJIFDLEEvXEOVRWnSJ0+jCd4CJoGjoedM1CLcXQziW3nMV2TSMBeOx7vWZvPt1r+cMPzE8KunaUkFn0vNrvtqXj34c1W6gzxlEQ6naIoBahtnkMwoFMwIVzSRNguMt53Aj2s4nkSlgPoGqLkICsRNF0gl8rYWuP8+11/w/OOJDEhHPKLCIpOXmi+M9AgP+maiesLifF2T1Rn5ZNj5Lo/Qc/GcPMmhdoqlEgIGzCK4PiCmJKK68p4KfF3qYGuF0qCRUkJTzleUbvQyWRTuE5xYthxQbBs7EISAbkzUFG3VfXXbK2YFi3X/eryfKKnqVBItNjJxDzH8erddC4SqWwcN5WyTtlyO1RP/Lh3eHD76MB40swmiDVJyDLYRhpc5+ub6tse/wWKbvSQEAw1awAAAABJRU5ErkJggg==" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/js/runtime/runtime.min.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item swiper_container_card" style="height: auto;width: 100%"><div id="random"><div id="random-banner"><canvas id="peoplecanvas"></canvas></div><a id="random-hover" style="width:100%;height:auto;" href="javascript:toRandomPost()" rel="external nofollow noreferrer" one-link-mark="yes"><i class="fa fa-paper-plane" style="margin-left:10px"></i><div style="margin-left:10px">随便逛逛<i class="fa-solid fa-arrow-right" style="margin-left:10px"></i></div></a></div><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://tx2.a.yximgs.com/udata/music/music_f307a39407e74b1ab48f8409b8b0c3210.jpg" alt="" onerror="this.src=https://cdn.cbd.int/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-05-16</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt="">2021最新版java学习路线</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://tx2.a.yximgs.com/udata/music/music_f307a39407e74b1ab48f8409b8b0c3210.jpg" alt="" onerror="this.src=https://cdn.cbd.int/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-05-03</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt="">随机图api</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/js/swiper.min.js"></script><script defer data-pjax src="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiper_init.js"></script><script data-pjax src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/gsap/3.9.1/gsap.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/people.min.js"></script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '30');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('article-sort-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__slideInRight');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow_init.js"></script><script async src="/js/ali_font.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
