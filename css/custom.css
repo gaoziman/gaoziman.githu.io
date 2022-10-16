@@ -659,7 +659,7 @@ li.card-archive-list-item {
 }
 
 
-#aside-content > .card-widget.card-info {
+/* #aside-content > .card-widget.card-info {
   background: linear-gradient(-45deg, var(--anzhiyu-main), #031764, #150136, #67044d);
   background-size: 400%;
   box-shadow: var(--anzhiyu-shadow-black);
@@ -670,4 +670,4 @@ li.card-archive-list-item {
 .site-data > a .headline,
 .site-data > a .length-num {
   color: var(--anzhiyu-white);
-}
+} */
