@@ -1316,7 +1316,7 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/Gallery/bg%20copy.html</loc>
+    <loc>https://manamn.space/Gallery/bg.html</loc>
     
     <lastmod>2022-05-08</lastmod>
     
@@ -1325,7 +1325,7 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/Gallery/bg.html</loc>
+    <loc>https://manamn.space/Gallery/bg%20copy.html</loc>
     
     <lastmod>2022-05-08</lastmod>
     
@@ -1379,13 +1379,6 @@
 
   
   <url>
-    <loc>https://manamn.space/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://manamn.space/tags/Java/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1407,77 +1400,7 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/tags/JVM/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/JavaSE/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E9%87%8D%E5%AD%A6Java%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/MySQL/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/MySQL-shk/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E6%96%87%E6%A1%A3/</loc>
+    <loc>https://manamn.space/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1492,6 +1415,27 @@
   
   <url>
     <loc>https://manamn.space/tags/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/JavaSE/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/JVM/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1513,6 +1457,55 @@
   
   <url>
     <loc>https://manamn.space/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/%E9%87%8D%E5%AD%A6Java%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/%E6%96%87%E6%A1%A3/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/MySQL/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/MySQL-shk/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1561,6 +1554,13 @@
   </url>
   
   <url>
+    <loc>https://manamn.space/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://manamn.space/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1575,20 +1575,6 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/tags/%E5%86%85%E9%83%A8%E7%B1%BB/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://manamn.space/tags/Java-Basic/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1596,7 +1582,7 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://manamn.space/tags/%E5%86%85%E9%83%A8%E7%B1%BB/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1624,6 +1610,20 @@
   </url>
   
   <url>
+    <loc>https://manamn.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://manamn.space/tags/%E7%99%BE%E9%87%8C%E5%8D%8AJava%E5%9F%B9%E8%AE%AD/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1640,6 +1640,13 @@
 
   
   <url>
+    <loc>https://manamn.space/categories/%E8%BD%AC%E8%BD%BD/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://manamn.space/categories/%E9%9A%8F%E7%AC%94%E2%8C%9A/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1647,7 +1654,14 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/categories/%E8%BD%AC%E8%BD%BD/</loc>
+    <loc>https://manamn.space/categories/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/categories/JavaSE/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1668,7 +1682,7 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/categories/JavaSE/</loc>
+    <loc>https://manamn.space/categories/C%E8%AF%AD%E8%A8%80/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1689,28 +1703,7 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/categories/MySQL-shk/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://manamn.space/categories/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://manamn.space/categories/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1724,14 +1717,14 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/categories/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://manamn.space/categories/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://manamn.space/categories/C%E8%AF%AD%E8%A8%80/</loc>
+    <loc>https://manamn.space/categories/MySQL-shk/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1780,13 +1773,6 @@
   </url>
   
   <url>
-    <loc>https://manamn.space/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2022-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://manamn.space/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1795,6 +1781,20 @@
   
   <url>
     <loc>https://manamn.space/categories/HTTP/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2022-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://manamn.space/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2022-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
