@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://manamn.space/2022/10/25/SpringMVC%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2022-10-30</lastmod>
+  </url>
+  <url>
     <loc>https://manamn.space/2022/10/26/Vue/%E9%AB%98%E7%BA%A7/Vue%E9%AB%98%E7%BA%A7%E7%B3%BB%E5%88%97%EF%BC%88%E5%8D%81%EF%BC%89vuex%20-%20%E7%8A%B6%E6%80%81%E8%87%AA%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8/</loc>
     <lastmod>2022-10-26</lastmod>
   </url>
@@ -94,10 +98,6 @@
   </url>
   <url>
     <loc>https://manamn.space/2022/10/25/MyBatis%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    <lastmod>2022-10-25</lastmod>
-  </url>
-  <url>
-    <loc>https://manamn.space/2022/10/25/SpringMVC%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2022-10-25</lastmod>
   </url>
   <url>
