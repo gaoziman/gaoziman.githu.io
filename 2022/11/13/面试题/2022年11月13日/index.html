@@ -1,0 +1,529 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><div id="myscoll"></div><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>2022年11月13日 每日面试题 | 爱笑的Gao的个人博客</title><meta name="keywords" content="每日面试题,面试题"><meta name="author" content="Gao"><meta name="copyright" content="Gao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2022 11月13日 每日面试题1、谈谈你对面向对象的理解  面向对象的三大基本特征 ：封装、继承、多态。 其中,封装是指将对象的状态信息隐藏在对象内部,不允许外部程序直接访问对象内部信息,让外部程序通过该类提供的方法来实现对内部信息的操作和访问,这种做法有助于规范使用者的行为,让使用者只能通过事先预定的方法访问数据,提高了代码的可维护性； 继承是面向对象实现代码复用的重要手段,Java通过ex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022年11月13日 每日面试题">
+<meta property="og:url" content="https://manamn.space/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%8813%E6%97%A5/index.html">
+<meta property="og:site_name" content="爱笑的Gao的个人博客">
+<meta property="og:description" content="2022 11月13日 每日面试题1、谈谈你对面向对象的理解  面向对象的三大基本特征 ：封装、继承、多态。 其中,封装是指将对象的状态信息隐藏在对象内部,不允许外部程序直接访问对象内部信息,让外部程序通过该类提供的方法来实现对内部信息的操作和访问,这种做法有助于规范使用者的行为,让使用者只能通过事先预定的方法访问数据,提高了代码的可维护性； 继承是面向对象实现代码复用的重要手段,Java通过ex">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20190820/60cc22477f7f497d9ee17752e863c19c.jpeg">
+<meta property="article:published_time" content="2022-11-13T14:14:46.000Z">
+<meta property="article:modified_time" content="2022-11-13T14:30:57.407Z">
+<meta property="article:author" content="Gao">
+<meta property="article:tag" content="每日面试题">
+<meta property="article:tag" content="面试题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://5b0988e595225.cdn.sohucs.com/images/20190820/60cc22477f7f497d9ee17752e863c19c.jpeg"><link rel="shortcut icon" href="https://yzf.qq.com/fsna/kf-file/kf_pic/20221026/KFPIC_e7a19e0e2ce5b87e4_WXIMAGE_2c76e15d44cb4434bbb7d54fbb2ea55d.jpg?"><link rel="canonical" href="https://manamn.space/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%8813%E6%97%A5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2022年11月13日 每日面试题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-13 22:30:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script data-pjax src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><link rel="stylesheet" href="/js/title.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jayhrn/fontawesome-pro/css/all.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/remixicon@2.5.0/fonts/remixicon.css"><script src="https://at.alicdn.com/t/c/font_3570527_dthoqrrv2tv.css"></script><script src="https://at.alicdn.com/t/c/font_3570527_dthoqrrv2tv.css"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/css/runtime/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱笑的Gao的个人博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">155</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://5b0988e595225.cdn.sohucs.com/images/20190820/60cc22477f7f497d9ee17752e863c19c.jpeg')"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span>JAYHRN</span></a></span><span id="page_name"><a id="page-name-text" title="回到顶部" onclick="btf.scrollToDest(0,500)"><span>爱笑的Gao的个人博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 照片墙</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于我</span></a></div></div></div><div id="hotkey"><div id="search-button"><a class="site-page social-icon search" title="搜索"><i class="ri-search-eye-line"></i></a></div><div id="randompost-button"><a class="site-page" title="随机文章" onclick="toRandomPost()"><i class="ri-subway-fill"></i></a></div><div id="mode-button"><a class="site-page" title="浅色和深色模式转换" onclick="switchDarkMode()"><i class="ri-sun-fill"></i></a></div><div id="top-button"><a class="site-page" title="回到顶部" onclick="btf.scrollToDest(0,500)"><i class="ri-plane-fill"></i></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">2022年11月13日 每日面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-13T14:14:46.000Z" title="发表于 2022-11-13 22:14:46">2022-11-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-13T14:30:57.407Z" title="更新于 2022-11-13 22:30:57">2022-11-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2022年11月13日 每日面试题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="2022-11月13日-每日面试题"><a href="#2022-11月13日-每日面试题" class="headerlink" title="2022 11月13日 每日面试题"></a>2022 11月13日 每日面试题</h1><h1 id="1、谈谈你对面向对象的理解"><a href="#1、谈谈你对面向对象的理解" class="headerlink" title="1、谈谈你对面向对象的理解"></a>1、谈谈你对面向对象的理解</h1><blockquote>
+<ol>
+<li>面向对象的三大基本特征 ：封装、继承、多态。</li>
+<li>其中,封装是指将对象的状态信息隐藏在对象内部,不允许外部程序直接访问对象内部信息,让外部程序通过该类提供的方法来实现对内部信息的操作和访问,这种做法有助于规范使用者的行为,让使用者只能通过事先预定的方法访问数据,提高了代码的可维护性；</li>
+<li>继承是面向对象实现代码复用的重要手段,Java通过extends作为关键字实现类的继承,实现继承的类被称为子类,被继承的类称为父类（有的也被称为基类和超类）,父类和子类的关系是一种一般和特殊的关系；</li>
+<li>多态的实现离不开继承,在设计程序时,我们可以将参数的类型定义为父类型。在调用程序时,则可以根据实际情况,传入该父类型的某个子类型的实例,这样就实现了多态。对于父类型,可以有三种形式,即普通的类、抽象类、接口。对于子类型,则要根据它自身的特征,重写父类的某些方法,或实现抽象类/接口的某些抽象方法。 </li>
+</ol>
+</blockquote>
+<h1 id="2、int和Integer有什么区别"><a href="#2、int和Integer有什么区别" class="headerlink" title="2、int和Integer有什么区别"></a>2、int和Integer有什么区别</h1><blockquote>
+<ol>
+<li>Integer是int的包装类，而int是Java中基本数据类型。</li>
+<li>Integer变量必须实例化后才能使用，而int变量不需要。</li>
+<li>Integer实际是对象的引用，当new一个Integer时，实际上是生成一个指针指向此对象；而int则是直接存储数据值</li>
+<li>Integer的默认值为null，而int的默认值为0。</li>
+</ol>
+</blockquote>
+<h1 id="3、说说-amp-和-amp-amp-的区别"><a href="#3、说说-amp-和-amp-amp-的区别" class="headerlink" title="3、说说&amp;和&amp;&amp;的区别"></a>3、说说&amp;和&amp;&amp;的区别</h1><blockquote>
+<ol>
+<li>按位与；</li>
+<li>逻辑与。</li>
+</ol>
+<p>&amp;&amp;运算符是短路与运算。逻辑与跟短路与的差别是非常巨大的，虽然二者都要求运算符左右两端的布尔值都是true整个表达式的值才是true。&amp;&amp;之所以称为短路运算是因为，如果&amp;&amp;左边的表达式的值是false，右边的表达式会被直接短路掉，不会进行运算。很多时候我们可能都需要用&amp;&amp;而不是&amp;，例如在验证用户登录时判定用户名不是null而且不是空字符串，应当写为：username != null &amp;&amp;!username.equals(“”)，二者的顺序不能交换，更不能用&amp;运算符，因为第一个条件如果不成立，根本不能进行字符串的equals比较，否则会产生NullPointerException异常。</p>
+</blockquote>
+<h1 id="4、说说你对AOP的理解"><a href="#4、说说你对AOP的理解" class="headerlink" title="4、说说你对AOP的理解"></a>4、说说你对AOP的理解</h1><blockquote>
+<ol>
+<li>AOP是一种编程思想，是通过预编译方式和运行期间动态代理的方式实现不修改源码的情况下给程序动态统一添加功能的技术。面向对象编程将程序抽象成各个层次的对象，而面向切面编程则将程序抽象成各个切面。所谓切面，相当于应用对象之间的横切点，我们可以将其单独    抽象为单独的模块。</li>
+<li>AOP技术利用一种称为<strong>横切</strong>的技术剖解开封装对象的内部,将影响多个类的公共行为封装到一个可重用的模块中,并将其命名为切面。所谓的切面,简单来说就是与业务无关,却为业务模块所共同调用的逻辑,将其封装起来便于减少系统的重复代码,降低模块的耦合度,有利用未来的可操作性和可维护性。</li>
+<li>利用AOP可以对业务逻辑各个部分进行隔离开来，从而使业务逻辑部分之间的耦合度降低，提高程序的可重用性，提高开发效率。</li>
+<li>AOP可以有多种实现方式,而Spring AOP支持如下两种实现方式。<ol>
+<li>JDK动态代理 ： 这是Java提供的动态代理技术，可以在运行时创建接口的动态实例。Spring AOP默认采用这种方式,在接口的代理实例中织入代码。</li>
+<li>CGLIB动态代理 ：采用底层的字节码技术，在运行时创建子类的代理的实例。当目标对象不存在接口的时候，Spring AOP就会采用这种方式,在子类实例中织入代码。</li>
+</ol>
+</li>
+<li>在应用场景方面,Spring AOP为IoC的使用提供了更多的便利,一方面,应用可以直接使用AOP的功能,设计应用的横切关注点,把跨越应用程序多个模块的功能抽象出来,并通过简单的AOP的使用,灵活地编制到模块中,比如可以通过AOP实现应用程序中的日志功能。另一方面,在Spring内部,例如事务处理之类的一些支持模块也是通过Spring AOP来实现的。</li>
+</ol>
+</blockquote>
+<h1 id="5、谈谈你对IoC的理解"><a href="#5、谈谈你对IoC的理解" class="headerlink" title="5、谈谈你对IoC的理解"></a>5、谈谈你对IoC的理解</h1><blockquote>
+<ol>
+<li>IOC是控制反转的意思，是一种面向对象编程的设计思想。在不采用这种思想的情况下,我们需要自己维护对象与对象之间的依赖关系,很容易造成对象之间的耦合度过高,在一个大型的项目中这十分的不利于代码的维护。IoC则可以解决这种问题,它可以帮我们维护对象与对象之间的依赖关系,并且降低对象之间的耦合度。</li>
+<li>说到IOC就不得不说说DI，DI是依赖注入的意思，它是IOC实现的实现方式。由于IOC这个词汇比较抽象而DI比较直观,所以很多时候我们就用DI来代替它,在很多时候我们简单地将IOC和DI划等号,这是一种习惯。实现依赖注入的关键是IOC容器,它的本质就是一个工厂。</li>
+</ol>
+</blockquote>
+<h1 id="6、请说说你对反射的了解"><a href="#6、请说说你对反射的了解" class="headerlink" title="6、请说说你对反射的了解"></a>6、请说说你对反射的了解</h1><blockquote>
+<ol>
+<li>Java程序中，许多对象在运行时都会有编译时异常和运行时异常两种。例如多态的情况下Car c = new Animal(); 这行代码运行时会生成一个c变量,在编译时该变量的类型是Car,运行时该变量类型为Animal；另外还有更极端的情况,例如程序在运行时接收到了外部传入的一个对象,这个对象的编译时类型是Object,但程序又需要调用这个对象运行时类型的方法,这种情况下,有两种解决方法：第一种做法是假设在编译时和运行时都完全知道类型的具体信息,在这种情况下,可以先使用instanceof运算符进行判断,再利用强制类型转换将其转换成其运行时类型的变量。第二种做法是编译时根本无法预知该对象和类可能属于哪些类,程序只依靠运行时信息来发现该对象和类的真实信息,这就必须使用反射。    </li>
+<li>具体来说,通过反射机制,我们可以实现如下的操作：<ol>
+<li>程序运行中，可以通过反射创建任意一个类的实例，并访问该实例的成员。</li>
+<li>程序运行中，可以通过反射机制生成一个类的动态代理类或动态代理对象。</li>
+</ol>
+</li>
+<li>Java的反射机制在实际项目中应用广泛,常见的应用场景有：<ol>
+<li>使用JDBC时,如果要创建数据库的连接,则需要先通过反射机制加载数据库的驱动程序。</li>
+<li>多数框架都支持注解/XML配置,从配置中解析出来的类是字符串,需要利用反射机制实例化；</li>
+<li>面向切面编程（AOP）的实现方案,是在程序运行时创建目标对象的代理类,这必须由反射机制来实现。</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h1 id="7、说说你对ArrayList的理解"><a href="#7、说说你对ArrayList的理解" class="headerlink" title="7、说说你对ArrayList的理解"></a>7、说说你对ArrayList的理解</h1><blockquote>
+<ol>
+<li>ArrayList是基于数组实现的，它的内部封装了一个Object[]数组。通过默认的构造器创建容器时，该数组首先被初始化为空数组，之后在首次添加数据时初始化长度为10。我们也可以使用有参构造器来创建容器，并通过参数来显示的指定数组的容量，此时该数组被初始化为指定容量的数组。</li>
+<li>如果向ArrayList中添加数据会造成超出数组长度限制，则会触发自动扩容，然后再添加数据。扩容就是数组拷贝，将旧数组的内容拷贝到新的数组中，而新数组的长度为原来数组长度的1.5倍。</li>
+<li>ArrayList支持缩容，但不会自动缩容,即便是ArrayList中只剩下少量数据时也不会主动缩容。如果我们希望缩减ArrayList的容量,则需要自己调用它的trimToSize()方法,届时数组将按照元素的实际个数进行缩减。</li>
+<li>Set、List、Queue都是Collection的子接口,它们都继承了父接口的iterator()方法,从而具备了迭代的能力。但是,相比于另外两个接口,List还单独提供了listIterator()方法,增强了迭代能力。iterator()方法返回Iterator迭代器,listIterator()方法返回ListIterator迭代器,并且ListIterator是Iterator的子接口。ListIterator在Iterator的基础上,增加了向前遍历的支持,增加了在迭代过程中修改数据的支持。</li>
+</ol>
+</blockquote>
+<h1 id="8、说说Spring-Boot的自动装配"><a href="#8、说说Spring-Boot的自动装配" class="headerlink" title="8、说说Spring Boot的自动装配"></a>8、说说Spring Boot的自动装配</h1><blockquote>
+<ol>
+<li>使用Spring Boot时,我们需要引入对应的Starters,Spring Boot启动时便会自动加载相关依赖,配置相应的初始化参数,以最快捷、简单的形式对第三方软件进行集成,这便是Spring Boot的自动配置功能。</li>
+<li>整个自动装配的过程是 ： SpringBoot 通过@EnableAutoConfiguration注解开启自动配置，加载spring.factories中注册的各种AutoConfiguration类,当某个AutoConfiguration类满足其注解@Conditional指定的生效条件时，实例化该AutoConfiguration类中定义的Bean（组件等）,注入Spring容器，就可以完成依赖框架的自动配置</li>
+<li>@EnableAutoConfiguration 作用 从classpath中搜索所有META-INF/spring.factories配置文件然后,将其中org.springframework.boot.autoconfigure.EnableAutoConfiguration key对应的配置项加载到spring容器 只有spring.boot.enableautoconfiguration为true（默认为true）的时候,才启用自动配置 @EnableAutoConfiguration还可以根据class来排除（exclude）,或是根据class name（excludeName）来排除 其内部实现的关键点有 1. ImportSelector 该接口的方法的返回值都会被纳入到spring容器管理中 2. SpringFactoriesLoader 该类可以从classpath中搜索所有META-INF/spring.factories配置文件,并读取配置</li>
+</ol>
+</blockquote>
+<h1 id="9、请你说说Java的特点和优点-为什么要选择Java？"><a href="#9、请你说说Java的特点和优点-为什么要选择Java？" class="headerlink" title="9、请你说说Java的特点和优点,为什么要选择Java？"></a>9、请你说说Java的特点和优点,为什么要选择Java？</h1><blockquote>
+<ol>
+<li>Java是一门非常纯粹的面向对象的编程语言，它在吸收C++语言优点的同时去除了C语言中令人难以理解的多继承，指针等概念。所以Java语言在保证了强大功能的基础上,还比C++语言更为简单易用。</li>
+<li>Java语言极好的实现了面向对象理论，是静态面向对象语言的代表，它的存在保证了程序员可以用优雅的思维方式进行复杂的编程 。</li>
+<li>Java还拥有平台的独立性，可以做到”一次编译,到处运行”。Java还提供了很多内置的类库，,通过这些类库,简化了开发人员的程序设计工作,缩短了项目的开发时间,最重要的是Java提供了垃圾回收器,这也将开发人员从对内存的管理中解脱出来。同时Java拥有良好的安全性和健壮性，Java语言常常使用在网络环境中，为了增强程序的安全性,java语言提供了一个防止恶意代码攻击的安全机制（数组边界检测和Bytecode校验等）。Java的强类型机制、垃圾回收器、异常处理和安全检查机制使用Java语言编写的程序有很好的健壮性</li>
+<li>此外，Java还提供了对Web应用开发的支持。例如Applet、Servlet和JSP可以用来开发Web应用程序；Socket、RMI可以用来开发分布式应用程序的类库。 </li>
+<li>JVM（Java虚拟机）是Java跨平台的关键。在运行程序之前，Java源代码(.java)需要经过编译器，将源代码翻译为字节码(.class)，但字节码不能直接运行，所以必须通过JVM将字节码翻译为特定平台的机器码运行程序。但跨平台的是Java程序、而不是JVM,所以需要在不同平台下安装不同版本的JVM。</li>
+</ol>
+</blockquote>
+<h1 id="10、SpringBoot的启动流程"><a href="#10、SpringBoot的启动流程" class="headerlink" title="10、SpringBoot的启动流程"></a>10、SpringBoot的启动流程</h1><blockquote>
+<p> 当Spring Boot项目创建完成后会默认生成一个Application的入口类,这个类中的mn方法可以启动Spring Boot项目，在mn方法中，通过SpringApplication的静态方法，即run方法进行SpringApplication的实例化操作,然后再针对实例化对象调用另外一个run方法来完成整个项目的初始化和启动。SpringApplication调用的run方法重点做了以下操作 ：</p>
+<ol>
+<li>获取监听参数配置</li>
+<li>打印Bannner信息</li>
+<li>创建并初始化容器</li>
+<li>监听器发送通知</li>
+</ol>
+</blockquote>
+<h1 id="11、介绍一下Spring-MVC的执行流程"><a href="#11、介绍一下Spring-MVC的执行流程" class="headerlink" title="11、介绍一下Spring MVC的执行流程"></a>11、介绍一下Spring MVC的执行流程</h1><blockquote>
+<ol>
+<li>用户点击某个路径，发起HttpRequest请求，该请求会被提交到DispacherServelet；</li>
+<li>由 DispatcherServlet 请求一个或多个处理器映射器(HandlerMapping),并返回一个执行链(HandlerExecutionChn)。</li>
+<li>DispatcherServlet将执行链返回的Handle信息发送给处理器适配器(HandlerAdapter)；</li>
+<li>HandlerAdapter 根据 Handler 信息找到并执行相应的 Handler方法(常称为 Controller)；</li>
+<li>Handle执行完毕之后会返回给HandleAdapter一个ModelAndView对象(Spring MVC的底层对象,包括 Model 数据模型和 View 视图信息)；</li>
+<li>HandlerAdapter 接收到 ModelAndView 对象后,将其返回给 DispatcherServlet ；</li>
+<li>DispatcherServlet接收到ModelAndView 对象后，会请求视图解析器(ViewResolver)对视图进行解析； </li>
+<li>ViewResolver 根据 View 信息匹配到相应的视图结果,并返回给 DispatcherServlet；</li>
+<li>DispatcherServlet 接收到具体的 View 视图后,进行视图渲染。</li>
+<li>最后将渲染的视图返回给用户。</li>
+</ol>
+</blockquote>
+<h1 id="12、请你说说List与Set的区别"><a href="#12、请你说说List与Set的区别" class="headerlink" title="12、请你说说List与Set的区别"></a>12、请你说说List与Set的区别</h1><blockquote>
+<p>List和Set都是Collection接口的子接口,它们的主要区别在于元素的有序性和重复性： List代表有序的元素可以重复的集合,集合中每个元素都有对应的顺序索引,它默认按元素的添加顺序设置元素的索引,并且可以通过索引来访问指定位置的集合元素。另外,List允许使用重复元素。 Set代表无序的元素不可重复的集合,它通常不能记住元素的添加顺序。Set集合不允许包含相同的元素,如果试图把两个相同的元素加入同一个Set,则会引发失败,添加方法将会返回false。 加分回答 虽然Set代表无序的集合,但是它有支持排序的实现类,即TreeSet。TreeSet可以确保集合元素处于排序状态,并支持自然排序和定制排序两种排序方式,它的底层是由TreeMap实现的。TreeSet也是非线程安全的,但是它内部元素的值不能为null。</p>
+</blockquote>
+<h1 id="13、在MyBatis中-和-有什么区别"><a href="#13、在MyBatis中-和-有什么区别" class="headerlink" title="13、在MyBatis中$和#有什么区别"></a>13、在MyBatis中$和#有什么区别</h1><blockquote>
+<p>使用$设置参数时,MyBatis会创建普通的SQL语句,然后在执行SQL 语句时将参数拼入SQL,而使用#设置参数时,MyBatis会创建预编译的SQL语句,然后在执行SQL时MyBatis会为预编译SQL中的占位符赋值。预编译的SQL语句执行效率高,并且可以防止注入攻击,效率和安全性都大大优于前者，但在解决一些特殊问题,如在一些根据不同的条件产生不同的动态列中,我们要传递SQL的列名，根据某些列进行排序，或者传递列名给SQL就只能使用￥。</p>
+</blockquote>
+<h1 id="14、请你说说Java基本数据类型和引用类型"><a href="#14、请你说说Java基本数据类型和引用类型" class="headerlink" title="14、请你说说Java基本数据类型和引用类型"></a>14、请你说说Java基本数据类型和引用类型</h1><blockquote>
+<p>Java的数据类型分为基本数据类型和引用数据类型两大类。 基本数据类型共有八大类,这八大数据类型又可分为四小类,分别是整数类型（byte/short/int/long）、浮点类型（float、double）、字符类型（char）和布尔类型（boolean）。其中,int是最常用的整数类型,double是最为常用的浮点类型,除了布尔类型之外的其他7个类型,都可以看做是数字类型,它们相互之间可以进行类型转换。 引用类型包括数组、类、接口类型,还有一种特殊的null类型,所谓引用数据类型就是对一个对象的引用,对象包括实例和数组两种。  对于基本数据类型,你需要了解每种类型所占据的内存空间。 </p>
+<ol>
+<li>byte：1字节（8位）,数据范围是 <code>-2^7 ~ 2^7-1</code>。 </li>
+<li>short：2字节（16位）,数据范围是 <code>-2^15 ~ 2^15-1</code>。 </li>
+<li>int：4字节（32位）,数据范围是 <code>-2^31 ~ 2^31-1</code>。 </li>
+<li>long：8字节（64位）,数据范围是 <code>-2^63 ~ 2^63-1</code>。 </li>
+<li>float：4字节（32位）,数据范围大约是 <code>-3.4*10^38 ~ 3.4*10^38</code>。 </li>
+<li>double：8字节（64位）,数据范围大约是 <code>-1.8*10^308 ~ 1.8*10^308</code>。 </li>
+<li>char：2字节（16位）,数据范围是 <code>\u0000 ~ \uffff</code>。 </li>
+<li>boolean：Java规范没有明确的规定,不同的JVM有不同的实现机制。</li>
+</ol>
+</blockquote>
+<h1 id="15、请介绍一下访问修饰符"><a href="#15、请介绍一下访问修饰符" class="headerlink" title="15、请介绍一下访问修饰符"></a>15、请介绍一下访问修饰符</h1><blockquote>
+<p>Java除了提供的三个访问修饰符分别代表三个访问级别之外还有一个不加修饰符的访问级别,它们访问级别控制从小到大为： private-&gt;default-&gt;protected-&gt;public 他们访问级别分别如下：</p>
+<ol>
+<li>private：类中被private修饰的成员只能在当前类的内部被访问。根据这点,我们可以使用它来修饰成员变量,从而将成员变量隐藏在这个类的内部。</li>
+<li>default：如果类中的成员或者一个外部类不使用任何访问修饰符来进行修饰,那么他就是default级别的,default访问控制的类成员或者外部类可以被相同包下的其他类访问。 </li>
+<li>protected：如果一个类成员被protected访问修饰符修饰,那么这个成员不但可以被同一个包下的其他类访问,还可以被其他包下的子类访问。一般来讲,如果一个方法被protected修饰,那么通常是希望它的子类来重写它。</li>
+<li>public：这是Java中最宽松的访问级别,如果类成员被这个修饰符修饰,那么无论访问类和被访问类在不在一个包下,有没有父子关系,这个类成员都可以被访问到。``</li>
+</ol>
+</blockquote>
+<h1 id="16、请你说一下抽象类和接口的区别"><a href="#16、请你说一下抽象类和接口的区别" class="headerlink" title="16、请你说一下抽象类和接口的区别"></a>16、请你说一下抽象类和接口的区别</h1><blockquote>
+<p>接口和抽象类相同点有：</p>
+<ol>
+<li>接口和抽象类都不能被实例化,它们都位于继承树的顶端,用于被其它类实现和继承。</li>
+<li>接口和抽象类都可以有抽象方法,实现接口或继承抽象类的普通子类都必须实现这些抽象方法 在用法上,接口和抽象类也有如下差异：<ol>
+<li>接口里只能包含抽象方法和默认方法,不能为普通方法提供方法实现；抽象类则可以包含普通方法。</li>
+<li>接口里只能定义静态常量,不能定义普通成员变量；抽象类里既可以定义普通成员变量,也可以定义静态常量。</li>
+<li>接口里不包含构造器；抽象类可以包含构造器,但抽象类的构造器并不是用于创建对象,而是让其子类调用这些构造器来完成属于抽象类的初始化操作 。</li>
+<li>接口里不能包含初始化块,抽象类则可以包含初始化块。</li>
+<li>一个类最多只能有一个父类,包括抽象类；但一个类可以直接实现多个接口,通过实现多个接口可以弥补Java单继承的不足 总之,接口通常是定义允许多个实现的类型的最佳途径,但当演变的容易性比灵活性和功能更加重要时,应该使用抽象类来定义类型。 </li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h1 id="17、String、StringBuffer、Stringbuilder有什么区别"><a href="#17、String、StringBuffer、Stringbuilder有什么区别" class="headerlink" title="17、String、StringBuffer、Stringbuilder有什么区别"></a>17、String、StringBuffer、Stringbuilder有什么区别</h1><blockquote>
+<p>Java中提供了String,StringBuffer两个类来封装字符串,并且提供了一系列方法来操作字符串对象。 String是一个不可变类,也就是说,一个String对象创建之后,直到这个对象销毁为止,对象中的字符序列都不能被改变。 StringBuffer对象则代表一个字符序列可变的字符串,当一个StringBuffer对象被创建之后,我们可以通过StringBuffer提供的append()、insert()、reverse()、setCharAt()、setLength()、等方法来改变这个字符串对象的字符序列。当通过StringBuffer得到期待中字符序列的字符串时,就可以通过toString()方法将其转换为String对象。 StringBuilder类是JDK1.5中新增的类,他也代表了字符串对象。和StringBuffer类相比,它们有共同的父类<code>AbstractStringBuilder</code>,二者无论是构造器还是方法都基本相同,不同的一点是,StringBuilder没有考虑线程安全问题,也正因如此,StringBuilder比StringBuffer性能略高。因此,如果是在单线程下操作大量数据,应优先使用StringBuilder类；如果是在多线程下操作大量数据,应优先使用StringBuilder类。</p>
+</blockquote>
+<h1 id="18、请你说说HashMap底层原理"><a href="#18、请你说说HashMap底层原理" class="headerlink" title="18、请你说说HashMap底层原理"></a>18、请你说说HashMap底层原理</h1><blockquote>
+<p> 在JDK8中,HashMap底层是采用“数组+链表+红黑树”来实现的。 HashMap是基于哈希算法来确定元素的位置（槽）的,当我们向集合中存入数据时,它会计算传入的Key的哈希值,并利用哈希值取余来确定槽的位置。如果元素发生碰撞,也就是这个槽已经存在其他的元素了,则HashMap会通过链表将这些元素组织起来。如果碰撞进一步加剧,某个链表的长度达到了8,则HashMap会创建红黑树来代替这个链表,从而提高对这个槽中数据的查找的速度。 HashMap中,数组的默认初始容量为16,这个容量会以2的指数进行扩容。具体来说,当数组中的元素达到一定比例的时候HashMap就会扩容,这个比例叫做负载因子,默认为0.75。自动扩容机制,是为了保证HashMap初始时不必占据太大的内存,而在使用期间又可以实时保证有足够大的空间。采用2的指数进行扩容,是为了利用位运算,提高扩容运算的效率。</p>
+</blockquote>
+<h1 id="19、数据库为什么不用红黑树而用B-树？"><a href="#19、数据库为什么不用红黑树而用B-树？" class="headerlink" title="19、数据库为什么不用红黑树而用B+树？"></a>19、数据库为什么不用红黑树而用B+树？</h1><blockquote>
+<p>首先,红黑树是一种近似平衡二叉树（不完全平衡）,结点非黑即红的树,它的树高最高不会超过 2*log(n),因此查找的时间复杂度为 O(log(n)),无论是增删改查,它的性能都十分稳定； 但是,红黑树本质还是二叉树,在数据量非常大时,需要访问+判断的节点数还是会比较多,同时数据是存在磁盘上的,访问需要进行磁盘IO,导致效率较低； 而B+树是多叉的,可以有效减少磁盘IO次数；同时B+树增加了叶子结点间的连接,能保证范围查询时找到起点和终点后快速取出需要的数据。 </p>
+</blockquote>
+<h1 id="20、请你说说ArrayList和LinkedList的区别"><a href="#20、请你说说ArrayList和LinkedList的区别" class="headerlink" title="20、请你说说ArrayList和LinkedList的区别"></a>20、请你说说ArrayList和LinkedList的区别</h1><blockquote>
+<ol>
+<li>ArrayList的实现是基于数组,LinkedList的实现是基于双向链表。</li>
+<li>对于随机访问ArrayList要优于LinkedList,ArrayList可以根据下标以O(1)时间复杂度对元素进行随机访问,而LinkedList的每一个元素都依靠地址指针和它后一个元素连接在一起,查找某个元素的时间复杂度是O(N)。 </li>
+<li>对于插入和删除操作,LinkedList要优于ArrayList,因为当元素被添加到LinkedList任意位置的时候,不需要像ArrayList那样重新计算大小或者是更新索引。 </li>
+<li>LinkedList比ArrayList更占内存,因为LinkedList的节点除了存储数据,还存储了两个引用,一个指向前一个元素,一个指向后一个元素。</li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://manamn.space">Gao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://manamn.space/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%8813%E6%97%A5/">https://manamn.space/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%8813%E6%97%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://manamn.space" target="_blank">爱笑的Gao的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/">每日面试题</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></div><div class="post_share"><div class="social-share" data-image="http://5b0988e595225.cdn.sohucs.com/images/20190820/60cc22477f7f497d9ee17752e863c19c.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/30/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/"><img class="prev-cover" src="http://wx2.sinaimg.cn/large/9516662fgy1h3eg6z1rs1j21hc1h54qp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">每日面试题</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%881%E6%97%A5/"><img class="next-cover" src="http://img.hb.aicdn.com/5c7a56fa5c998a0de15c99cc3c8d17b16adb4f871e05c4-PDqte5" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2022年11月13日 每日面试题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%2011%E6%9C%887%E6%97%A5%20%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/" title="2022 11月7日 每日面试题"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs.lanqb.com%2F13771558-3fda-4257-84d4-70d4bdffe5a9.jpg&refer=http%3A%2F%2Fs.lanqb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1651215224&t=2c4ceef9b656374088373afe6c474549" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-13</div><div class="title">2022 11月7日 每日面试题</div></div></a></div><div><a href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%881%E6%97%A5/" title="2022年11月13日 每日面试题"><img class="cover" src="http://img.hb.aicdn.com/5c7a56fa5c998a0de15c99cc3c8d17b16adb4f871e05c4-PDqte5" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-13</div><div class="title">2022年11月13日 每日面试题</div></div></a></div><div><a href="/2022/10/30/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/" title="每日面试题"><img class="cover" src="http://wx2.sinaimg.cn/large/9516662fgy1h3eg6z1rs1j21hc1h54qp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-30</div><div class="title">每日面试题</div></div></a></div><div><a href="/2022/10/25/%E9%9D%A2%E8%AF%95%E9%A2%98/SpringMVC%E9%9D%A2%E8%AF%95%E9%A2%98/" title="SpringMVC面试题"><img class="cover" src="http://wx2.sinaimg.cn/large/9516662fgy1h3eg6z1rs1j21hc1h54qp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-25</div><div class="title">SpringMVC面试题</div></div></a></div><div><a href="/2022/10/25/%E9%9D%A2%E8%AF%95%E9%A2%98/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Spring面试题"><img class="cover" src="https://source.fomal.cc/img/default_cover_197.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-25</div><div class="title">Spring面试题</div></div></a></div><div><a href="/2022/10/25/%E9%9D%A2%E8%AF%95%E9%A2%98/MyBatis%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MyBatis面试题"><img class="cover" src="https://source.fomal.cc/img/default_cover_200.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-25</div><div class="title">MyBatis面试题</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://yzf.qq.com/fsna/kf-file/kf_pic/20221016/KFPIC_38088722014365ca6_WXIMAGE_d75c047ed85544ddaded8bf8eafb054c.jpg?" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Gao</div><div class="author-info__description">生活明朗 万物可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">155</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/gaoziman"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/gaoziman" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-gitHub"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=2942894660@qq.com" target="_blank" title="Email"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/692044806?spm_id_from=333.1007.0.0" target="_blank" title="BiliBili"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg></a><a class="social-icon faa-parent animated-hover" href="tencent://Message/?Uin=2942894660&amp;amp;websiteName=local.edu.com:8888=&amp;amp;Menu=yes" target="_blank" title="QQ"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-QQ1"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2022-11%E6%9C%8813%E6%97%A5-%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">2022 11月13日 每日面试题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">1、谈谈你对面向对象的理解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81int%E5%92%8CInteger%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">2、int和Integer有什么区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E8%AF%B4%E8%AF%B4-amp-%E5%92%8C-amp-amp-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">3、说说&amp;和&amp;&amp;的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9AOP%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">4、说说你对AOP的理解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9IoC%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">6.</span> <span class="toc-text">5、谈谈你对IoC的理解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E8%AF%B7%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9%E5%8F%8D%E5%B0%84%E7%9A%84%E4%BA%86%E8%A7%A3"><span class="toc-number">7.</span> <span class="toc-text">6、请说说你对反射的了解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9ArrayList%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">8.</span> <span class="toc-text">7、说说你对ArrayList的理解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81%E8%AF%B4%E8%AF%B4Spring-Boot%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D"><span class="toc-number">9.</span> <span class="toc-text">8、说说Spring Boot的自动装配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81%E8%AF%B7%E4%BD%A0%E8%AF%B4%E8%AF%B4Java%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%80%89%E6%8B%A9Java%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">9、请你说说Java的特点和优点,为什么要选择Java？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81SpringBoot%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">11.</span> <span class="toc-text">10、SpringBoot的启动流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11%E3%80%81%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BSpring-MVC%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">12.</span> <span class="toc-text">11、介绍一下Spring MVC的执行流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12%E3%80%81%E8%AF%B7%E4%BD%A0%E8%AF%B4%E8%AF%B4List%E4%B8%8ESet%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">13.</span> <span class="toc-text">12、请你说说List与Set的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13%E3%80%81%E5%9C%A8MyBatis%E4%B8%AD-%E5%92%8C-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">14.</span> <span class="toc-text">13、在MyBatis中$和#有什么区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14%E3%80%81%E8%AF%B7%E4%BD%A0%E8%AF%B4%E8%AF%B4Java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">15.</span> <span class="toc-text">14、请你说说Java基本数据类型和引用类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15%E3%80%81%E8%AF%B7%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">16.</span> <span class="toc-text">15、请介绍一下访问修饰符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16%E3%80%81%E8%AF%B7%E4%BD%A0%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">17.</span> <span class="toc-text">16、请你说一下抽象类和接口的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17%E3%80%81String%E3%80%81StringBuffer%E3%80%81Stringbuilder%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">18.</span> <span class="toc-text">17、String、StringBuffer、Stringbuilder有什么区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18%E3%80%81%E8%AF%B7%E4%BD%A0%E8%AF%B4%E8%AF%B4HashMap%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">19.</span> <span class="toc-text">18、请你说说HashMap底层原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8%E7%BA%A2%E9%BB%91%E6%A0%91%E8%80%8C%E7%94%A8B-%E6%A0%91%EF%BC%9F"><span class="toc-number">20.</span> <span class="toc-text">19、数据库为什么不用红黑树而用B+树？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#20%E3%80%81%E8%AF%B7%E4%BD%A0%E8%AF%B4%E8%AF%B4ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">21.</span> <span class="toc-text">20、请你说说ArrayList和LinkedList的区别</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%2011%E6%9C%887%E6%97%A5%20%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/" title="2022 11月7日 每日面试题"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs.lanqb.com%2F13771558-3fda-4257-84d4-70d4bdffe5a9.jpg&amp;refer=http%3A%2F%2Fs.lanqb.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1651215224&amp;t=2c4ceef9b656374088373afe6c474549" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022 11月7日 每日面试题"/></a><div class="content"><a class="title" href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%2011%E6%9C%887%E6%97%A5%20%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/" title="2022 11月7日 每日面试题">2022 11月7日 每日面试题</a><time datetime="2022-11-13T14:20:56.000Z" title="发表于 2022-11-13 22:20:56">2022-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%881%E6%97%A5/" title="2022年11月13日 每日面试题"><img src="http://img.hb.aicdn.com/5c7a56fa5c998a0de15c99cc3c8d17b16adb4f871e05c4-PDqte5" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022年11月13日 每日面试题"/></a><div class="content"><a class="title" href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%881%E6%97%A5/" title="2022年11月13日 每日面试题">2022年11月13日 每日面试题</a><time datetime="2022-11-13T14:17:25.000Z" title="发表于 2022-11-13 22:17:25">2022-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%8813%E6%97%A5/" title="2022年11月13日 每日面试题"><img src="http://5b0988e595225.cdn.sohucs.com/images/20190820/60cc22477f7f497d9ee17752e863c19c.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022年11月13日 每日面试题"/></a><div class="content"><a class="title" href="/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%E5%B9%B411%E6%9C%8813%E6%97%A5/" title="2022年11月13日 每日面试题">2022年11月13日 每日面试题</a><time datetime="2022-11-13T14:14:46.000Z" title="发表于 2022-11-13 22:14:46">2022-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/30/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/" title="每日面试题"><img src="http://wx2.sinaimg.cn/large/9516662fgy1h3eg6z1rs1j21hc1h54qp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日面试题"/></a><div class="content"><a class="title" href="/2022/10/30/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/" title="每日面试题">每日面试题</a><time datetime="2022-10-30T15:33:17.000Z" title="发表于 2022-10-30 23:33:17">2022-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/25/ES6%E8%AF%AD%E6%B3%95/" title="ES6语法"><img src="https://w.wallhaven.cc/full/gp/wallhaven-gpzve7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES6语法"/></a><div class="content"><a class="title" href="/2022/10/25/ES6%E8%AF%AD%E6%B3%95/" title="ES6语法">ES6语法</a><time datetime="2022-10-25T06:18:33.000Z" title="发表于 2022-10-25 14:18:33">2022-10-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="1708664797" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><script async src="/js/diytitle.js"></script><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script async data-pjax src="/js/randombg.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(https://bu.dusays.com/2022/10/06/633ed59127114.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/ES6/&quot;);" href="javascript:void(0);">ES6</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">大学学习史</span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/15/63233b4f2a401.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/随笔⌚/&quot;);" href="javascript:void(0);">随笔⌚</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">前端成长历程</span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e146a135f.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM上篇/&quot;);" href="javascript:void(0);">JVM上篇</a><span class="categoryBar-list-count">12</span><span class="categoryBar-list-descr">生活欢乐多</span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/15/63233ec9893f4.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM下篇/&quot;);" href="javascript:void(0);">JVM下篇</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/https/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MySQL-shk/&quot;);" href="javascript:void(0);">MySQL-shk</a><span class="categoryBar-list-count">11</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/interview-vue01/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java自学笔记/&quot;);" href="javascript:void(0);">Java自学笔记</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/blog-construct/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JavaSE/&quot;);" href="javascript:void(0);">JavaSE</a><span class="categoryBar-list-count">19</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e1453758c.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/教程/&quot;);" href="javascript:void(0);">教程</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e146a135f.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java/&quot;);" href="javascript:void(0);">Java</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/banner/%E9%9B%B7%E7%94%B5%E5%B0%86%E5%86%9B.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/计算机组成原理/&quot;);" href="javascript:void(0);">计算机组成原理</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/15/63233ec9893f4.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/计算机网络/&quot;);" href="javascript:void(0);">计算机网络</a><span class="categoryBar-list-count">12</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/https/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/设计模式/&quot;);" href="javascript:void(0);">设计模式</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/interview-vue01/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/面试题/&quot;);" href="javascript:void(0);">面试题</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/blog-construct/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Web网页技术/&quot;);" href="javascript:void(0);">Web网页技术</a><span class="categoryBar-list-count">9</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e1453758c.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MySQL/&quot;);" href="javascript:void(0);">MySQL</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e146a135f.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JVM中篇/&quot;);" href="javascript:void(0);">JVM中篇</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/15/63233ec9893f4.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/重学Java基础/&quot;);" href="javascript:void(0);">重学Java基础</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/https/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/学习路线/&quot;);" href="javascript:void(0);">学习路线</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/interview-vue01/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Thymeleaf/&quot;);" href="javascript:void(0);">Thymeleaf</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/blog-construct/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java知识点/&quot;);" href="javascript:void(0);">Java知识点</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e1453758c.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/HTTP/&quot;);" href="javascript:void(0);">HTTP</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e146a135f.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/开发必备框架/&quot;);" href="javascript:void(0);">开发必备框架</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/banner/%E9%9B%B7%E7%94%B5%E5%B0%86%E5%86%9B.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/文档/&quot;);" href="javascript:void(0);">文档</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/05/6315e146a135f.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/多线程/&quot;);" href="javascript:void(0);">多线程</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://image.anzhiy.cn/adminuploads/1/2022/09/15/63233ec9893f4.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Java-Basic/&quot;);" href="javascript:void(0);">Java-Basic</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/https/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MyBatis/&quot;);" href="javascript:void(0);">MyBatis</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/interview-vue01/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/转载/&quot;);" href="javascript:void(0);">转载</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/blog-construct/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/MyBatis-Plus/&quot;);" href="javascript:void(0);">MyBatis-Plus</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/interview-vue01/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/JavaScript/&quot;);" href="javascript:void(0);">JavaScript</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/blog-construct/banner.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/C语言/&quot;);" href="javascript:void(0);">C语言</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><div id="ghbdages" style="overflow:hidden;max-height:60px;height:auto;text-align:center;margin-top:10px"><div class="swiper-wrapper"><div class="swiper-slide"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v5.4.0"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.2.2"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a></div><div class="swiper-slide"><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" title="本站使用JsDelivr为静态资源提供CDN加速"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index" style="margin-inline:5px" title="本站已在湘进行备案"><img src="https://img.shields.io/badge/湘ICP备-2022004213号-e1d492?style=flat&amp;logo=data:image/png;base64,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" alt=""/></a></div><div class="swiper-slide"><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本站项目由Github托管"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></div></div></div><style>a.github-badge:hover:before {display:none}</style>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/js/runtime/runtime.min.js"></script><script defer src="https://cdn.cbd.int/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://cdn.cbd.int/hexo-butterfly-footer-beautify/lib/swiperbdage_init.min.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item swiper_container_card" style="height: auto;width: 100%"><div id="random"><div id="random-banner"><canvas id="peoplecanvas"></canvas></div><a id="random-hover" style="width:100%;height:auto;" href="javascript:toRandomPost()" rel="external nofollow noreferrer" one-link-mark="yes"><i class="fa fa-paper-plane" style="margin-left:10px"></i><div style="margin-left:10px">随便逛逛<i class="fa-solid fa-arrow-right" style="margin-left:10px"></i></div></a></div><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://source.fomal.cc/img/default_cover_31.webp" alt="" onerror="this.src=https://cdn.cbd.int/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-05-16</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt="">2021最新版java学习路线</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/05/16/教程/2021最新版java学习路线/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://source.fomal.cc/img/default_cover_139.webp" alt="" onerror="this.src=https://cdn.cbd.int/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-05-03</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt="">随机图api</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/05/03/随机图api/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/js/swiper.min.js"></script><script defer data-pjax src="https://cdn.cbd.int/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/swiper_init.js"></script><script data-pjax src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/gsap/3.9.1/gsap.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper-anzhiyu@1.0.4/lib/people.min.js"></script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '30');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('flink-list-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('article-sort-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__slideInRight');
+    arr[i].setAttribute('data-wow-duration', '1.5s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__flipInY');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script><script async="async">var arr = document.getElementsByClassName('site-card');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__animated');
+    arr[i].setAttribute('data-wow-duration', '3s');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://cdn.cbd.int/hexo-butterfly-wowjs/lib/wow_init.js"></script><script async src="/js/ali_font.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
