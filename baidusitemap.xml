@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://manamn.space/2022/05/23/%E7%9F%A5%E8%AF%86%E7%82%B9/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2022-12-13</lastmod>
-  </url>
-  <url>
-    <loc>https://manamn.space/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%9B%BEapi/</loc>
-    <lastmod>2022-12-13</lastmod>
-  </url>
-  <url>
-    <loc>https://manamn.space/2022/05/22/%E7%99%BE%E4%B8%87%E9%95%BF%E6%96%87%E5%B8%A6%E4%BD%A0%E5%AD%A6Java/</loc>
-    <lastmod>2022-12-13</lastmod>
-  </url>
-  <url>
     <loc>https://manamn.space/2022/12/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022-12%E6%9C%8815%E6%97%A5-%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98-MyBatis/</loc>
     <lastmod>2022-12-13</lastmod>
   </url>
@@ -25,11 +13,7 @@
     <lastmod>2022-12-13</lastmod>
   </url>
   <url>
-    <loc>https://manamn.space/2022/12/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022-12%E6%9C%887%E6%97%A5-%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    <lastmod>2022-12-13</lastmod>
-  </url>
-  <url>
-    <loc>https://manamn.space/2022/12/13/Java%E5%9F%BA%E7%A1%8036%E8%AE%B2/</loc>
+    <loc>https://manamn.space/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%2011%E6%9C%887%E6%97%A5%20%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2022-12-13</lastmod>
   </url>
   <url>
@@ -37,7 +21,23 @@
     <lastmod>2022-12-13</lastmod>
   </url>
   <url>
-    <loc>https://manamn.space/2022/11/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022%2011%E6%9C%887%E6%97%A5%20%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <loc>https://manamn.space/2022/05/23/%E7%9F%A5%E8%AF%86%E7%82%B9/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-12-13</lastmod>
+  </url>
+  <url>
+    <loc>https://manamn.space/2022/05/03/%E9%9A%8F%E6%9C%BA%E5%9B%BEapi/</loc>
+    <lastmod>2022-12-13</lastmod>
+  </url>
+  <url>
+    <loc>https://manamn.space/2022/05/22/%E7%99%BE%E4%B8%87%E9%95%BF%E6%96%87%E5%B8%A6%E4%BD%A0%E5%AD%A6Java/</loc>
+    <lastmod>2022-12-13</lastmod>
+  </url>
+  <url>
+    <loc>https://manamn.space/2022/12/13/%E9%9D%A2%E8%AF%95%E9%A2%98/2022-12%E6%9C%887%E6%97%A5-%E6%AF%8F%E6%97%A5%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2022-12-13</lastmod>
+  </url>
+  <url>
+    <loc>https://manamn.space/2022/12/13/Java%E5%9F%BA%E7%A1%8036%E8%AE%B2/</loc>
     <lastmod>2022-12-13</lastmod>
   </url>
   <url>
